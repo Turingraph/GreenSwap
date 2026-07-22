@@ -6,12 +6,12 @@ int	main(void)
 	size_t		max_score = 6;
 	size_t		i;
 	bool		toumei_answer[] = {
-		true,
-		false,
 		false,
 		true,
+		true,
 		false,
-		true
+		true,
+		false
 	};
 	int			intarr[][15] = {
 		{64,	98,	12,	10,	73,	56,	39,	40,	53,	42,	95,	21,	31,	60,	19},
@@ -32,3 +32,7 @@ int	main(void)
 	}
 	write_total_score(score, max_score);
 }
+
+/*
+valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/duplicate_check/duplicate_check_15.out
+*/

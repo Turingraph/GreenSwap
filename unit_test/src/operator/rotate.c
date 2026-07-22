@@ -8,47 +8,37 @@ int	main(void)
 	size_t			i;
 	int				*dst;
 	t_green_swap	int_list;
-
-	char			strarr[][5] = {
-		{"3", "3", "7", "8", "10"},
-		{"3", "8", "3", "10", "17"},
-		{"3", "10", "4", "8", "16"},
-		{"3", "11", "4", "1", "9"},
-		{"3", "7", "17", "0", "14"},
-		{"3", "6", "18", "3", "0"},
-		{"3", "3", "19", "5", "2"},
-		{"3", "2", "13", "16", "10"}
+	char			strarr[][5][3] = {
+		{"13", "32", "07", "80", "10"},
+		{"13", "82", "03", "10", "17"},
+		{"13", "10", "42", "28", "16"},
+		{"13", "11", "42", "21", "09"},
+		{"03", "78", "17", "00", "14"},
+		{"03", "68", "18", "30", "00"},
+		{"03", "38", "19", "50", "20"},
+		{"03", "28", "13", "16", "10"}
 	};
 	int			intarr[][5] = {
-		{3, 3, 7, 8, 10},
-		{3, 8, 3, 10, 17},
-		{3, 10, 4, 8, 16},
-		{3, 11, 4, 1, 9},
-		{3, 7, 17, 0, 14},
-		{3, 6, 18, 3, 0},
-		{3, 19, 5, 2, 1},
-		{31, 2, 13, 16, 10}
-	};
-	int			outarr[][5] = {
-		{3, 7, 8, 10, 3},
-		{8, 3, 10, 17, 3},
-		{10, 4, 8, 16, 3},
-		{11, 4, 1, 9, 3},
-		{7, 17, 0, 14, 3},
-		{6, 18, 3, 0, 3},
-		{19, 5, 2, 1, 3},
-		{ 2, 13, 16, 10, 31},
+		{32, 07, 80, 10, 13},
+		{82, 03, 10, 17, 13},
+		{10, 42, 28, 16, 13},
+		{11, 42, 21, 9, 13},
+		{78, 17, 00, 14, 3},
+		{68, 18, 30, 00, 3},
+		{38, 19, 50, 20, 3},
+		{28, 13, 16, 10, 3}
 	};
 
 	score = 0;
 	i = 0;
 	while (i < max_score)
 	{
-		dst = strarr_to_intarr(strarr[i], col);
-		int_list = intarr_to_green_swap(&dst, col);
-			operate_green_swap(&int_list, TARGET_A, ACT_ROTATE, act_rotate);
-			if (compare_intarr_with_list(outarr[i], &(int_list.a), col, true) == true
-				&& compare_intarr_with_list(outarr[i], &(int_list.a), col, false) == true)
+		dst = strarr_to_intarr((const char **)strarr[i], col);
+		int_list = intarr_to_green_swap(dst, col);
+			operate_green_swap(&int_list, TARGET_A, E_ROTATE, act_rotate);
+			if ((int_list.b).length == 0
+				&& compare_intarr_with_list(intarr[i], int_list.a.item_1st, col, true) == true
+				&& compare_intarr_with_list(intarr[i], int_list.a.item_1st, col, false) == true)
 				score += 1;
 		free(dst);
 		free_green_swap(&int_list);
@@ -57,3 +47,6 @@ int	main(void)
 	write_total_score(score, max_score);
 }
 
+/*
+valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/operator/rotate.out
+*/

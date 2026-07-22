@@ -2,33 +2,16 @@
 
 // time : O(1)
 // space: O(1)
-void	free_future(t_chapter *src, bool future_is_wild)
+void	memento_mori(t_int_node *src)
 {
-	t_chapter	temp;
+	t_int_node	*temp;
 
 	while (src != NULL)
 	{
-		if (future_is_wild == true)
-			temp = *(src->future);
-		else
-			temp = *(src->flashback);
+		temp = src->future;
 		free(src);
-		*src = temp;
+		src = temp;
 	}
-}
-
-// time : O(1)
-// space: O(1)
-void	memento_mori(t_chapter *src)
-{
-	t_chapter	*future;
-
-	future = NULL;
-	if (src != NULL)
-		future = src->future;
-	free_future(src, false);
-	free_future(future, true);
-	free(src);
 }
 
 // time : O(n)
@@ -38,7 +21,6 @@ void	free_int_list(t_int_list *src)
 	if (src != NULL)
 	{
 		memento_mori(src->item_1st);
-		memento_mori(src->item_last);
 		src->item_1st = NULL;
 		src->item_last = NULL;
 		src->length = 0;
@@ -58,11 +40,11 @@ void	free_green_swap(t_green_swap *src)
 
 // time : O(1)
 // space: O(1)
-t_chapter	*init_a_chapter(int src)
+t_int_node	*init_a_node(int src)
 {
-	t_chapter	*dst;
+	t_int_node	*dst;
 
-	dst = (t_chapter *)malloc(sizeof(t_chapter));
+	dst = (t_int_node *)malloc(sizeof(t_int_node));
 	if (dst == NULL)
 		return (NULL);
 	dst->flashback = NULL;

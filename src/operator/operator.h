@@ -7,10 +7,10 @@ typedef enum e_operator e_operator;
 
 enum e_operator
 {
-	ACT_SWAP,
-	ACT_PUSH,
-	ACT_ROTATE,
-	ACT_RROTATE,
+	E_SWAP,
+	E_PUSH,
+	E_ROTATE,
+	E_RROTATE,
 };
 
 typedef enum e_target e_target;

@@ -31,13 +31,13 @@ char	operate_green_swap(t_green_swap *dst, e_target target, e_operator operator,
 {
 	if (dst == NULL)
 		return (0);
-	else if (operator_action == NULL && operator == ACT_PUSH)
+	else if (operator_action == NULL && operator == E_PUSH)
 	{
 		if (target == TARGET_AB || dst == NULL)
 			return (0);
-		if (target == TARGET_A && is_1_or_more(&(dst->a) == true))
+		if (target == TARGET_A && is_1_or_more(&(dst->a)) == true)
 			act_push(&(dst->a), &(dst->b));
-		if (target == TARGET_B && is_1_or_more(&(dst->b) == true))
+		if (target == TARGET_B && is_1_or_more(&(dst->b)) == true)
 			act_push(&(dst->b), &(dst->a));
 	}
 	else if (is_operator_available(operator, &(dst->b)) == true

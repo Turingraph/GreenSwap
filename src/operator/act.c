@@ -18,7 +18,7 @@ void	act_swap(t_int_list *src)
 // space: O(1)
 void	act_rotate(t_int_list *src)
 {
-	t_chapter	*temp;
+	t_int_node	*temp;
 
 	if (is_2_or_more(src) == true)
 	{
@@ -35,7 +35,7 @@ void	act_rotate(t_int_list *src)
 // space: O(1)
 void	act_rrotate(t_int_list *src)
 {
-	t_chapter	*temp;
+	t_int_node	*temp;
 
 	if (is_2_or_more(src) == true)
 	{
@@ -52,7 +52,7 @@ void	act_rrotate(t_int_list *src)
 // space: O(1)
 void	act_ppush(t_int_list *src, t_int_list *dst)
 {
-	t_chapter	*temp;
+	t_int_node	*temp;
 
 	if (is_1_or_more(dst) == true && is_1_or_more(src) == true)
 	{
@@ -71,12 +71,9 @@ void	act_ppush(t_int_list *src, t_int_list *dst)
 
 // time : O(1)
 // space: O(1)
-bool	act_push(t_int_list *src, t_int_list *dst)
+void	act_push(t_int_list *src, t_int_list *dst)
 {
-	if (src == NULL || src->length == 0
-		|| src->item_1st == NULL || dst == NULL)
-		return (false);
-	if (is_1_or_more(src) == true && dst->length == 0)
+	if (is_1_or_more(src) == true && dst != NULL && dst->length == 0)
 	{
 		dst->item_1st = src->item_1st;
 		src->item_1st = src->item_1st->future;
@@ -88,7 +85,6 @@ bool	act_push(t_int_list *src, t_int_list *dst)
 		dst->length += 1;
 		src->length -= 1;
 	}
-	if (is_1_or_more(src) == true && is_2_or_more(dst) == true)
+	else if (is_1_or_more(src) == true && is_2_or_more(dst) == true)
 		act_ppush(src, dst);
-	return (true);
 }
