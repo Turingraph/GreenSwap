@@ -29,11 +29,11 @@ size_t	write_available_operator(t_green_swap *dst, e_target target, int show, e_
 // space: O(1)
 char	operate_green_swap(t_green_swap *dst, e_target target, e_operator operator, void (*operator_action)(t_int_list *dst))
 {
-	if (dst == NULL)
+	if (dst == NULL || (operator_action == NULL && operator != E_PUSH))
 		return (0);
 	else if (operator_action == NULL && operator == E_PUSH)
 	{
-		if (target == TARGET_AB || dst == NULL)
+		if (target == TARGET_AB)
 			return (0);
 		if (target == TARGET_A && is_1_or_more(&(dst->a)) == true)
 			act_push(&(dst->a), &(dst->b));

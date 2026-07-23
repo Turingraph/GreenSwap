@@ -27,6 +27,7 @@ void	act_rotate(t_int_list *src)
 		src->item_1st->flashback = NULL;
 		temp->future = NULL;
 		temp->flashback = src->item_last;
+		src->item_last->future = temp;
 		src->item_last = temp;
 	}
 }
@@ -44,6 +45,7 @@ void	act_rrotate(t_int_list *src)
 		src->item_last->future = NULL;
 		temp->flashback = NULL;
 		temp->future = src->item_1st;
+		src->item_1st->flashback = temp;
 		src->item_1st = temp;
 	}
 }
@@ -85,6 +87,6 @@ void	act_push(t_int_list *src, t_int_list *dst)
 		dst->length += 1;
 		src->length -= 1;
 	}
-	else if (is_1_or_more(src) == true && is_2_or_more(dst) == true)
+	else if (is_1_or_more(src) == true && is_1_or_more(dst) == true)
 		act_ppush(src, dst);
 }

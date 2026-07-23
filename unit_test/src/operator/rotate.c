@@ -8,7 +8,7 @@ int	main(void)
 	size_t			i;
 	int				*dst;
 	t_green_swap	int_list;
-	char			strarr[][5][3] = {
+	char			*strarr[][5] = {
 		{"13", "32", "07", "80", "10"},
 		{"13", "82", "03", "10", "17"},
 		{"13", "10", "42", "28", "16"},
@@ -38,7 +38,7 @@ int	main(void)
 			operate_green_swap(&int_list, TARGET_A, E_ROTATE, act_rotate);
 			if ((int_list.b).length == 0
 				&& compare_intarr_with_list(intarr[i], int_list.a.item_1st, col, true) == true
-				&& compare_intarr_with_list(intarr[i], int_list.a.item_1st, col, false) == true)
+				&& compare_intarr_with_list(intarr[i], int_list.a.item_last, col, false) == true)
 				score += 1;
 		free(dst);
 		free_green_swap(&int_list);

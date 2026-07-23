@@ -62,8 +62,15 @@ bool	compare_intarr_with_list(const int *intarr, const t_int_node *intlist, size
 	if (intarr == NULL || intlist == NULL)
 		return (false);
 	i = 0;
+	// if (future_is_wild == false)
+	// 	write(1, "<<< ", 4);
 	while (i < length && intlist != NULL)
 	{
+		// if (future_is_wild == false)
+		// {
+		// 	ft_putnbr_fd(intarr[i], 1, "0123456789", 1);
+		// 	write(1, ", ", 2);
+		// }
 		if (intlist->moment != intarr[i] && future_is_wild == true)
 			return (false);
 		if (intlist->moment != intarr[length - i - 1] && future_is_wild == false)
@@ -74,6 +81,8 @@ bool	compare_intarr_with_list(const int *intarr, const t_int_node *intlist, size
 			intlist = intlist->flashback;
 		i += 1;
 	}
+	// if (future_is_wild == false)
+	// 	write(1, "\n", 1);
 	if (i < length && intlist == NULL)
 		return (false);
 	return (true);
