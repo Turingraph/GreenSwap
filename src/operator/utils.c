@@ -2,7 +2,7 @@
 
 // time : O(1)
 // space: O(1)
-bool	is_1_or_more(t_int_list *src)
+bool	is_1_or_more(const t_int_list *src)
 {
 	if (src == NULL || src->item_1st == NULL
 		|| src->item_last == NULL
@@ -13,7 +13,7 @@ bool	is_1_or_more(t_int_list *src)
 
 // time : O(1)
 // space: O(1)
-bool	is_2_or_more(t_int_list *src)
+bool	is_2_or_more(const t_int_list *src)
 {
 	if (src == NULL || src->item_1st == NULL
 		|| src->item_1st->future == NULL || src->item_last == NULL
@@ -24,7 +24,19 @@ bool	is_2_or_more(t_int_list *src)
 
 // time : O(1)
 // space: O(1)
-bool	is_operator_available(e_operator operator, t_int_list *dst)
+bool	is_both_stack_n_more(const t_green_swap *src,
+			size_t min_a, size_t min_b)
+{
+	if (src != NULL
+		&& is_1_or_more(&(src->a)) == true && src->a.length >= min_a
+		&& is_1_or_more(&(src->b)) == true && src->b.length >= min_b)
+		return (true);
+	return (false);
+}
+
+// time : O(1)
+// space: O(1)
+bool	is_operator_available(e_operator operator, const t_int_list *dst)
 {
 	if (dst == NULL)
 		return (false);
