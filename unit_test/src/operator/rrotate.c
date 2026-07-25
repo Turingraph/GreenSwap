@@ -35,7 +35,7 @@ int	main(void)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
 		int_list = intarr_to_green_swap(dst, col);
-		operate_green_swap(&int_list, TARGET_A, E_ROTATE, act_rrotate);
+		operate_green_swap(&int_list, E_A, E_ROTATE, act_rrotate);
 		if ((int_list.b).length == 0
 			&& compare_intarr_with_list(intarr[i], int_list.a.item_1st, col, true) == true
 			&& compare_intarr_with_list(intarr[i], int_list.a.item_last, col, false) == true)

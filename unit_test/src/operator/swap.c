@@ -51,7 +51,7 @@ int	main(void)
 			int_list = intarr_to_green_swap(dst, col);
 			if (j % 2 == 0)
 			{
-				operate_green_swap(&int_list, TARGET_A, E_SWAP, act_swap);
+				operate_green_swap(&int_list, E_A, E_SWAP, act_swap);
 				write_future(int_list.a.item_1st, true);
 				if (compare_intarr_with_list(intarr_a[i], int_list.a.item_1st, col, true) == true
 					&& compare_intarr_with_list(intarr_a[i], int_list.a.item_last, col, false) == true)
@@ -59,7 +59,7 @@ int	main(void)
 			}
 			else
 			{
-				operate_green_swap(&int_list, TARGET_B, E_SWAP, act_swap);
+				operate_green_swap(&int_list, E_B, E_SWAP, act_swap);
 				if ((int_list.b).length == 0
 					&& compare_intarr_with_list(intarr_b[i], int_list.a.item_1st, col, true) == true
 					&& compare_intarr_with_list(intarr_b[i], int_list.a.item_last, col, false) == true)

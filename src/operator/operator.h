@@ -17,9 +17,9 @@ typedef enum e_target e_target;
 
 enum e_target
 {
-	TARGET_A,
-	TARGET_B,
-	TARGET_AB,
+	E_A,
+	E_B,
+	E_AB,
 };
 
 // act.c

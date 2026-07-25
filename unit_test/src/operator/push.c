@@ -56,11 +56,11 @@ int	main(void)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
 		int_list = intarr_to_green_swap(dst, col);
-		operate_green_swap(&int_list, TARGET_A, E_PUSH, NULL);
-		operate_green_swap(&int_list, TARGET_A, E_PUSH, NULL);
-		operate_green_swap(&int_list, TARGET_A, E_PUSH, NULL);
-		operate_green_swap(&int_list, TARGET_B, E_ROTATE, act_rotate);
-		operate_green_swap(&int_list, TARGET_B, E_ROTATE, act_rotate);
+		operate_green_swap(&int_list, E_A, E_PUSH, NULL);
+		operate_green_swap(&int_list, E_A, E_PUSH, NULL);
+		operate_green_swap(&int_list, E_A, E_PUSH, NULL);
+		operate_green_swap(&int_list, E_B, E_ROTATE, act_rotate);
+		operate_green_swap(&int_list, E_B, E_ROTATE, act_rotate);
 		if (compare_intarr_with_list(outarr_a[i], int_list.a.item_1st, 2, true) == true
 			&& compare_intarr_with_list(outarr_a[i], int_list.a.item_last, 2, false) == true
 			&& compare_intarr_with_list(outarr_b[i], int_list.b.item_1st, 3, true) == true)
