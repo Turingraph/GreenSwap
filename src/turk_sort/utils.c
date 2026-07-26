@@ -69,14 +69,14 @@ void	sort_three(t_green_swap *dst, int show)
 		{
 			write_available_operator(dst, E_A, show, E_ROTATE);
 			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
-			sort_large_c(dst, show);
+			sort_three(dst, show);
 		}
 		else if (dst->a.item_1st->future->moment >= dst->a.item_last->moment
 			&& dst->a.item_1st->future->moment >= dst->a.item_1st->moment)
 		{
 			write_available_operator(dst, E_A, show, E_RROTATE);
 			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
-			sort_large_c(dst, show);
+			sort_three(dst, show);
 		}
 	}
 }

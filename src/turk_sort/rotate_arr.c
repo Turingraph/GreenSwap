@@ -17,21 +17,21 @@ int	*shift_by1_arr(int *dst, size_t length)
 
 // time : O(n)
 // space: O(n)
-int	*rotate_arr(int *src, size_t length, size_t index)
+int	*rrotate_arr(int *src, size_t length, size_t rotate_effect)
 {
 	int		*dst;
 	size_t	i;
 	size_t	j;
 
-	if (src == NULL || length == 0 || index >= length)
+	if (src == NULL || length == 0 || rotate_effect >= length)
 		return (NULL);
 	dst = (int *)malloc(sizeof(int) * length);
 	if (dst == NULL)
 		return (NULL);
 	i = 0;
-	while (i + index < length)
+	while (i + rotate_effect < length)
 	{
-		dst[i] = src[i + index];
+		dst[i] = src[i + rotate_effect];
 		i += 1;
 	}
 	j = 0;
@@ -46,21 +46,21 @@ int	*rotate_arr(int *src, size_t length, size_t index)
 
 // time : O(n)
 // space: O(n)
-int	*rrotate_arr(int *src, size_t length, size_t index)
+int	*rotate_arr(int *src, size_t length, size_t rotate_effect)
 {
 	int		*dst;
 	size_t	i;
 	size_t	j;
 
-	if (src == NULL || length == 0 || index >= length)
+	if (src == NULL || length == 0 || rotate_effect >= length)
 		return (NULL);
 	dst = (int *)malloc(sizeof(int) * length);
 	if (dst == NULL)
 		return (NULL);
 	i = 0;
-	while (i + index < length)
+	while (i + rotate_effect < length)
 	{
-		dst[i + index] = src[i];
+		dst[i + rotate_effect] = src[i];
 		i += 1;
 	}
 	j = 0;

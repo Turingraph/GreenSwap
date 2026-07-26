@@ -2,20 +2,17 @@
 
 // time : O(1)
 // space: O(1)
-t_turk_costs	free_turk_cost(t_turk_costs *src)
+void	free_turk_cost(t_turk_costs *src)
 {
-	t_turk_costs	dst;
-
-	dst.length = 0;
-	dst.capacity = 0;
-	dst.target_a = NULL;
-	dst.rotate_cost = NULL;
-	if (src == NULL)
-		return (dst);
-	free(src->rotate_cost);
-	free(src->target_a);
-	*src = dst;
-	return (dst);
+	if (src != NULL)
+	{
+		free(src->rotate_cost);
+		free(src->target_a);
+		src->capacity = 0;
+		src->length = 0;
+		src->target_a = NULL;
+		src->rotate_cost = NULL;
+	}
 }
 
 // time : O(n)
@@ -33,10 +30,13 @@ t_turk_costs	init_turk_cost(size_t length)
 	{
 		dst.target_a = (int *)malloc(sizeof(int) * length);
 		if (dst.target_a == NULL)
-			return (free_turk_cost(&dst));
+			return (dst);
 		dst.rotate_cost = (int *)malloc(sizeof(int) * length);
 		if (dst.rotate_cost == NULL)
-			(free_turk_cost(&dst));
+		{
+			free_turk_cost(&dst);
+			return (dst);
+		}
 		i = 0;
 		while (i < length)
 		{

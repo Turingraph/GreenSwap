@@ -13,18 +13,17 @@ int	single_rotate_1st(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 	{
 		while (i < target_b)
 		{
-			write_available_operator(dst, E_B, show, E_ROTATE);
-			operate_green_swap(dst, E_B, E_ROTATE, act_rotate);
+			write_available_operator(dst, E_B, show, E_RROTATE);
+			operate_green_swap(dst, E_B, E_RROTATE, act_rrotate);
 			i += 1;
 		}
 		i = 0;
 		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
 		{
-			write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
+			cost += (int)write_available_operator(dst, E_A, show, E_ROTATE);
+			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
 			i += 1;
 		}
-		cost = (int)i * -1;
 	}
 	return (cost);
 }
@@ -42,18 +41,17 @@ int	single_rotate_2nd(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 	{
 		while (i < target_b)
 		{
-			write_available_operator(dst, E_B, show, E_RROTATE);
-			operate_green_swap(dst, E_B, E_RROTATE, act_rrotate);
+			write_available_operator(dst, E_B, show, E_ROTATE);
+			operate_green_swap(dst, E_B, E_ROTATE, act_rotate);
 			i += 1;
 		}
 		i = 0;
 		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
 		{
-			write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
+			cost += -1 * (int)write_available_operator(dst, E_A, show, E_RROTATE);
+			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
 			i += 1;
 		}
-		cost = (int)i;
 	}
 	return (cost);
 }
@@ -73,21 +71,21 @@ int	double_rotate_1st(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 		j = 0;
 		while (i < target_b && j < turk_cost->rotate_cost[target_b])
 		{
-			cost += (int)write_available_operator(dst, E_AB, show, E_ROTATE);
-			operate_green_swap(dst, E_AB, E_ROTATE, act_rotate);
+			cost += (int)write_available_operator(dst, E_AB, show, E_RROTATE);
+			operate_green_swap(dst, E_AB, E_RROTATE, act_rrotate);
 			i += 1;
 			j += 1;
 		}
 		while (i < target_b)
 		{
-			cost += (int)write_available_operator(dst, E_B, show, E_ROTATE);
-			operate_green_swap(dst, E_B, E_ROTATE, act_rotate);
+			write_available_operator(dst, E_B, show, E_RROTATE);
+			operate_green_swap(dst, E_B, E_RROTATE, act_rrotate);
 			i += 1;
 		}
 		while (j < turk_cost->rotate_cost[target_b])
 		{
-			cost += (int)write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
+			cost += (int)write_available_operator(dst, E_A, show, E_RROTATE);
+			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
 			j += 1;
 		}
 	}
@@ -109,21 +107,21 @@ int	double_rotate_2nd(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 		j = 0;
 		while (i < target_b && j < turk_cost->rotate_cost[target_b])
 		{
-			cost -= (int)write_available_operator(dst, E_AB, show, E_RROTATE);
-			operate_green_swap(dst, E_AB, E_RROTATE, act_rrotate);
+			cost += -1 * (int)write_available_operator(dst, E_AB, show, E_ROTATE);
+			operate_green_swap(dst, E_AB, E_ROTATE, act_rotate);
 			i += 1;
 			j += 1;
 		}
 		while (i < target_b)
 		{
-			cost -= (int)write_available_operator(dst, E_B, show, E_RROTATE);
-			operate_green_swap(dst, E_B, E_RROTATE, act_rrotate);
+			write_available_operator(dst, E_B, show, E_ROTATE);
+			operate_green_swap(dst, E_B, E_ROTATE, act_rotate);
 			i += 1;
 		}
 		while (j < turk_cost->rotate_cost[target_b])
 		{
-			cost -= (int)write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
+			cost += -1 * (int)write_available_operator(dst, E_A, show, E_ROTATE);
+			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
 			j += 1;
 		}
 	}
