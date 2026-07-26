@@ -81,7 +81,7 @@ t_turk_costs	first_turk_sort(t_green_swap *src, int show)
 	return (dst);
 }
 
-// time : O(n)
+// time : O(n^2)
 // space: O(n)
 void	turk_sort(t_green_swap *src, int show)
 {

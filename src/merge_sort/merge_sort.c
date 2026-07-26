@@ -2,51 +2,60 @@
 
 // time : O(n)
 // space: O(1)
-void	copy_intarr(const int *src, int *dst, size_t start, size_t stop)
+void	copy_intarr(int *src, int *dst, size_t length)
 {
-	while (src != NULL && dst != NULL && start <= stop)
+	size_t	i;
+
+	i = 0;
+	while (src != NULL && dst != NULL && i < length)
 	{
-		dst[start] = src[start];
-		start += 1;
+		dst[i] = src[i];
+		i += 1;
 	}
 }
 
 // time : O(n)
 // space: O(1)
-void	linear_merge(const int *src, int *dst, size_t start, size_t stop)
+void	linear_merge(int *src, int *dst, size_t start, size_t stop)
 {
 	size_t	mid;
 	size_t	i;
 	size_t	j;
+	size_t	k;
 
-	if (start < stop && src != NULL && dst != NULL)
+	if (start <= stop && src != NULL && dst != NULL)
 	{
 		mid = (stop + start) / 2;
+		k = start;
 		i = start;
 		j = mid + 1;
 		while (i <= mid && j <= stop)
 		{
 			if (src[i] <= src[j])
 			{
-				dst[i] = src[i];
+				dst[k] = src[i];
 				i += 1;
 			}
 			else
 			{
-				dst[j] = src[j];
+				dst[k] = src[j];
 				j += 1;
 			}
+			k += 1;
 		}
-		copy_intarr(src, dst, i, mid);
-		copy_intarr(src, dst, j, stop);
+		if (i <= mid)
+			copy_intarr(src + i, dst + k, mid - i + 1);
+		if (j <= stop)
+			copy_intarr(src + j, dst + k, stop - j + 1);
 	}
 }
 
 // time : O(n log n)
 // space: O(1)
-void	space_free_merge_sort(const int *src, int *dst, size_t start, size_t stop)
+void	space_free_merge_sort(int *src, int *dst, size_t start, size_t stop)
 {
 	size_t	mid;
+	size_t	i;
 
 	if (start < stop && src != NULL && dst != NULL)
 	{
@@ -54,12 +63,18 @@ void	space_free_merge_sort(const int *src, int *dst, size_t start, size_t stop)
 		space_free_merge_sort(src, dst, start, mid);
 		space_free_merge_sort(src, dst, mid + 1, stop);
 		linear_merge(src, dst, start, stop);
+		i = start;
+		while (i <= stop)
+		{
+			src[i] = dst[i];
+			i += 1;
+		}
 	}
 }
 
 // time : O(n log n)
 // space: O(n)
-int	*merge_sort(const int *src, size_t length)
+int	*merge_sort(int *src, size_t length)
 {
 	int	*dst;
 

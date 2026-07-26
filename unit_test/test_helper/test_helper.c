@@ -20,6 +20,23 @@ void	write_future(t_int_node *dst, bool is_future)
 	write(1, "\n", 1);
 }
 
+// time : O(n)
+// space: O(1)
+void	write_intarr(int *dst, size_t length)
+{
+	size_t	i;
+
+	i = 0;
+	write(1, ">>> ", 4);
+	while (dst != NULL && i < length)
+	{
+		ft_putnbr_fd(dst[i], 1, "0123456789", 1);
+		write(1, ", ", 2);
+		i += 1;
+	}
+	write(1, "\n", 1);
+}
+
 // time : O(1)
 // space: O(1)
 void	write_total_score(size_t score, size_t max_score)

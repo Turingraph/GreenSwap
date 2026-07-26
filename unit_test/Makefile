@@ -3,22 +3,24 @@
 CC = cc -Wall -Wextra -Werror
 remove_slash = $(patsubst %/,%,$1)
 get_obj_files = $(filter %.o, $1)
-get_lib_a_files = $(filter %.a, $^)
+get_lib_a_files = $(filter %.a, $1)
 
 SRC_input = $(wildcard input/*.c)
 SRC_duplicate_check = $(wildcard duplicate_check/*.c)
 SRC_operator = $(wildcard operator/*.c)
+SRC_merge_sort = $(wildcard merge_sort/*.c)
 
 OBJ_input = $(patsubst %.c, obj/%.o, $(SRC_input))
 OBJ_duplicate_check = $(patsubst %.c, obj/%.o, $(SRC_duplicate_check)) $(OBJ_input)
 OBJ_operator = $(patsubst %.c, obj/%.o, $(SRC_operator)) $(OBJ_input)
+OBJ_merge_sort = $(patsubst %.c, obj/%.o, $(SRC_merge_sort))
 
 SRC = $(wildcard src/*/*.c)
 OUT = $(patsubst src/%.c, out/%.out, $(SRC))
 
 #-----------------------------------------------------------------------------------------------
 # *** define library ***
-OBJ_HELPER_input = $(wildcard ../src/obj/input/*.c)
+OBJ_HELPER_input = $(wildcard ../src/obj/input/*.o)
 TEST_HELPER_SRC = $(wildcard test_helper/*.c)
 TEST_HELPER_OBJ = $(patsubst %.c, obj/%.o, $(TEST_HELPER_SRC)) $(OBJ_HELPER_input)
 TEST_HELPER_LIB = lib/test_helper.a
