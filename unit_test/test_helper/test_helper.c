@@ -10,12 +10,12 @@ void	write_future(t_int_node *dst, bool is_future)
 	write(1, ">>> ", 4);
 	while (temp != NULL)
 	{
-		ft_putnbr_fd(temp->moment, 1, "0123456789", 1);
+		ft_putnbr_fd(temp->value, 1, "0123456789", 1);
 		write(1, ", ", 2);
 		if (is_future == true)
-			temp = temp->future;
+			temp = temp->next;
 		else
-			temp = temp->flashback;
+			temp = temp->prev;
 	}
 	write(1, "\n", 1);
 }
@@ -88,14 +88,14 @@ bool	compare_intarr_with_list(const int *intarr, const t_int_node *intlist, size
 		// 	ft_putnbr_fd(intarr[i], 1, "0123456789", 1);
 		// 	write(1, ", ", 2);
 		// }
-		if (intlist->moment != intarr[i] && future_is_wild == true)
+		if (intlist->value != intarr[i] && future_is_wild == true)
 			return (false);
-		if (intlist->moment != intarr[length - i - 1] && future_is_wild == false)
+		if (intlist->value != intarr[length - i - 1] && future_is_wild == false)
 			return (false);
 		if (future_is_wild == true)
-			intlist = intlist->future;
+			intlist = intlist->next;
 		else
-			intlist = intlist->flashback;
+			intlist = intlist->prev;
 		i += 1;
 	}
 	// if (future_is_wild == false)

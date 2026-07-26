@@ -25,6 +25,9 @@ int				*rrotate_arr(int *src, size_t length, size_t rotate_effect);
 // rotate_list.c
 int				rotate_green_swap(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cost, int show);
 
+// sort.c
+void			turk_sort(t_green_swap *src, int show);
+
 // update.c
 void			update_target_a(t_turk_costs *turk_cost, t_int_list *list_b, int dekmia);
 void			update_rotate_cost(t_turk_costs *turk_cost, size_t rotate);

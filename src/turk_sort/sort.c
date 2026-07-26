@@ -47,12 +47,12 @@ void	double_draw(t_green_swap *src, t_turk_costs *turk_cost, int show)
 		rotate_green_swap(cheap_trick, src, turk_cost, show);
 		write_available_operator(src, E_A, show, E_PUSH);
 		operate_green_swap(src, E_A, E_PUSH, act_push);
-		if (src->a.item_1st->moment > src->a.item_1st->future->moment)
+		if (src->a.item_1st->value > src->a.item_1st->next->value)
 		{
 			write_available_operator(src, E_A, show, E_ROTATE);
 			operate_green_swap(src, E_A, E_ROTATE, act_rotate);
 		}
-		reset_turk_cost(turk_cost, turk_cost->rotate_cost[cheap_trick], src->a.item_1st->moment);
+		reset_turk_cost(turk_cost, turk_cost->rotate_cost[cheap_trick], src->a.item_1st->value);
 	}
 }
 

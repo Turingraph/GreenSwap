@@ -73,17 +73,17 @@ void	load_turk_cost_item(t_int_list *item_a, t_int_node *item_b,
 	{
 		i = 0;
 		item = item_a->item_1st;
-		define_ith_turk_cost(item->moment, 0, turk_cost, index);
+		define_ith_turk_cost(item->value, 0, turk_cost, index);
 		while (item != NULL && i < item_a->length)
 		{
 			if (i <= item_a->length / 2)
-				define_ith_turk_cost(item->moment, (int)i, turk_cost, index);
+				define_ith_turk_cost(item->value, (int)i, turk_cost, index);
 			else
-				define_ith_turk_cost(item->moment,
+				define_ith_turk_cost(item->value,
 					(int)item_a->length - (int)i,
 					turk_cost, index);
 			i += 1;
-			item = item->future;
+			item = item->next;
 		}
 	}
 }
@@ -105,7 +105,7 @@ t_turk_costs	load_turk_cost(t_green_swap *src)
 	while (item_b == NULL && i < src->b.length)
 	{
 		load_turk_cost_item(&(src->a), item_b, &dst, i);
-		item_b = item_b->future;
+		item_b = item_b->next;
 		i += 1;
 	}
 	return (dst);

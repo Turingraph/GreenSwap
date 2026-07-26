@@ -126,11 +126,11 @@ t_int_node	*intarr_to_node(const int *src, size_t length)
 		next = init_a_node(src[i]);
 		if (next == NULL)
 		{
-			memento_mori(dst);
+			free_int_node(dst);
 			return (NULL);
 		}
-		current->future = next;
-		next->flashback = current;
+		current->next = next;
+		next->prev = current;
 		current = next;
 		i += 1;
 	}
@@ -149,8 +149,8 @@ t_int_list	intarr_to_intlist(const int *src, size_t length)
 	item = dst.item_1st;
 	if (item != NULL)
 	{
-		while(item->future != NULL)
-			item = item->future;
+		while(item->next != NULL)
+			item = item->next;
 	}
 	dst.item_last = item;
 	return (dst);

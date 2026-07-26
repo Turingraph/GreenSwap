@@ -37,10 +37,10 @@ void	sort_two(t_green_swap *dst, int show)
 {
 	if (dst != NULL && dst->a.length == 2
 		&& dst->a.item_1st != NULL
-		&& dst->a.item_1st->future != NULL
+		&& dst->a.item_1st->next != NULL
 		&& dst->a.item_last != NULL)
 	{
-		if (dst->a.item_1st->moment >= dst->a.item_last->moment)
+		if (dst->a.item_1st->value >= dst->a.item_last->value)
 		{
 			write_available_operator(dst, E_A, show, E_SWAP);
 			operate_green_swap(dst, E_A, E_SWAP, act_swap);
@@ -54,25 +54,25 @@ void	sort_three(t_green_swap *dst, int show)
 {
 	if (dst != NULL && dst->a.length == 3
 		&& dst->a.item_1st != NULL
-		&& dst->a.item_1st->future != NULL
+		&& dst->a.item_1st->next != NULL
 		&& dst->a.item_last != NULL)
 	{
-		if (dst->a.item_last->moment >= dst->a.item_1st->moment
-			&& dst->a.item_last->moment >= dst->a.item_1st->future->moment
-			&& dst->a.item_1st->moment > dst->a.item_1st->future->moment)
+		if (dst->a.item_last->value >= dst->a.item_1st->value
+			&& dst->a.item_last->value >= dst->a.item_1st->next->value
+			&& dst->a.item_1st->value > dst->a.item_1st->next->value)
 		{
 			write_available_operator(dst, E_A, show, E_SWAP);
 			operate_green_swap(dst, E_A, E_SWAP, act_swap);
 		}
-		else if (dst->a.item_1st->moment >= dst->a.item_last->moment
-			&& dst->a.item_1st->moment >= dst->a.item_1st->future->moment)
+		else if (dst->a.item_1st->value >= dst->a.item_last->value
+			&& dst->a.item_1st->value >= dst->a.item_1st->next->value)
 		{
 			write_available_operator(dst, E_A, show, E_ROTATE);
 			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
 			sort_three(dst, show);
 		}
-		else if (dst->a.item_1st->future->moment >= dst->a.item_last->moment
-			&& dst->a.item_1st->future->moment >= dst->a.item_1st->moment)
+		else if (dst->a.item_1st->next->value >= dst->a.item_last->value
+			&& dst->a.item_1st->next->value >= dst->a.item_1st->value)
 		{
 			write_available_operator(dst, E_A, show, E_RROTATE);
 			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);

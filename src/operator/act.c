@@ -8,9 +8,9 @@ void	act_swap(t_int_list *src)
 
 	if (is_2_or_more(src) == true)
 	{
-		temp = src->item_1st->moment;
-		src->item_1st->moment = src->item_1st->future->moment;
-		src->item_1st->future->moment = temp;
+		temp = src->item_1st->value;
+		src->item_1st->value = src->item_1st->next->value;
+		src->item_1st->next->value = temp;
 	}
 }
 
@@ -23,11 +23,11 @@ void	act_rotate(t_int_list *src)
 	if (is_2_or_more(src) == true)
 	{
 		temp = src->item_1st;
-		src->item_1st = src->item_1st->future;
-		src->item_1st->flashback = NULL;
-		temp->future = NULL;
-		temp->flashback = src->item_last;
-		src->item_last->future = temp;
+		src->item_1st = src->item_1st->next;
+		src->item_1st->prev = NULL;
+		temp->next = NULL;
+		temp->prev = src->item_last;
+		src->item_last->next = temp;
 		src->item_last = temp;
 	}
 }
@@ -41,11 +41,11 @@ void	act_rrotate(t_int_list *src)
 	if (is_2_or_more(src) == true)
 	{
 		temp = src->item_last;
-		src->item_last = src->item_last->flashback;
-		src->item_last->future = NULL;
-		temp->flashback = NULL;
-		temp->future = src->item_1st;
-		src->item_1st->flashback = temp;
+		src->item_last = src->item_last->prev;
+		src->item_last->next = NULL;
+		temp->prev = NULL;
+		temp->next = src->item_1st;
+		src->item_1st->prev = temp;
 		src->item_1st = temp;
 	}
 }
@@ -59,13 +59,13 @@ void	act_ppush(t_int_list *src, t_int_list *dst)
 	if (is_1_or_more(dst) == true && is_1_or_more(src) == true)
 	{
 		temp = src->item_1st;
-		dst->item_1st->flashback = src->item_1st;
-		src->item_1st = src->item_1st->future;
+		dst->item_1st->prev = src->item_1st;
+		src->item_1st = src->item_1st->next;
 		if (src->item_1st != NULL)
-			src->item_1st->flashback = NULL;
-		temp->future = dst->item_1st;
-		temp->flashback = NULL;
-		dst->item_1st = dst->item_1st->flashback;
+			src->item_1st->prev = NULL;
+		temp->next = dst->item_1st;
+		temp->prev = NULL;
+		dst->item_1st = dst->item_1st->prev;
 		dst->length += 1;
 		src->length -= 1;
 	}
@@ -78,11 +78,11 @@ void	act_push(t_int_list *src, t_int_list *dst)
 	if (is_1_or_more(src) == true && dst != NULL && dst->length == 0)
 	{
 		dst->item_1st = src->item_1st;
-		src->item_1st = src->item_1st->future;
+		src->item_1st = src->item_1st->next;
 		if (src->item_1st != NULL)
-			src->item_1st->flashback = NULL;
-		dst->item_1st->flashback = NULL;
-		dst->item_1st->future = NULL;
+			src->item_1st->prev = NULL;
+		dst->item_1st->prev = NULL;
+		dst->item_1st->next = NULL;
 		dst->item_last = dst->item_1st;
 		dst->length += 1;
 		src->length -= 1;

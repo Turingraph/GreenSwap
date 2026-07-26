@@ -9,9 +9,9 @@ typedef struct t_int_node t_int_node;
 
 typedef struct t_int_node
 {
-	int					moment;
-	struct t_int_node	*future;
-	struct t_int_node	*flashback;
+	int					value;
+	struct t_int_node	*next;
+	struct t_int_node	*prev;
 }	t_int_node;
 
 typedef struct t_int_list t_int_list;
@@ -37,7 +37,7 @@ int				f_atoi(const char *src, bool *is_int, const char *base, size_t digits);
 
 // init.c
 t_int_node			*init_a_node(int src);
-void			memento_mori(t_int_node *src);
+void			free_int_node(t_int_node *src);
 void			free_int_list(t_int_list *src);
 void			free_green_swap(t_green_swap *src);
 

@@ -16,7 +16,7 @@ bool	is_1_or_more(const t_int_list *src)
 bool	is_2_or_more(const t_int_list *src)
 {
 	if (src == NULL || src->item_1st == NULL
-		|| src->item_1st->future == NULL || src->item_last == NULL
+		|| src->item_1st->next == NULL || src->item_last == NULL
 		|| src->length < 2)
 		return (false);
 	return (true);

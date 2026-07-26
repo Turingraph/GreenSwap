@@ -9,7 +9,7 @@ void	burning_memory(t_int_node **memory, size_t eclipse)
 	time = 0;
 	while (time < eclipse)
 	{
-		memento_mori(memory[time]);
+		free_int_node(memory[time]);
 		time += 1;
 	}
 	free(memory);
@@ -53,10 +53,10 @@ bool	subliminal_stimuli(t_int_node **memory, int event, size_t eclipse)
 		return (true);
 	}
 	rabbit_hole = memory[day];
-	while (rabbit_hole->future != NULL)
-		rabbit_hole = rabbit_hole->future;
-	rabbit_hole->future = init_a_node(event);
-	if (rabbit_hole->future == NULL)
+	while (rabbit_hole->next != NULL)
+		rabbit_hole = rabbit_hole->next;
+	rabbit_hole->next = init_a_node(event);
+	if (rabbit_hole->next == NULL)
 	{
 		burning_memory(memory, eclipse);
 		return (false);
@@ -75,15 +75,15 @@ bool	have_i_seen_this_before(t_int_node **memory, int event, size_t eclipse)
 	rabbit_hole = memory[day];
 	if (rabbit_hole == NULL)
 		return (false);
-	if (rabbit_hole->moment == event)
+	if (rabbit_hole->value == event)
 		return (true);
-	while (rabbit_hole->future != NULL)
+	while (rabbit_hole->next != NULL)
 	{
-		if (rabbit_hole->moment == event)
+		if (rabbit_hole->value == event)
 			return (true);
-		rabbit_hole = rabbit_hole->future;
+		rabbit_hole = rabbit_hole->next;
 	}
-	if (rabbit_hole->moment == event)
+	if (rabbit_hole->value == event)
 		return (true);
 	return (false);
 }

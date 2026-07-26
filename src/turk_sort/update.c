@@ -13,15 +13,15 @@ void	update_target_a(t_turk_costs *turk_cost, t_int_list *list_b, int dekmia)
 	i = 0;
 	while (is_turk_cost_valid(turk_cost, i) == true && item != NULL)
 	{
-		if ((dekmia >= item->moment && (dekmia < turk_cost->target_a[i]
-				|| turk_cost->target_a[i] <= item->moment))
+		if ((dekmia >= item->value && (dekmia < turk_cost->target_a[i]
+				|| turk_cost->target_a[i] <= item->value))
 			|| (dekmia <= turk_cost->target_a[i]
-				&& turk_cost->target_a[i] <= item->moment))
+				&& turk_cost->target_a[i] <= item->value))
 		{
 			turk_cost->rotate_cost[i] = 0;
 			turk_cost->target_a[i] = dekmia;
 		}
-		item = item->future;
+		item = item->next;
 		i += 1;
 	}
 }
