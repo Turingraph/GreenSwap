@@ -2,9 +2,9 @@
 
 // time : O(1)
 // space: O(1)
-void	free_int_node(t_int_node *src)
+void	free_intnode(t_intnode *src)
 {
-	t_int_node	*temp;
+	t_intnode	*temp;
 
 	while (src != NULL)
 	{
@@ -16,11 +16,11 @@ void	free_int_node(t_int_node *src)
 
 // time : O(n)
 // space: O(1)
-void	free_int_list(t_int_list *src)
+void	free_intlist(t_intlist *src)
 {
 	if (src != NULL)
 	{
-		free_int_node(src->item_1st);
+		free_intnode(src->item_1st);
 		src->item_1st = NULL;
 		src->item_last = NULL;
 		src->length = 0;
@@ -29,22 +29,22 @@ void	free_int_list(t_int_list *src)
 
 // time : O(n)
 // space: O(1)
-void	free_double_int_list(t_double_int_list *src)
+void	free_2intlist(t_2intlist *src)
 {
 	if (src != NULL)
 	{
-		free_int_list(&(src->a));
-		free_int_list(&(src->b));
+		free_intlist(&(src->a));
+		free_intlist(&(src->b));
 	}
 }
 
 // time : O(1)
 // space: O(1)
-t_int_node	*init_a_node(int src)
+t_intnode	*init_intnode(int src)
 {
-	t_int_node	*dst;
+	t_intnode	*dst;
 
-	dst = (t_int_node *)malloc(sizeof(t_int_node));
+	dst = (t_intnode *)malloc(sizeof(t_intnode));
 	if (dst == NULL)
 		return (NULL);
 	dst->prev = NULL;

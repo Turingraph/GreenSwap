@@ -2,9 +2,9 @@
 
 // time : O(n)
 // space: O(1)
-void	write_intlist(t_int_node *dst, bool is_future)
+void	write_intlist(t_intnode *dst, bool is_future)
 {
-	t_int_node	*temp;
+	t_intnode	*temp;
 
 	temp = dst;
 	write(1, ">>> ", 4);
@@ -55,13 +55,29 @@ bool	is_intarr_sort(const int *dst, size_t length, int ascending)
 
 // time : O(n)
 // space: O(1)
-bool	is_intlist_sort(const t_int_node *dst, int ascending)
+bool	is_intlist_sort(const t_intnode *dst, int ascending)
 {
 	while (dst != NULL && dst->next != NULL)
 	{
 		if (dst->value * ascending > dst->next->value * ascending)
 			return (false);
+		dst = dst->next;
 	}
 	return (true);
+}
+
+// time : O(n)
+// space: O(1)
+int	*copy_reverse_intarr(int *dst, const int *src, size_t length)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < length && dst != NULL && src != NULL)
+	{
+		dst[i] = src[length - i - 1];
+		i += 1;
+	}
+	return (dst);
 }
 

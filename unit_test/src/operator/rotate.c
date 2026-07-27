@@ -7,7 +7,7 @@ int	main(void)
 	size_t			max_score = 8;
 	size_t			i;
 	int				*dst;
-	t_double_int_list	int_list;
+	t_2intlist	int_list;
 	char			*strarr[][5] = {
 		{"13", "32", "07", "80", "10"},
 		{"13", "82", "03", "10", "17"},
@@ -34,14 +34,14 @@ int	main(void)
 	while (i < max_score)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
-		int_list = load_double_int_list(dst, col);
-			operate_green_swap(&int_list, E_A, E_ROTATE, act_rotate);
+		int_list = load_2intlist(dst, col);
+			operate_double_intlist(&int_list, E_A, E_ROTATE, act_rotate);
 			if ((int_list.b).length == 0
-				&& compare_intarr_with_list(intarr[i], int_list.a.item_1st, col, true) == true
-				&& compare_intarr_with_list(intarr[i], int_list.a.item_last, col, false) == true)
+				&& is_intarr_and_list_same(intarr[i], int_list.a.item_1st, col, true) == true
+				&& is_intarr_and_list_same(intarr[i], int_list.a.item_last, col, false) == true)
 				score += 1;
 		free(dst);
-		free_double_int_list(&int_list);
+		free_2intlist(&int_list);
 		i += 1;
 	}
 	write_total_score(score, max_score);

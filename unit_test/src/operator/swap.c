@@ -8,7 +8,7 @@ int	main(void)
 	size_t			i;
 	size_t			j;
 	int				*dst;
-	t_double_int_list	int_list;
+	t_2intlist	int_list;
 	char			*strarr[][5] = {
 		{"13", "32", "07", "80", "10"},
 		{"13", "82", "03", "10", "17"},
@@ -48,25 +48,25 @@ int	main(void)
 		while (j < 2)
 		{
 			dst = strarr_to_intarr((const char **)strarr[i], col);
-			int_list = load_double_int_list(dst, col);
+			int_list = load_2intlist(dst, col);
 			if (j % 2 == 0)
 			{
-				operate_green_swap(&int_list, E_A, E_SWAP, act_swap);
+				operate_double_intlist(&int_list, E_A, E_SWAP, act_swap);
 				write_intlist(int_list.a.item_1st, true);
-				if (compare_intarr_with_list(intarr_a[i], int_list.a.item_1st, col, true) == true
-					&& compare_intarr_with_list(intarr_a[i], int_list.a.item_last, col, false) == true)
+				if (is_intarr_and_list_same(intarr_a[i], int_list.a.item_1st, col, true) == true
+					&& is_intarr_and_list_same(intarr_a[i], int_list.a.item_last, col, false) == true)
 					score += 1;
 			}
 			else
 			{
-				operate_green_swap(&int_list, E_B, E_SWAP, act_swap);
+				operate_double_intlist(&int_list, E_B, E_SWAP, act_swap);
 				if ((int_list.b).length == 0
-					&& compare_intarr_with_list(intarr_b[i], int_list.a.item_1st, col, true) == true
-					&& compare_intarr_with_list(intarr_b[i], int_list.a.item_last, col, false) == true)
+					&& is_intarr_and_list_same(intarr_b[i], int_list.a.item_1st, col, true) == true
+					&& is_intarr_and_list_same(intarr_b[i], int_list.a.item_last, col, false) == true)
 					score += 1;
 			}
 			free(dst);
-			free_double_int_list(&int_list);
+			free_2intlist(&int_list);
 			j += 1;
 		}
 		i += 1;

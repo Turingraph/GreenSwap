@@ -7,7 +7,7 @@ int	main(void)
 	size_t		max_score = 8;
 	size_t		i;
 	int			*dst;
-	t_int_list	intlist;
+	t_intlist	intlist;
 	char			*strarr[][5] = {
 		{"13", "32", "07", "80", "10"},
 		{"13", "81", "03", "10", "17"},
@@ -35,8 +35,8 @@ int	main(void)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
 		intlist = load_intlist(dst, col);
-		if (compare_intarr_with_list(intarr[i], intlist.item_1st, col, true) == true
-			&& compare_intarr_with_list(intarr[i], intlist.item_last, col, false) == true)
+		if (is_intarr_and_list_same(intarr[i], intlist.item_1st, col, true) == true
+			&& is_intarr_and_list_same(intarr[i], intlist.item_last, col, false) == true)
 			score += 1;
 		else
 		{
@@ -45,7 +45,7 @@ int	main(void)
 			write(1, "\n", 1);
 		}
 		free(dst);
-		free_int_list(&intlist);
+		free_intlist(&intlist);
 		i += 1;
 	}
 	write_total_score(score, max_score);

@@ -2,10 +2,10 @@
 
 // time : O(n)
 // space: O(1)
-void	update_target_a(t_turk_costs *turk_cost, t_int_list *list_b, int dekmia)
+void	update_target_a(t_turk_costs *turk_cost, t_intlist *list_b, int target_a)
 {
 	size_t		i;
-	t_int_node	*item;
+	t_intnode	*item;
 
 	item = NULL;
 	if (list_b != NULL)
@@ -13,13 +13,13 @@ void	update_target_a(t_turk_costs *turk_cost, t_int_list *list_b, int dekmia)
 	i = 0;
 	while (is_turk_cost_valid(turk_cost, i) == true && item != NULL)
 	{
-		if ((dekmia >= item->value && (dekmia < turk_cost->target_a[i]
+		if ((target_a >= item->value && (target_a < turk_cost->target_a[i]
 				|| turk_cost->target_a[i] <= item->value))
-			|| (dekmia <= turk_cost->target_a[i]
+			|| (target_a <= turk_cost->target_a[i]
 				&& turk_cost->target_a[i] <= item->value))
 		{
 			turk_cost->rotate_cost[i] = 0;
-			turk_cost->target_a[i] = dekmia;
+			turk_cost->target_a[i] = target_a;
 		}
 		item = item->next;
 		i += 1;

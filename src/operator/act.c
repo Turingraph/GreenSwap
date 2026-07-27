@@ -2,11 +2,11 @@
 
 // time : O(1)
 // space: O(1)
-void	act_swap(t_int_list *src)
+void	act_swap(t_intlist *src)
 {
 	int	temp;
 
-	if (is_2_or_more(src) == true)
+	if (is_intlist_n_more(src, 2) == true)
 	{
 		temp = src->item_1st->value;
 		src->item_1st->value = src->item_1st->next->value;
@@ -16,11 +16,11 @@ void	act_swap(t_int_list *src)
 
 // time : O(1)
 // space: O(1)
-void	act_rotate(t_int_list *src)
+void	act_rotate(t_intlist *src)
 {
-	t_int_node	*temp;
+	t_intnode	*temp;
 
-	if (is_2_or_more(src) == true)
+	if (is_intlist_n_more(src, 2) == true)
 	{
 		temp = src->item_1st;
 		src->item_1st = src->item_1st->next;
@@ -34,11 +34,11 @@ void	act_rotate(t_int_list *src)
 
 // time : O(1)
 // space: O(1)
-void	act_rrotate(t_int_list *src)
+void	act_rrotate(t_intlist *src)
 {
-	t_int_node	*temp;
+	t_intnode	*temp;
 
-	if (is_2_or_more(src) == true)
+	if (is_intlist_n_more(src, 2) == true)
 	{
 		temp = src->item_last;
 		src->item_last = src->item_last->prev;
@@ -52,11 +52,11 @@ void	act_rrotate(t_int_list *src)
 
 // time : O(1)
 // space: O(1)
-void	act_ppush(t_int_list *src, t_int_list *dst)
+void	act_ppush(t_intlist *src, t_intlist *dst)
 {
-	t_int_node	*temp;
+	t_intnode	*temp;
 
-	if (is_1_or_more(dst) == true && is_1_or_more(src) == true)
+	if (is_intlist_n_more(dst, 1) == true && is_intlist_n_more(src, 1) == true)
 	{
 		temp = src->item_1st;
 		dst->item_1st->prev = src->item_1st;
@@ -73,9 +73,9 @@ void	act_ppush(t_int_list *src, t_int_list *dst)
 
 // time : O(1)
 // space: O(1)
-void	act_push(t_int_list *src, t_int_list *dst)
+void	act_push(t_intlist *src, t_intlist *dst)
 {
-	if (is_1_or_more(src) == true && dst != NULL && dst->length == 0)
+	if (is_intlist_n_more(dst, 0) == true && is_intlist_n_more(src, 1) == true)
 	{
 		dst->item_1st = src->item_1st;
 		src->item_1st = src->item_1st->next;
@@ -87,6 +87,6 @@ void	act_push(t_int_list *src, t_int_list *dst)
 		dst->length += 1;
 		src->length -= 1;
 	}
-	else if (is_1_or_more(src) == true && is_1_or_more(dst) == true)
+	else if (is_intlist_n_more(dst, 1) == true && is_intlist_n_more(src, 1) == true)
 		act_ppush(src, dst);
 }

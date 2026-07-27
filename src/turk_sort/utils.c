@@ -33,7 +33,7 @@ bool	is_turk_cost_valid(t_turk_costs *dst, size_t index)
 
 // time : O(1)
 // space: O(1)
-void	sort_two(t_double_int_list *dst, int show)
+void	sort_two(t_2intlist *dst, int show)
 {
 	if (dst != NULL && dst->a.length == 2
 		&& dst->a.item_1st != NULL
@@ -43,14 +43,14 @@ void	sort_two(t_double_int_list *dst, int show)
 		if (dst->a.item_1st->value >= dst->a.item_last->value)
 		{
 			write_available_operator(dst, E_A, show, E_SWAP);
-			operate_green_swap(dst, E_A, E_SWAP, act_swap);
+			operate_double_intlist(dst, E_A, E_SWAP, act_swap);
 		}
 	}
 }
 
 // time : O(1)
 // space: O(1)
-void	sort_three(t_double_int_list *dst, int show)
+void	sort_three(t_2intlist *dst, int show)
 {
 	if (dst != NULL && dst->a.length == 3
 		&& dst->a.item_1st != NULL
@@ -62,20 +62,20 @@ void	sort_three(t_double_int_list *dst, int show)
 			&& dst->a.item_1st->value > dst->a.item_1st->next->value)
 		{
 			write_available_operator(dst, E_A, show, E_SWAP);
-			operate_green_swap(dst, E_A, E_SWAP, act_swap);
+			operate_double_intlist(dst, E_A, E_SWAP, act_swap);
 		}
 		else if (dst->a.item_1st->value >= dst->a.item_last->value
 			&& dst->a.item_1st->value >= dst->a.item_1st->next->value)
 		{
 			write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
+			operate_double_intlist(dst, E_A, E_ROTATE, act_rotate);
 			sort_three(dst, show);
 		}
 		else if (dst->a.item_1st->next->value >= dst->a.item_last->value
 			&& dst->a.item_1st->next->value >= dst->a.item_1st->value)
 		{
 			write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
+			operate_double_intlist(dst, E_A, E_RROTATE, act_rrotate);
 			sort_three(dst, show);
 		}
 	}

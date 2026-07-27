@@ -62,13 +62,13 @@ void	define_ith_turk_cost(int target_a, int rotate_cost,
 
 // time : O(a)
 // space: O(1)
-void	load_turk_cost_item(t_int_list *item_a, t_int_node *item_b,
+void	load_turk_cost_item(t_intlist *item_a, t_intnode *item_b,
 	t_turk_costs *turk_cost, size_t index)
 {
-	t_int_node	*item;
+	t_intnode	*item;
 	size_t		i;
 
-	if (is_1_or_more(item_a) == true && item_b != NULL
+	if (is_intlist_n_more(item_a, 3) == true && item_b != NULL
 		&& is_turk_cost_valid(turk_cost, 0) == true)
 	{
 		i = 0;
@@ -76,12 +76,18 @@ void	load_turk_cost_item(t_int_list *item_a, t_int_node *item_b,
 		define_ith_turk_cost(item->value, 0, turk_cost, index);
 		while (item != NULL && i < item_a->length)
 		{
-			if (i <= item_a->length / 2)
+			if (i <= item_a->length / 2 && item->value >= item_b->value)
+			{
 				define_ith_turk_cost(item->value, (int)i, turk_cost, index);
-			else
+				i = item_a->length;
+			}
+			else if (item->value >= item_b->value)
+			{
 				define_ith_turk_cost(item->value,
-					(int)item_a->length - (int)i,
+					((int)item_a->length - (int)i) * -1,
 					turk_cost, index);
+				i = item_a->length;
+			}
 			i += 1;
 			item = item->next;
 		}
@@ -90,10 +96,9 @@ void	load_turk_cost_item(t_int_list *item_a, t_int_node *item_b,
 
 // time : O(b * a)
 // space: O(b)
-t_turk_costs	load_turk_cost(t_double_int_list *src)
+t_turk_costs	load_turk_cost(t_2intlist *src)
 {
-	t_int_node		*item_a;
-	t_int_node		*item_b;
+	t_intnode		*item_b;
 	size_t			i;
 	t_turk_costs	dst;
 
@@ -102,9 +107,9 @@ t_turk_costs	load_turk_cost(t_double_int_list *src)
 	dst = init_turk_cost(src->b.length);
 	item_b = src->b.item_1st;
 	i = 0;
-	while (item_b == NULL && i < src->b.length)
+	while (item_b != NULL && i < src->b.length)
 	{
-		load_turk_cost_item(&(src->a), item_b, &dst, i);
+		load_turk_cost_item(&src->a, item_b, &dst, i);
 		item_b = item_b->next;
 		i += 1;
 	}

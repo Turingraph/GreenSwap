@@ -1,4 +1,4 @@
-#include"test_helper.h"
+#include"input.h"
 
 // time : O(1)
 // space: O(1)
@@ -73,27 +73,29 @@ void	write_total_score(size_t score, size_t max_score)
 
 // time : O(n)
 // space: O(1)
-int	compare_intarr(const int *str_1, const int *str_2, size_t n)
+bool	is_2intarr_same(const int *str_1, const int *str_2, size_t n)
 {
 	size_t	i;
 
 	i = 0;
 	if (str_1 == NULL && str_2 == NULL)
-		return (0);
+		return (true);
 	if ((str_1 == NULL && str_2 != NULL) || (str_1 != NULL && str_2 == NULL))
-		return (-1);
+		return (false);
 	while (i < n - 1 && *str_1 == *str_2)
 	{
 		i += 1;
 		str_1 += 1;
 		str_2 += 1;
 	}
-	return (*str_1 - *str_2);
+	if (*str_1 - *str_2 == 0)
+		return (true);
+	return (false);
 }
 
 // time : O(n)
 // space: O(1)
-bool	compare_intarr_with_list(const int *intarr, const t_int_node *intlist, size_t length, bool future_is_wild)
+bool	is_intarr_and_list_same(const int *intarr, const t_intnode *intlist, size_t length, bool future_is_wild)
 {
 	size_t	i;
 

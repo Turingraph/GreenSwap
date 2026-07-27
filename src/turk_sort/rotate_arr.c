@@ -1,16 +1,40 @@
 #include"turk_sort.h"
 
+int	*init_intarr(size_t length, int scale)
+{
+	int		*dst;
+	size_t	i;
+
+	if (length == 0)
+		return (NULL);
+	dst = (int *)malloc(sizeof(int) * length);
+	if (dst == NULL)
+		return (NULL);
+	i = 0;
+	while (i < length)
+	{
+		dst[i] = scale;
+		i += 1;
+	}
+	return (dst);
+}
+
 // time : O(n)
 // space: O(1)
 int	*shift_by1_arr(int *dst, size_t length)
 {
-	size_t	i;
+	int		temp;
+	int		temp2;
 
-	i = 0;
-	while (i < length - 1)
+	temp = 0;
+	if (dst != NULL)
+		temp = dst[length - 1];
+	while (length > 1 && dst != NULL)
 	{
-		dst[i] = dst[i + 1];
-		i += 1;
+		temp2 = dst[length - 2];
+		dst[length - 2] = temp;
+		temp = temp2;
+		length -= 1;
 	}
 	return (dst);
 }
@@ -25,7 +49,7 @@ int	*rrotate_arr(int *src, size_t length, size_t rotate_effect)
 
 	if (src == NULL || length == 0 || rotate_effect >= length)
 		return (NULL);
-	dst = (int *)malloc(sizeof(int) * length);
+	dst = init_intarr(length, -446933);
 	if (dst == NULL)
 		return (NULL);
 	i = 0;
@@ -54,7 +78,7 @@ int	*rotate_arr(int *src, size_t length, size_t rotate_effect)
 
 	if (src == NULL || length == 0 || rotate_effect >= length)
 		return (NULL);
-	dst = (int *)malloc(sizeof(int) * length);
+	dst = init_intarr(length, -83742);
 	if (dst == NULL)
 		return (NULL);
 	i = 0;

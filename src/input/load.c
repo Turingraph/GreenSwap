@@ -107,26 +107,26 @@ int	*strarr_to_intarr(const char **src, size_t length)
 
 // time : O(n)
 // space: O(1)
-t_int_node	*load_node(const int *src, size_t length)
+t_intnode	*load_intnode(const int *src, size_t length)
 {
-	t_int_node	*dst;
-	t_int_node	*current;
-	t_int_node	*next;
+	t_intnode	*dst;
+	t_intnode	*current;
+	t_intnode	*next;
 	size_t		i;
 
 	if (src == NULL || length == 0)
 		return (NULL);
-	dst = init_a_node(src[0]);
+	dst = init_intnode(src[0]);
 	if (dst == NULL)
 		return (NULL);
 	current = dst;
 	i = 1;
 	while (i < length)
 	{
-		next = init_a_node(src[i]);
+		next = init_intnode(src[i]);
 		if (next == NULL)
 		{
-			free_int_node(dst);
+			free_intnode(dst);
 			return (NULL);
 		}
 		current->next = next;
@@ -139,13 +139,13 @@ t_int_node	*load_node(const int *src, size_t length)
 
 // time : O(n)
 // space: O(1)
-t_int_list	load_intlist(const int *src, size_t length)
+t_intlist	load_intlist(const int *src, size_t length)
 {
-	t_int_list	dst;
-	t_int_node	*item;
+	t_intlist	dst;
+	t_intnode	*item;
 
 	dst.length = length;
-	dst.item_1st = load_node(src, length);
+	dst.item_1st = load_intnode(src, length);
 	item = dst.item_1st;
 	if (item != NULL)
 	{
@@ -158,9 +158,9 @@ t_int_list	load_intlist(const int *src, size_t length)
 
 // time : O(n)
 // space: O(1)
-t_double_int_list	load_double_int_list(const int *src, size_t length)
+t_2intlist	load_2intlist(const int *src, size_t length)
 {
-	t_double_int_list	dst;
+	t_2intlist	dst;
 
 	dst.b.length = 0;
 	dst.b.item_1st = NULL;

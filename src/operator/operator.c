@@ -2,7 +2,7 @@
 
 // time : O(1)
 // space: O(1)
-size_t	write_available_operator(t_double_int_list *dst, e_target target, int show, e_operator operator)
+size_t	write_available_operator(t_2intlist *dst, e_target target, int show, e_operator operator)
 {
 	if (dst == NULL)
 		return (0);
@@ -27,7 +27,7 @@ size_t	write_available_operator(t_double_int_list *dst, e_target target, int sho
 
 // time : O(1)
 // space: O(1)
-char	operate_green_swap(t_double_int_list *dst, e_target target, e_operator operator, void (*operator_action)(t_int_list *dst))
+char	operate_double_intlist(t_2intlist *dst, e_target target, e_operator operator, void (*operator_action)(t_intlist *dst))
 {
 	if (dst == NULL || (operator_action == NULL && operator != E_PUSH))
 		return (0);
@@ -35,9 +35,9 @@ char	operate_green_swap(t_double_int_list *dst, e_target target, e_operator oper
 	{
 		if (target == E_AB)
 			return (0);
-		if (target == E_A && is_1_or_more(&(dst->a)) == true)
+		if (target == E_A && is_intlist_n_more(&(dst->a), 1) == true)
 			act_push(&(dst->a), &(dst->b));
-		if (target == E_B && is_1_or_more(&(dst->b)) == true)
+		if (target == E_B && is_intlist_n_more(&(dst->b), 1) == true)
 			act_push(&(dst->b), &(dst->a));
 	}
 	else if (is_operator_available(operator, &(dst->b)) == true

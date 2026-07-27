@@ -2,14 +2,14 @@
 
 // time : O(n)
 // space: O(1)
-void	burning_memory(t_int_node **memory, size_t eclipse)
+void	burning_memory(t_intnode **memory, size_t eclipse)
 {
 	size_t	time;
 
 	time = 0;
 	while (time < eclipse)
 	{
-		free_int_node(memory[time]);
+		free_intnode(memory[time]);
 		time += 1;
 	}
 	free(memory);
@@ -17,12 +17,12 @@ void	burning_memory(t_int_node **memory, size_t eclipse)
 
 // time : O(n)
 // space: O(n)
-t_int_node	**rumination(size_t eclipse)
+t_intnode	**rumination(size_t eclipse)
 {
 	size_t		day;
-	t_int_node	**memory;
+	t_intnode	**memory;
 
-	memory = (t_int_node **)malloc(sizeof(t_int_node *) * (eclipse));
+	memory = (t_intnode **)malloc(sizeof(t_intnode *) * (eclipse));
 	if (memory == NULL)
 		return (NULL);
 	day = 0;
@@ -36,15 +36,15 @@ t_int_node	**rumination(size_t eclipse)
 
 // time : O(1)
 // space: O(1)
-bool	subliminal_stimuli(t_int_node **memory, int event, size_t eclipse)
+bool	subliminal_stimuli(t_intnode **memory, int event, size_t eclipse)
 {
 	size_t		day;
-	t_int_node	*rabbit_hole;
+	t_intnode	*rabbit_hole;
 
 	day = the_wheel_of_fortune(event, eclipse);
 	if (memory[day] == NULL)
 	{
-		memory[day] = init_a_node(event);
+		memory[day] = init_intnode(event);
 		if (memory[day] == NULL)
 		{
 			burning_memory(memory, eclipse);
@@ -55,7 +55,7 @@ bool	subliminal_stimuli(t_int_node **memory, int event, size_t eclipse)
 	rabbit_hole = memory[day];
 	while (rabbit_hole->next != NULL)
 		rabbit_hole = rabbit_hole->next;
-	rabbit_hole->next = init_a_node(event);
+	rabbit_hole->next = init_intnode(event);
 	if (rabbit_hole->next == NULL)
 	{
 		burning_memory(memory, eclipse);
@@ -66,10 +66,10 @@ bool	subliminal_stimuli(t_int_node **memory, int event, size_t eclipse)
 
 // time : O(1)
 // space: O(1)
-bool	have_i_seen_this_before(t_int_node **memory, int event, size_t eclipse)
+bool	have_i_seen_this_before(t_intnode **memory, int event, size_t eclipse)
 {
 	size_t		day;
-	t_int_node	*rabbit_hole;
+	t_intnode	*rabbit_hole;
 
 	day = the_wheel_of_fortune(event, eclipse);
 	rabbit_hole = memory[day];
@@ -94,7 +94,7 @@ bool	kagerou_day(int *events, size_t time)
 {
 	size_t		day;
 	bool		dejavu;
-	t_int_node	**memory;
+	t_intnode	**memory;
 	size_t		eclipse;
 
 	if (time < 2)

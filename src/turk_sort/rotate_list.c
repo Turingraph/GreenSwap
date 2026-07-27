@@ -2,7 +2,7 @@
 
 // time : O(n)
 // space: O(1)
-int	single_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
+int	single_rotate_1st(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	int		cost;
@@ -14,14 +14,14 @@ int	single_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 		while (i < target_b)
 		{
 			write_available_operator(dst, E_B, show, E_RROTATE);
-			operate_green_swap(dst, E_B, E_RROTATE, act_rrotate);
+			operate_double_intlist(dst, E_B, E_RROTATE, act_rrotate);
 			i += 1;
 		}
 		i = 0;
 		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
 		{
 			cost += (int)write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
+			operate_double_intlist(dst, E_A, E_ROTATE, act_rotate);
 			i += 1;
 		}
 	}
@@ -30,7 +30,7 @@ int	single_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 
 // time : O(n)
 // space: O(1)
-int	single_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
+int	single_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	int		cost;
@@ -42,14 +42,14 @@ int	single_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 		while (i < target_b)
 		{
 			write_available_operator(dst, E_B, show, E_ROTATE);
-			operate_green_swap(dst, E_B, E_ROTATE, act_rotate);
+			operate_double_intlist(dst, E_B, E_ROTATE, act_rotate);
 			i += 1;
 		}
 		i = 0;
 		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
 		{
 			cost += -1 * (int)write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
+			operate_double_intlist(dst, E_A, E_RROTATE, act_rrotate);
 			i += 1;
 		}
 	}
@@ -58,7 +58,7 @@ int	single_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 
 // time : O(n)
 // space: O(1)
-int	double_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
+int	double_rotate_1st(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	size_t	j;
@@ -69,23 +69,23 @@ int	double_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
 	{
 		j = 0;
-		while (i < target_b && j < turk_cost->rotate_cost[target_b])
+		while (i < target_b && j < (size_t)turk_cost->rotate_cost[target_b])
 		{
 			cost += (int)write_available_operator(dst, E_AB, show, E_RROTATE);
-			operate_green_swap(dst, E_AB, E_RROTATE, act_rrotate);
+			operate_double_intlist(dst, E_AB, E_RROTATE, act_rrotate);
 			i += 1;
 			j += 1;
 		}
 		while (i < target_b)
 		{
 			write_available_operator(dst, E_B, show, E_RROTATE);
-			operate_green_swap(dst, E_B, E_RROTATE, act_rrotate);
+			operate_double_intlist(dst, E_B, E_RROTATE, act_rrotate);
 			i += 1;
 		}
-		while (j < turk_cost->rotate_cost[target_b])
+		while (j < (size_t)turk_cost->rotate_cost[target_b])
 		{
 			cost += (int)write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_green_swap(dst, E_A, E_RROTATE, act_rrotate);
+			operate_double_intlist(dst, E_A, E_RROTATE, act_rrotate);
 			j += 1;
 		}
 	}
@@ -94,7 +94,7 @@ int	double_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 
 // time : O(n)
 // space: O(1)
-int	double_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
+int	double_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	size_t	j;
@@ -105,23 +105,23 @@ int	double_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
 	{
 		j = 0;
-		while (i < target_b && j < turk_cost->rotate_cost[target_b])
+		while (i < target_b && j < (size_t)(turk_cost->rotate_cost[target_b] * -1))
 		{
 			cost += -1 * (int)write_available_operator(dst, E_AB, show, E_ROTATE);
-			operate_green_swap(dst, E_AB, E_ROTATE, act_rotate);
+			operate_double_intlist(dst, E_AB, E_ROTATE, act_rotate);
 			i += 1;
 			j += 1;
 		}
 		while (i < target_b)
 		{
 			write_available_operator(dst, E_B, show, E_ROTATE);
-			operate_green_swap(dst, E_B, E_ROTATE, act_rotate);
+			operate_double_intlist(dst, E_B, E_ROTATE, act_rotate);
 			i += 1;
 		}
-		while (j < turk_cost->rotate_cost[target_b])
+		while (j < (size_t)(turk_cost->rotate_cost[target_b] * -1))
 		{
 			cost += -1 * (int)write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_green_swap(dst, E_A, E_ROTATE, act_rotate);
+			operate_double_intlist(dst, E_A, E_ROTATE, act_rotate);
 			j += 1;
 		}
 	}
@@ -130,7 +130,7 @@ int	double_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *tur
 
 // time : O(n)
 // space: O(1)
-int	rotate_green_swap(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
+int	rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
 {
 	int	cost;
 

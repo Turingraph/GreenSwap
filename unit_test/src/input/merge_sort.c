@@ -32,7 +32,7 @@ int	main(void)
 	{
 		dst = merge_sort(intarr[i], col);
 		write_intarr(dst, col);
-		if (compare_intarr(dst, outarr[i], col) == 0)
+		if (is_2intarr_same(dst, outarr[i], col) == 0 && is_intarr_sort(dst, col, 1) == true)
 			score += 1;
 		free(dst);
 		i += 1;

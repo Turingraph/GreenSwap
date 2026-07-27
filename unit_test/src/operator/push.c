@@ -1,16 +1,5 @@
 #include "operator.h"
 
-	// int			intarr[][5] = {
-	// 	{13, 32, 7, 80, 10},
-	// 	{13, 82, 3, 10, 17},
-	// 	{13, 10, 42, 82, 16},
-	// 	{13, 11, 42, 12, 9},
-	// 	{3, 78, 17, 00, 14},
-	// 	{3, 68, 18, 30, 0},
-	// 	{3, 38, 19, 50, 20},
-	// 	{3, 28, 13, 16, 10}
-	// };
-
 int	main(void)
 {
 	size_t			col = 5;
@@ -18,7 +7,7 @@ int	main(void)
 	size_t			max_score = 8;
 	size_t			i;
 	int				*dst;
-	t_double_int_list	int_list;
+	t_2intlist	int_list;
 	char			*strarr[][5] = {
 		{"13", "32", "07", "80", "10"},
 		{"13", "82", "03", "10", "17"},
@@ -55,15 +44,15 @@ int	main(void)
 	while (i < max_score)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
-		int_list = load_double_int_list(dst, col);
-		operate_green_swap(&int_list, E_A, E_PUSH, NULL);
-		operate_green_swap(&int_list, E_A, E_PUSH, NULL);
-		operate_green_swap(&int_list, E_A, E_PUSH, NULL);
-		operate_green_swap(&int_list, E_B, E_ROTATE, act_rotate);
-		operate_green_swap(&int_list, E_B, E_ROTATE, act_rotate);
-		if (compare_intarr_with_list(outarr_a[i], int_list.a.item_1st, 2, true) == true
-			&& compare_intarr_with_list(outarr_a[i], int_list.a.item_last, 2, false) == true
-			&& compare_intarr_with_list(outarr_b[i], int_list.b.item_1st, 3, true) == true)
+		int_list = load_2intlist(dst, col);
+		operate_double_intlist(&int_list, E_A, E_PUSH, NULL);
+		operate_double_intlist(&int_list, E_A, E_PUSH, NULL);
+		operate_double_intlist(&int_list, E_A, E_PUSH, NULL);
+		operate_double_intlist(&int_list, E_B, E_ROTATE, act_rotate);
+		operate_double_intlist(&int_list, E_B, E_ROTATE, act_rotate);
+		if (is_intarr_and_list_same(outarr_a[i], int_list.a.item_1st, 2, true) == true
+			&& is_intarr_and_list_same(outarr_a[i], int_list.a.item_last, 2, false) == true
+			&& is_intarr_and_list_same(outarr_b[i], int_list.b.item_1st, 3, true) == true)
 			// && compare_intarr_with_list(outarr_b[i], int_list.b.item_last, 3, false) == true)
 			score += 1;
 		else
@@ -73,7 +62,7 @@ int	main(void)
 			write(1, "\n", 1);
 		}
 		free(dst);
-		free_double_int_list(&int_list);
+		free_2intlist(&int_list);
 		i += 1;
 	}
 	write_total_score(score, max_score);

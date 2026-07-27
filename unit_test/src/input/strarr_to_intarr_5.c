@@ -35,7 +35,7 @@ int	main(void)
 	while (i < max_score)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
-		if (compare_intarr(dst, intarr[i], col) == 0)
+		if (is_2intarr_same(dst, intarr[i], col) == 0)
 			score += 1;
 		free(dst);
 		i += 1;

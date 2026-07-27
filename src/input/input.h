@@ -5,48 +5,54 @@
 #include"stdbool.h"
 #include"unistd.h"
 
-typedef struct t_int_node t_int_node;
+typedef struct t_intnode t_intnode;
 
-typedef struct t_int_node
+typedef struct t_intnode
 {
 	int					value;
-	struct t_int_node	*next;
-	struct t_int_node	*prev;
-}	t_int_node;
+	struct t_intnode	*next;
+	struct t_intnode	*prev;
+}	t_intnode;
 
-typedef struct t_int_list t_int_list;
+typedef struct t_intlist t_intlist;
 
-typedef struct t_int_list
+typedef struct t_intlist
 {
-	struct t_int_node	*item_1st;
-	struct t_int_node	*item_last;
+	struct t_intnode	*item_1st;
+	struct t_intnode	*item_last;
 	size_t				length;
-}	t_int_list;
+}	t_intlist;
 
-typedef struct t_double_int_list t_double_int_list;
+typedef struct t_2intlist t_2intlist;
 
-typedef struct t_double_int_list
+typedef struct t_2intlist
 {
-	struct t_int_list	a;
-	struct t_int_list	b;
-}	t_double_int_list;
+	struct t_intlist	a;
+	struct t_intlist	b;
+}	t_2intlist;
 
 // atoi.c
 size_t				f_strlen(const char *str);
 int					f_atoi(const char *src, bool *is_int, const char *base, size_t digits);
 
 // init.c
-t_int_node			*init_a_node(int src);
-void				free_int_node(t_int_node *src);
-void				free_int_list(t_int_list *src);
-void				free_double_int_list(t_double_int_list *src);
+t_intnode			*init_intnode(int src);
+void				free_intnode(t_intnode *src);
+void				free_intlist(t_intlist *src);
+void				free_2intlist(t_2intlist *src);
+
+// int.c
+size_t	ft_putnbr_fd(int n, int fd, const char *base, size_t digits);
+void	write_total_score(size_t score, size_t max_score);
+bool	is_2intarr_same(const int *str_1, const int *str_2, size_t n);
+bool	is_intarr_and_list_same(const int *intarr, const t_intnode *intlist, size_t length, bool future_is_wild);
 
 // load.c
 void				free_2d_arr(void **arr, size_t len);
 char				**copy_strarr(const char **src, size_t length);
 int					*strarr_to_intarr(const char **src, size_t length);
-t_int_node			*load_node(const int *src, size_t length);
-t_int_list			load_intlist(const int *src, size_t length);
-t_double_int_list	load_double_int_list(const int *src, size_t length);
+t_intnode			*load_intnode(const int *src, size_t length);
+t_intlist			load_intlist(const int *src, size_t length);
+t_2intlist			load_2intlist(const int *src, size_t length);
 
 #endif

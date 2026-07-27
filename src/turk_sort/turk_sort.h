@@ -15,31 +15,33 @@ typedef struct t_turk_costs
 
 // init.c
 void			free_turk_cost(t_turk_costs *src);
-t_turk_costs	load_turk_cost(t_double_int_list *src);
+t_turk_costs	load_turk_cost(t_2intlist *src);
 
 // rotate_arr.c
+int				*init_intarr(size_t length, int scale);
 int				*shift_by1_arr(int *dst, size_t length);
 int				*rotate_arr(int *src, size_t length, size_t rotate_effect);
 int				*rrotate_arr(int *src, size_t length, size_t rotate_effect);
 
 // rotate_list.c
-int				rotate_green_swap(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show);
+int				rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show);
 
 // sort.c
-void			turk_sort(t_double_int_list *src, int show);
+t_turk_costs	first_turk_sort(t_2intlist *src, int show);
+void			turk_sort(t_2intlist *src, int show);
 
 // update.c
-void			update_target_a(t_turk_costs *turk_cost, t_int_list *list_b, int dekmia);
+void			update_target_a(t_turk_costs *turk_cost, t_intlist *list_b, int target_a);
 void			update_rotate_cost(t_turk_costs *turk_cost, size_t rotate);
 void			update_rrotate_cost(t_turk_costs *turk_cost, size_t rotate);
 size_t			pod_of_greed(t_turk_costs *dst);
 
-//utils.c
+// utils.c
 int				f_abs(int dst);
 int				f_max(int a, int b);
 bool			is_turk_cost_valid(t_turk_costs *dst, size_t index);
-void			sort_two(t_double_int_list *dst, int show);
-void			sort_three(t_double_int_list *dst, int show);
+void			sort_two(t_2intlist *dst, int show);
+void			sort_three(t_2intlist *dst, int show);
 
 /*
 Reference
