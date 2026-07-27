@@ -1,4 +1,4 @@
-#include"merge_sort.h"
+#include"input.h"
 
 int	main(void)
 {
@@ -41,5 +41,5 @@ int	main(void)
 }
 
 /*
-valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/merge_sort/merge_sort.out
+valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/input/merge_sort.out
 */

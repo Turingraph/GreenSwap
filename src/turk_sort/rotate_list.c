@@ -2,7 +2,7 @@
 
 // time : O(n)
 // space: O(1)
-int	single_rotate_1st(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cost, int show)
+int	single_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	int		cost;
@@ -30,7 +30,7 @@ int	single_rotate_1st(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 
 // time : O(n)
 // space: O(1)
-int	single_rotate_2nd(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cost, int show)
+int	single_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	int		cost;
@@ -58,7 +58,7 @@ int	single_rotate_2nd(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 
 // time : O(n)
 // space: O(1)
-int	double_rotate_1st(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cost, int show)
+int	double_rotate_1st(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	size_t	j;
@@ -94,7 +94,7 @@ int	double_rotate_1st(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 
 // time : O(n)
 // space: O(1)
-int	double_rotate_2nd(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cost, int show)
+int	double_rotate_2nd(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	size_t	j;
@@ -130,7 +130,7 @@ int	double_rotate_2nd(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cos
 
 // time : O(n)
 // space: O(1)
-int	rotate_green_swap(size_t target_b, t_green_swap *dst, t_turk_costs *turk_cost, int show)
+int	rotate_green_swap(size_t target_b, t_double_int_list *dst, t_turk_costs *turk_cost, int show)
 {
 	int	cost;
 

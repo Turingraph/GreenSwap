@@ -2,7 +2,7 @@
 
 // time : O(1)
 // space: O(1)
-size_t	write_available_operator(t_green_swap *dst, e_target target, int show, e_operator operator)
+size_t	write_available_operator(t_double_int_list *dst, e_target target, int show, e_operator operator)
 {
 	if (dst == NULL)
 		return (0);
@@ -27,7 +27,7 @@ size_t	write_available_operator(t_green_swap *dst, e_target target, int show, e_
 
 // time : O(1)
 // space: O(1)
-char	operate_green_swap(t_green_swap *dst, e_target target, e_operator operator, void (*operator_action)(t_int_list *dst))
+char	operate_green_swap(t_double_int_list *dst, e_target target, e_operator operator, void (*operator_action)(t_int_list *dst))
 {
 	if (dst == NULL || (operator_action == NULL && operator != E_PUSH))
 		return (0);

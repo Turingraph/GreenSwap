@@ -2,17 +2,17 @@ CC = cc -Wall -Wextra -Werror
 
 .SECONDEXPANSION:
 
-LIBRARY = $(patsubst %, lib/%.a, input duplicate_check operator merge_sort)
+LIBRARY = $(patsubst %, lib/%.a, input duplicate_check operator) # merge_sort)
 
 SRC_input = $(wildcard input/*.c)
 SRC_duplicate_check = $(wildcard duplicate_check/*.c)
 SRC_operator = $(wildcard operator/*.c)
-SRC_merge_sort = $(wildcard merge_sort/*.c)
+# SRC_merge_sort = $(wildcard merge_sort/*.c)
 
 OBJ_input = $(patsubst %.c, obj/%.o, $(SRC_input))
 OBJ_duplicate_check = $(patsubst %.c, obj/%.o, $(SRC_duplicate_check)) $(OBJ_input)
 OBJ_operator = $(patsubst %.c, obj/%.o, $(SRC_operator)) $(OBJ_input)
-OBJ_merge_sort = $(patsubst %.c, obj/%.o, $(SRC_merge_sort))
+# OBJ_merge_sort = $(patsubst %.c, obj/%.o, $(SRC_merge_sort))
 
 #-----------------------------------------------------------------------------------------------
 # *** create library ***

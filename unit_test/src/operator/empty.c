@@ -3,7 +3,7 @@
 int	main(void)
 {
 	size_t			i;
-	t_green_swap	dst;
+	t_double_int_list	dst;
 
 	i = 0;
 	act_push(NULL, NULL);

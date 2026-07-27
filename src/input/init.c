@@ -29,7 +29,7 @@ void	free_int_list(t_int_list *src)
 
 // time : O(n)
 // space: O(1)
-void	free_green_swap(t_green_swap *src)
+void	free_double_int_list(t_double_int_list *src)
 {
 	if (src != NULL)
 	{

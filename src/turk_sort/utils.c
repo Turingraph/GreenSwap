@@ -33,7 +33,7 @@ bool	is_turk_cost_valid(t_turk_costs *dst, size_t index)
 
 // time : O(1)
 // space: O(1)
-void	sort_two(t_green_swap *dst, int show)
+void	sort_two(t_double_int_list *dst, int show)
 {
 	if (dst != NULL && dst->a.length == 2
 		&& dst->a.item_1st != NULL
@@ -50,7 +50,7 @@ void	sort_two(t_green_swap *dst, int show)
 
 // time : O(1)
 // space: O(1)
-void	sort_three(t_green_swap *dst, int show)
+void	sort_three(t_double_int_list *dst, int show)
 {
 	if (dst != NULL && dst->a.length == 3
 		&& dst->a.item_1st != NULL

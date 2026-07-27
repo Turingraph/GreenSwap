@@ -90,7 +90,7 @@ void	load_turk_cost_item(t_int_list *item_a, t_int_node *item_b,
 
 // time : O(b * a)
 // space: O(b)
-t_turk_costs	load_turk_cost(t_green_swap *src)
+t_turk_costs	load_turk_cost(t_double_int_list *src)
 {
 	t_int_node		*item_a;
 	t_int_node		*item_b;

@@ -1,40 +1,63 @@
 #include"test_helper.h"
 
-// time : O(n)
+// time : O(1)
 // space: O(1)
-void	write_future(t_int_node *dst, bool is_future)
-{
-	t_int_node	*temp;
-
-	temp = dst;
-	write(1, ">>> ", 4);
-	while (temp != NULL)
-	{
-		ft_putnbr_fd(temp->value, 1, "0123456789", 1);
-		write(1, ", ", 2);
-		if (is_future == true)
-			temp = temp->next;
-		else
-			temp = temp->prev;
-	}
-	write(1, "\n", 1);
-}
-
-// time : O(n)
-// space: O(1)
-void	write_intarr(int *dst, size_t length)
+size_t	display_int(int fd, long x, const char *base, bool is_write)
 {
 	size_t	i;
+	long	d;
+	char	coef;
+	size_t	len;
 
+	if (base == NULL)
+		return (0);
 	i = 0;
-	write(1, ">>> ", 4);
-	while (dst != NULL && i < length)
+	len = f_strlen(base);
+	d = 1;
+	while (d < x)
+		d *= len;
+	if (d > x)
+		d /= len;
+	while (d > 0)
 	{
-		ft_putnbr_fd(dst[i], 1, "0123456789", 1);
-		write(1, ", ", 2);
+		coef = base[x / d];
+		if (is_write == true)
+			write(fd, &coef, 1);
+		x = x % d;
+		d /= len;
 		i += 1;
 	}
-	write(1, "\n", 1);
+	return (i);
+}
+
+// time : O(1)
+// space: O(1)
+size_t	ft_putnbr_fd(int n, int fd, const char *base, size_t digits)
+{
+	size_t	i;
+	size_t	j;
+
+	if (base != NULL)
+	{
+		i = 0;
+		j = 0;
+		if (n > 0)
+			j = display_int(fd, (long)n, base, 0);
+		else if (n < 0)
+		{
+			n *= -1;
+			j = display_int(fd, n, base, 0);
+			i += (size_t)write(fd, "-", 1);
+		}
+		if (j > digits)
+			j = digits;
+		while (i < digits - j)
+			i += (size_t)write(fd, base, 1);
+		if (n != 0)
+			i += display_int(fd, n, base, 1);
+		return (i);
+	}
+	return (0);
 }
 
 // time : O(1)
@@ -79,15 +102,8 @@ bool	compare_intarr_with_list(const int *intarr, const t_int_node *intlist, size
 	if (intarr == NULL || intlist == NULL)
 		return (false);
 	i = 0;
-	// if (future_is_wild == false)
-	// 	write(1, "<<< ", 4);
 	while (i < length && intlist != NULL)
 	{
-		// if (future_is_wild == false)
-		// {
-		// 	ft_putnbr_fd(intarr[i], 1, "0123456789", 1);
-		// 	write(1, ", ", 2);
-		// }
 		if (intlist->value != intarr[i] && future_is_wild == true)
 			return (false);
 		if (intlist->value != intarr[length - i - 1] && future_is_wild == false)
@@ -98,10 +114,7 @@ bool	compare_intarr_with_list(const int *intarr, const t_int_node *intlist, size
 			intlist = intlist->prev;
 		i += 1;
 	}
-	// if (future_is_wild == false)
-	// 	write(1, "\n", 1);
 	if (i < length && intlist == NULL)
 		return (false);
 	return (true);
 }
-

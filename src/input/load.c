@@ -107,7 +107,7 @@ int	*strarr_to_intarr(const char **src, size_t length)
 
 // time : O(n)
 // space: O(1)
-t_int_node	*intarr_to_node(const int *src, size_t length)
+t_int_node	*load_node(const int *src, size_t length)
 {
 	t_int_node	*dst;
 	t_int_node	*current;
@@ -139,13 +139,13 @@ t_int_node	*intarr_to_node(const int *src, size_t length)
 
 // time : O(n)
 // space: O(1)
-t_int_list	intarr_to_intlist(const int *src, size_t length)
+t_int_list	load_intlist(const int *src, size_t length)
 {
 	t_int_list	dst;
 	t_int_node	*item;
 
 	dst.length = length;
-	dst.item_1st = intarr_to_node(src, length);
+	dst.item_1st = load_node(src, length);
 	item = dst.item_1st;
 	if (item != NULL)
 	{
@@ -158,13 +158,13 @@ t_int_list	intarr_to_intlist(const int *src, size_t length)
 
 // time : O(n)
 // space: O(1)
-t_green_swap	intarr_to_green_swap(const int *src, size_t length)
+t_double_int_list	load_double_int_list(const int *src, size_t length)
 {
-	t_green_swap	dst;
+	t_double_int_list	dst;
 
 	dst.b.length = 0;
 	dst.b.item_1st = NULL;
 	dst.b.item_last = NULL;
-	dst.a = intarr_to_intlist(src, length);
+	dst.a = load_intlist(src, length);
 	return (dst);
 }

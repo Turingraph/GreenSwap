@@ -24,7 +24,7 @@ bool	is_2_or_more(const t_int_list *src)
 
 // time : O(1)
 // space: O(1)
-bool	is_both_stack_n_more(const t_green_swap *src,
+bool	is_both_stack_n_more(const t_double_int_list *src,
 			size_t min_a, size_t min_b)
 {
 	if (src != NULL

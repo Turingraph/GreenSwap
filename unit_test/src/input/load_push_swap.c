@@ -7,7 +7,7 @@ int	main(void)
 	size_t			max_score = 6;
 	size_t			i;
 	int				*dst;
-	t_green_swap	intlist;
+	t_double_int_list	intlist;
 	char			*strarr[][15] = {
 		{"64",	"98",	"12",	"10",	"73",	"56",	"39",	"40",	"53",	"42",	"95",	"21",	"31",	"60",	"19"},
 		{"89",	"78",	"69",	"42",	"24",	"59",	"81",	"96",	"19",	"87",	"15",	"80",	"98",	"63",	"98"},
@@ -30,19 +30,19 @@ int	main(void)
 	while (i < max_score)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
-		intlist = intarr_to_green_swap(dst, col);
+		intlist = load_double_int_list(dst, col);
 		if (intlist.b.item_1st == NULL && intlist.b.item_last == NULL
 			&& compare_intarr_with_list(intarr[i], intlist.a.item_1st, col, true) == true
 			&& compare_intarr_with_list(intarr[i], intlist.a.item_last, col, false) == true)
 			score += 1;
 		free(dst);
-		free_green_swap(&intlist);
+		free_double_int_list(&intlist);
 		i += 1;
 	}
 	write_total_score(score, max_score);
 }
 
 /*
-valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/input/intarr_to_push_swap.out
+valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/input/load_push_swap.out
 */
 

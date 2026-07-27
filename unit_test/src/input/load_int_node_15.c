@@ -30,7 +30,7 @@ int	main(void)
 	while (i < max_score)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
-		intlist = intarr_to_intlist(dst, col);
+		intlist = load_intlist(dst, col);
 		if (compare_intarr_with_list(intarr[i], intlist.item_1st, col, true) == true
 			&& compare_intarr_with_list(intarr[i], intlist.item_last, col, false) == true)
 			score += 1;
@@ -48,6 +48,6 @@ int	main(void)
 }
 
 /*
-valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/input/intarr_to_int_node_15.out
+valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/input/load_int_node_15.out
 */
 

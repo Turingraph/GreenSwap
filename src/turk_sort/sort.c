@@ -36,7 +36,7 @@ void	reset_turk_cost(t_turk_costs *turk_cost, int rotate_effect, int dekmia)
 
 // time : O(n)
 // space: O(n)
-void	double_draw(t_green_swap *src, t_turk_costs *turk_cost, int show)
+void	double_draw(t_double_int_list *src, t_turk_costs *turk_cost, int show)
 {
 	size_t	cheap_trick;
 
@@ -58,7 +58,7 @@ void	double_draw(t_green_swap *src, t_turk_costs *turk_cost, int show)
 
 // time : O(n)
 // space: O(n)
-t_turk_costs	first_turk_sort(t_green_swap *src, int show)
+t_turk_costs	first_turk_sort(t_double_int_list *src, int show)
 {
 	t_turk_costs	dst;
 	size_t			i;
@@ -83,7 +83,7 @@ t_turk_costs	first_turk_sort(t_green_swap *src, int show)
 
 // time : O(n^2)
 // space: O(n)
-void	turk_sort(t_green_swap *src, int show)
+void	turk_sort(t_double_int_list *src, int show)
 {
 	t_turk_costs	turk_cost;
 

@@ -29,13 +29,13 @@ void	act_rrotate(t_int_list *src);
 void	act_push(t_int_list *src, t_int_list *dst);
 
 // operator.c
-size_t	write_available_operator(t_green_swap *dst, e_target target, int show, e_operator operator);
-char	operate_green_swap(t_green_swap *dst, e_target target, e_operator operator, void (*operator_action)(t_int_list *dst));
+size_t	write_available_operator(t_double_int_list *dst, e_target target, int show, e_operator operator);
+char	operate_green_swap(t_double_int_list *dst, e_target target, e_operator operator, void (*operator_action)(t_int_list *dst));
 
 // utils.c
 bool	is_1_or_more(const t_int_list *src);
 bool	is_2_or_more(const t_int_list *src);
-bool	is_both_stack_n_more(const t_green_swap *src, size_t min_a, size_t min_b);
+bool	is_both_stack_n_more(const t_double_int_list *src, size_t min_a, size_t min_b);
 bool	is_operator_available(e_operator operator, const t_int_list *dst);
 void	write_operator(e_target target, e_operator operator, int show);
 

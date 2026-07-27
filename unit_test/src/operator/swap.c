@@ -8,7 +8,7 @@ int	main(void)
 	size_t			i;
 	size_t			j;
 	int				*dst;
-	t_green_swap	int_list;
+	t_double_int_list	int_list;
 	char			*strarr[][5] = {
 		{"13", "32", "07", "80", "10"},
 		{"13", "82", "03", "10", "17"},
@@ -48,11 +48,11 @@ int	main(void)
 		while (j < 2)
 		{
 			dst = strarr_to_intarr((const char **)strarr[i], col);
-			int_list = intarr_to_green_swap(dst, col);
+			int_list = load_double_int_list(dst, col);
 			if (j % 2 == 0)
 			{
 				operate_green_swap(&int_list, E_A, E_SWAP, act_swap);
-				write_future(int_list.a.item_1st, true);
+				write_intlist(int_list.a.item_1st, true);
 				if (compare_intarr_with_list(intarr_a[i], int_list.a.item_1st, col, true) == true
 					&& compare_intarr_with_list(intarr_a[i], int_list.a.item_last, col, false) == true)
 					score += 1;
@@ -66,7 +66,7 @@ int	main(void)
 					score += 1;
 			}
 			free(dst);
-			free_green_swap(&int_list);
+			free_double_int_list(&int_list);
 			j += 1;
 		}
 		i += 1;
