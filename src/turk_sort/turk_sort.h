@@ -18,16 +18,18 @@ void			free_turk_cost(t_turk_costs *src);
 t_turk_costs	load_turk_cost(t_2intlist *src);
 
 // rotate_arr.c
-int				*init_intarr(size_t length, int scale);
+void			push_rotate_arr(int *dst, size_t length, bool is_reverse);
 int				*shift_by1_arr(int *dst, size_t length);
 int				*rotate_arr(int *src, size_t length, size_t rotate_effect);
 int				*rrotate_arr(int *src, size_t length, size_t rotate_effect);
+int				*intarr_mod(int *dst, size_t length_b, int rotate_effect, size_t length_a);
 
 // rotate_list.c
 int				rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show);
 
 // sort.c
 t_turk_costs	first_turk_sort(t_2intlist *src, int show);
+void			double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show);
 void			turk_sort(t_2intlist *src, int show);
 
 // update.c
