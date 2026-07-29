@@ -51,7 +51,7 @@ int	main(void)
 			int_list = load_2intlist(dst, col);
 			if (j % 2 == 0)
 			{
-				operate_double_intlist(&int_list, E_A, E_SWAP, act_swap);
+				operate_2intlist(&int_list, E_A, E_SWAP, act_swap);
 				write_intlist(int_list.a.item_1st, true);
 				if (is_intarr_and_list_same(intarr_a[i], int_list.a.item_1st, col, true) == true
 					&& is_intarr_and_list_same(intarr_a[i], int_list.a.item_last, col, false) == true)
@@ -59,7 +59,7 @@ int	main(void)
 			}
 			else
 			{
-				operate_double_intlist(&int_list, E_B, E_SWAP, act_swap);
+				operate_2intlist(&int_list, E_B, E_SWAP, act_swap);
 				if ((int_list.b).length == 0
 					&& is_intarr_and_list_same(intarr_b[i], int_list.a.item_1st, col, true) == true
 					&& is_intarr_and_list_same(intarr_b[i], int_list.a.item_last, col, false) == true)

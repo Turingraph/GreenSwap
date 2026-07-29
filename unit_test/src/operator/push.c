@@ -45,11 +45,11 @@ int	main(void)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
 		int_list = load_2intlist(dst, col);
-		operate_double_intlist(&int_list, E_A, E_PUSH, NULL);
-		operate_double_intlist(&int_list, E_A, E_PUSH, NULL);
-		operate_double_intlist(&int_list, E_A, E_PUSH, NULL);
-		operate_double_intlist(&int_list, E_B, E_ROTATE, act_rotate);
-		operate_double_intlist(&int_list, E_B, E_ROTATE, act_rotate);
+		operate_2intlist(&int_list, E_A, E_PUSH, NULL);
+		operate_2intlist(&int_list, E_A, E_PUSH, NULL);
+		operate_2intlist(&int_list, E_A, E_PUSH, NULL);
+		operate_2intlist(&int_list, E_B, E_ROTATE, act_rotate);
+		operate_2intlist(&int_list, E_B, E_ROTATE, act_rotate);
 		if (is_intarr_and_list_same(outarr_a[i], int_list.a.item_1st, 2, true) == true
 			&& is_intarr_and_list_same(outarr_a[i], int_list.a.item_last, 2, false) == true
 			&& is_intarr_and_list_same(outarr_b[i], int_list.b.item_1st, 3, true) == true)

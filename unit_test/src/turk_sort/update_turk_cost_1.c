@@ -62,7 +62,7 @@ int	main(void)
 		while (intlist.a.length > 3)
 		{
 			write_available_operator(&intlist, E_A, -2, E_PUSH);
-			operate_double_intlist(&intlist, E_A, E_PUSH, NULL);
+			operate_2intlist(&intlist, E_A, E_PUSH, NULL);
 		}
 		turk_cost = load_turk_cost(&intlist);
 		double_draw(&intlist, &turk_cost, -2);

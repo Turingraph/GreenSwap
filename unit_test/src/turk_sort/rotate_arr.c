@@ -43,7 +43,7 @@ int	main(void)
 			dst = rrotate_arr(intarr[i], col, i);
 		if (is_2intarr_same(dst, outarr[i], col) == true)
 			check = true;
-		shift_by1_arr(dst, col);
+		shift_arr(dst, col);
 		if (check == true && is_2intarr_same(outarr1[i], dst, col) == true)
 			score += 1;
 		write_intarr(dst, col);

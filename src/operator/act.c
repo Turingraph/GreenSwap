@@ -75,7 +75,9 @@ void	act_ppush(t_intlist *src, t_intlist *dst)
 // space: O(1)
 void	act_push(t_intlist *src, t_intlist *dst)
 {
-	if (is_intlist_n_more(dst, 0) == true && is_intlist_n_more(src, 1) == true)
+	if (is_intlist_n_more(dst, 1) == true && is_intlist_n_more(src, 1) == true)
+		act_ppush(src, dst);
+	else if (is_intlist_n_more(dst, 0) == true && is_intlist_n_more(src, 1) == true)
 	{
 		dst->item_1st = src->item_1st;
 		src->item_1st = src->item_1st->next;
@@ -87,6 +89,4 @@ void	act_push(t_intlist *src, t_intlist *dst)
 		dst->length += 1;
 		src->length -= 1;
 	}
-	else if (is_intlist_n_more(dst, 1) == true && is_intlist_n_more(src, 1) == true)
-		act_ppush(src, dst);
 }

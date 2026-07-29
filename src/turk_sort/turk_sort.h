@@ -17,12 +17,15 @@ typedef struct t_turk_costs
 void			free_turk_cost(t_turk_costs *src);
 t_turk_costs	load_turk_cost(t_2intlist *src);
 
+// pod_of_greed.c
+size_t			pod_of_greed(t_turk_costs *dst);
+
 // rotate_arr.c
-void			push_rotate_arr(int *dst, size_t length, bool is_reverse);
-int				*shift_by1_arr(int *dst, size_t length);
+int				*shift_arr(int *dst, size_t length);
 int				*rotate_arr(int *src, size_t length, size_t rotate_effect);
 int				*rrotate_arr(int *src, size_t length, size_t rotate_effect);
-int				*intarr_mod(int *dst, size_t length_b, int rotate_effect, size_t length_a);
+int				*rotate_value(int *src, size_t length, size_t rotate_effect);
+int				*rrotate_value(int *src, size_t length, size_t rotate_effect);
 
 // rotate_list.c
 int				rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show);
@@ -31,12 +34,6 @@ int				rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost
 t_turk_costs	first_turk_sort(t_2intlist *src, int show);
 void			double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show);
 void			turk_sort(t_2intlist *src, int show);
-
-// update.c
-void			update_target_a(t_turk_costs *turk_cost, t_intlist *list_b, int target_a);
-void			update_rotate_cost(t_turk_costs *turk_cost, size_t rotate);
-void			update_rrotate_cost(t_turk_costs *turk_cost, size_t rotate);
-size_t			pod_of_greed(t_turk_costs *dst);
 
 // utils.c
 int				f_abs(int dst);

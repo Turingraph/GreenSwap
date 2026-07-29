@@ -13,15 +13,13 @@ int	single_rotate_1st(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 	{
 		while (i < target_b)
 		{
-			write_available_operator(dst, E_B, show, E_RROTATE);
-			operate_double_intlist(dst, E_B, E_RROTATE, act_rrotate);
+			action_rrotate(dst, show, E_B);
 			i += 1;
 		}
 		i = 0;
 		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
 		{
-			cost += (int)write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_double_intlist(dst, E_A, E_ROTATE, act_rotate);
+			cost += (int)action_rotate(dst, show, E_A);
 			i += 1;
 		}
 	}
@@ -41,15 +39,13 @@ int	single_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 	{
 		while (i < target_b)
 		{
-			write_available_operator(dst, E_B, show, E_ROTATE);
-			operate_double_intlist(dst, E_B, E_ROTATE, act_rotate);
+			action_rotate(dst, show, E_B);
 			i += 1;
 		}
 		i = 0;
 		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
 		{
-			cost += -1 * (int)write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_double_intlist(dst, E_A, E_RROTATE, act_rrotate);
+			cost += -1 * (int)action_rrotate(dst, show, E_A);
 			i += 1;
 		}
 	}
@@ -71,21 +67,18 @@ int	double_rotate_1st(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 		j = 0;
 		while (i < target_b && j < (size_t)turk_cost->rotate_cost[target_b])
 		{
-			cost += (int)write_available_operator(dst, E_AB, show, E_RROTATE);
-			operate_double_intlist(dst, E_AB, E_RROTATE, act_rrotate);
+			cost += (int)action_rrotate(dst, show, E_AB);
 			i += 1;
 			j += 1;
 		}
 		while (i < target_b)
 		{
-			write_available_operator(dst, E_B, show, E_RROTATE);
-			operate_double_intlist(dst, E_B, E_RROTATE, act_rrotate);
+			action_rrotate(dst, show, E_B);
 			i += 1;
 		}
 		while (j < (size_t)turk_cost->rotate_cost[target_b])
 		{
-			cost += (int)write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_double_intlist(dst, E_A, E_RROTATE, act_rrotate);
+			cost += (int)action_rrotate(dst, show, E_B);
 			j += 1;
 		}
 	}
@@ -107,21 +100,18 @@ int	double_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 		j = 0;
 		while (i < target_b && j < (size_t)(turk_cost->rotate_cost[target_b] * -1))
 		{
-			cost += -1 * (int)write_available_operator(dst, E_AB, show, E_ROTATE);
-			operate_double_intlist(dst, E_AB, E_ROTATE, act_rotate);
+			cost += -1 * (int)action_rotate(dst, show, E_AB);
 			i += 1;
 			j += 1;
 		}
 		while (i < target_b)
 		{
-			write_available_operator(dst, E_B, show, E_ROTATE);
-			operate_double_intlist(dst, E_B, E_ROTATE, act_rotate);
+			action_rotate(dst, show, E_B);
 			i += 1;
 		}
 		while (j < (size_t)(turk_cost->rotate_cost[target_b] * -1))
 		{
-			cost += -1 * (int)write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_double_intlist(dst, E_A, E_ROTATE, act_rotate);
+			cost += -1 * (int)action_rotate(dst, show, E_A);
 			j += 1;
 		}
 	}

@@ -27,7 +27,7 @@ size_t	write_available_operator(t_2intlist *dst, e_target target, int show, e_op
 
 // time : O(1)
 // space: O(1)
-char	operate_double_intlist(t_2intlist *dst, e_target target, e_operator operator, void (*operator_action)(t_intlist *dst))
+char	operate_2intlist(t_2intlist *dst, e_target target, e_operator operator, void (*operator_action)(t_intlist *dst))
 {
 	if (dst == NULL || (operator_action == NULL && operator != E_PUSH))
 		return (0);

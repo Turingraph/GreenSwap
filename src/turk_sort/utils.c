@@ -41,10 +41,7 @@ void	sort_two(t_2intlist *dst, int show)
 		&& dst->a.item_last != NULL)
 	{
 		if (dst->a.item_1st->value >= dst->a.item_last->value)
-		{
-			write_available_operator(dst, E_A, show, E_SWAP);
-			operate_double_intlist(dst, E_A, E_SWAP, act_swap);
-		}
+			action_swap(dst, show, E_A);
 	}
 }
 
@@ -60,22 +57,17 @@ void	sort_three(t_2intlist *dst, int show)
 		if (dst->a.item_last->value >= dst->a.item_1st->value
 			&& dst->a.item_last->value >= dst->a.item_1st->next->value
 			&& dst->a.item_1st->value > dst->a.item_1st->next->value)
-		{
-			write_available_operator(dst, E_A, show, E_SWAP);
-			operate_double_intlist(dst, E_A, E_SWAP, act_swap);
-		}
+			action_swap(dst, show, E_A);
 		else if (dst->a.item_1st->value >= dst->a.item_last->value
 			&& dst->a.item_1st->value >= dst->a.item_1st->next->value)
 		{
-			write_available_operator(dst, E_A, show, E_ROTATE);
-			operate_double_intlist(dst, E_A, E_ROTATE, act_rotate);
+			action_rotate(dst, show, E_A);
 			sort_three(dst, show);
 		}
 		else if (dst->a.item_1st->next->value >= dst->a.item_last->value
 			&& dst->a.item_1st->next->value >= dst->a.item_1st->value)
 		{
-			write_available_operator(dst, E_A, show, E_RROTATE);
-			operate_double_intlist(dst, E_A, E_RROTATE, act_rrotate);
+			action_rrotate(dst, show, E_A);
 			sort_three(dst, show);
 		}
 	}

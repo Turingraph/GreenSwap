@@ -35,7 +35,7 @@ int	main(void)
 	{
 		dst = strarr_to_intarr((const char **)strarr[i], col);
 		int_list = load_2intlist(dst, col);
-		operate_double_intlist(&int_list, E_A, E_ROTATE, act_rrotate);
+		operate_2intlist(&int_list, E_A, E_ROTATE, act_rrotate);
 		if ((int_list.b).length == 0
 			&& is_intarr_and_list_same(intarr[i], int_list.a.item_1st, col, true) == true
 			&& is_intarr_and_list_same(intarr[i], int_list.a.item_last, col, false) == true)

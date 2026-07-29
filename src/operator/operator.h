@@ -28,9 +28,15 @@ void	act_rotate(t_intlist *src);
 void	act_rrotate(t_intlist *src);
 void	act_push(t_intlist *src, t_intlist *dst);
 
+// action.c
+size_t	action_swap(t_2intlist *src, int show, e_target target);
+size_t	action_rotate(t_2intlist *src, int show, e_target target);
+size_t	action_rrotate(t_2intlist *src, int show, e_target target);
+size_t	action_push(t_2intlist *src, int show, e_target target);
+
 // operator.c
 size_t	write_available_operator(t_2intlist *dst, e_target target, int show, e_operator operator);
-char	operate_double_intlist(t_2intlist *dst, e_target target, e_operator operator, void (*operator_action)(t_intlist *dst));
+char	operate_2intlist(t_2intlist *dst, e_target target, e_operator operator, void (*operator_action)(t_intlist *dst));
 
 // utils.c
 bool	is_intlist_n_more(const t_intlist *src, size_t length);

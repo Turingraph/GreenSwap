@@ -5,14 +5,14 @@
 bool	is_intlist_n_more(const t_intlist *src, size_t length)
 {
 	if (src != NULL
-		&& src->item_1st != NULL
-		&& src->item_last != NULL
-		&& src->length >= length && length > 0)
-		return (true);
-	if (src != NULL
 		&& src->item_1st == NULL
 		&& src->item_last == NULL
-		&& src->length == length && length == 0)
+		&& src->length == 0 && length == 0)
+		return (true);
+	if (src != NULL
+		&& src->item_1st != NULL
+		&& src->item_last != NULL
+		&& src->length >= length)
 		return (true);
 	return (false);
 }
