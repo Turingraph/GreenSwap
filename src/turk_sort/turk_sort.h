@@ -24,8 +24,8 @@ size_t			pod_of_greed(t_turk_costs *dst);
 int				*shift_arr(int *dst, size_t length);
 int				*rotate_arr(int *src, size_t length, size_t rotate_effect);
 int				*rrotate_arr(int *src, size_t length, size_t rotate_effect);
-int				*rotate_value(int *src, size_t length, size_t rotate_effect);
-int				*rrotate_value(int *src, size_t length, size_t rotate_effect);
+int				*rotate_value(int *src, size_t length_b, size_t rotate_effect, size_t length_a);
+int				*rrotate_value(int *src, size_t length_b, size_t rotate_effect, size_t length_a);
 
 // rotate_list.c
 int				rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show);

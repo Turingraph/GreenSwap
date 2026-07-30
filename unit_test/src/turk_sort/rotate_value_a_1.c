@@ -22,7 +22,7 @@ int	main(void)
 	while (i < max_score)
 	{
 		dst = rotate_arr(intarr, col, 0);
-		rrotate_value(dst, col, i);
+		rrotate_value(dst, col, i, col);
 		if (is_2intarr_same(dst, outarr[i], col) == true)
 			score += 1;
 		write_intarr(dst, col);

@@ -54,23 +54,24 @@ int	*shift_arr(int *dst, size_t length)
 
 // time : O(n)
 // space: O(1)
-int	*rotate_value(int *src, size_t length, size_t rotate_effect)
+int	*rotate_value(int *src, size_t length_b,
+	size_t rotate_effect, size_t length_a)
 {
 	size_t	i;
 
-	if (src == NULL || length == 0 || rotate_effect > length)
+	if (src == NULL || length_b == 0 || rotate_effect > length_b)
 		return (src);
 	i = 0;
-	while (i < length)
+	while (i < length_b)
 	{
 		if (src[i] < 0)
-			src[i] += (int)length;
+			src[i] += (int)length_a;
 		src[i] -= (int)rotate_effect;
 		while (src[i] < 0)
-			src[i] += (int)length;
-		src[i] = src[i] % length;
-		if (src[i] > (int)(length / 2))
-			src[i] = -1 * (int)(length - src[i]);
+			src[i] += (int)length_a;
+		src[i] = src[i] % length_a;
+		if (src[i] > (int)(length_a / 2))
+			src[i] = -1 * (int)(length_a - src[i]);
 		i += 1;
 	}
 	return (src);
@@ -78,23 +79,24 @@ int	*rotate_value(int *src, size_t length, size_t rotate_effect)
 
 // time : O(n)
 // space: O(1)
-int	*rrotate_value(int *src, size_t length, size_t rotate_effect)
+int	*rrotate_value(int *src, size_t length_b,
+	size_t rotate_effect, size_t length_a)
 {
 	size_t	i;
 
-	if (src == NULL || length == 0 || rotate_effect > length)
+	if (src == NULL || length_b == 0 || rotate_effect > length_b)
 		return (src);
 	i = 0;
-	while (i < length)
+	while (i < length_b)
 	{
 		if (src[i] < 0)
-			src[i] += (int)length;
+			src[i] += (int)length_a;
 		src[i] += (int)rotate_effect;
 		while (src[i] < 0)
-			src[i] += (int)length;
-		src[i] = src[i] % length;
-		if (src[i] > (int)(length / 2))
-			src[i] = -1 * (int)(length - src[i]);
+			src[i] += (int)length_a;
+		src[i] = src[i] % length_a;
+		if (src[i] > (int)(length_a / 2))
+			src[i] = -1 * (int)(length_a - src[i]);
 		i += 1;
 	}
 	return (src);

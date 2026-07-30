@@ -38,7 +38,7 @@ int	main(void)
 		{74,	98,	98,	54,	98,	98},
 		{54,	54,	11,	11,	74,	74},
 		{74,	11,	11,	54,	54,	54},
-		{54,	11,	11,	74,	54,	54},
+		{54,	11,	95,	74,	54,	54},
 		{54,	54,	54,	54,	54,	54},
 	};
 	int				rotate_cost[][6] = {
@@ -46,7 +46,7 @@ int	main(void)
 		{-2,	-1,	-1,	1,	-1,	-1},
 		{1,	1,	0,	0,	-2,	-2},
 		{1,	-2,	-2,	-1,	-1,	-1},
-		{1,	0,	0,	-2,	1,	1,},
+		{1,	0,	-1,	2,	1,	1,},
 		{1,	1,	1,	1,	1,	1},
 	};
 
@@ -57,9 +57,12 @@ int	main(void)
 	{
 		intlist = load_2intlist(intarr[i], col + 1 + 3);
 		turk_cost = first_turk_sort(&intlist, -2);
+		write(1, "---------------------\n", 23);
 		write_intarr(turk_cost.target_a, turk_cost.length);
+		write_intarr(turk_cost.rotate_cost, turk_cost.length);
+		write(1, "\n---------------------\n", 24);
 		double_draw(&intlist, &turk_cost, -2);
-		write_intarr(turk_cost.target_a, turk_cost.length);
+		// write_intarr(turk_cost.target_a, turk_cost.length);
 		if (turk_cost.length == intlist.b.length
 			&& is_2intarr_same(turk_cost.target_a, target_a[i], turk_cost.length) == true
 			&& is_2intarr_same(turk_cost.rotate_cost, rotate_cost[i], turk_cost.length) == true)
@@ -70,8 +73,15 @@ int	main(void)
 			ft_putnbr_fd(i, 1, "0123456789", 1);
 			write(1, "\n", 1);
 			// write_intlist(intlist.b.item_1st, true);
+			write(1, "turk_cost->length = ", 21);
+			ft_putnbr_fd(turk_cost.length, 1, "0123456789", 1);
+			write(1, "\nintlist.b.length = ", 21);
+			ft_putnbr_fd(intlist.b.length, 1, "0123456789", 1);
+			write(1, "\n", 1);
 			write_intarr(turk_cost.target_a, turk_cost.length);
 			write_intarr(target_a[i], turk_cost.length);
+			write_intarr(turk_cost.rotate_cost, turk_cost.length);
+			write_intarr(rotate_cost[i], turk_cost.length);
 		}
 		free_turk_cost(&turk_cost);
 		free_2intlist(&intlist);
