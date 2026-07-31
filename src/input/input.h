@@ -46,6 +46,7 @@ size_t	ft_putnbr_fd(int n, int fd, const char *base, size_t digits);
 void	write_total_score(size_t score, size_t max_score);
 bool	is_2intarr_same(const int *str_1, const int *str_2, size_t n);
 bool	is_intarr_and_list_same(const int *intarr, const t_intnode *intlist, size_t length, bool future_is_wild);
+void	write_intarr(int *dst, size_t length);
 
 // load.c
 void				free_2d_arr(void **arr, size_t len);

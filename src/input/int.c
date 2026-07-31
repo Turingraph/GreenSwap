@@ -1,5 +1,22 @@
 #include"input.h"
 
+// time : O(n)
+// space: O(1)
+void	write_intarr(int *dst, size_t length)
+{
+	size_t	i;
+
+	i = 0;
+	write(1, ">>> ", 4);
+	while (dst != NULL && i < length)
+	{
+		ft_putnbr_fd(dst[i], 1, "0123456789", 1);
+		write(1, ", ", 2);
+		i += 1;
+	}
+	write(1, "\n", 1);
+}
+
 // time : O(1)
 // space: O(1)
 size_t	display_int(int fd, long x, const char *base, bool is_write)

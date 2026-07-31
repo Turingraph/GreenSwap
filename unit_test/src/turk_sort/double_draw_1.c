@@ -45,8 +45,8 @@ int	main(void)
 		{-2,	1,	1,	-1,	1,	-1},
 		{-2,	-1,	-1,	1,	-1,	-1},
 		{1,	1,	0,	0,	-2,	-2},
-		{1,	-2,	-2,	-1,	-1,	-1},
-		{1,	0,	-1,	2,	1,	1,},
+		{1,	2,	2,	-1,	-1,	-1},
+		{1,	0,	-1,	-2,	1,	1,},
 		{1,	1,	1,	1,	1,	1},
 	};
 
@@ -69,7 +69,7 @@ int	main(void)
 			score += 1;
 		else
 		{
-			write(1, ">>> title: ", 12);
+			write(1, ">>> titular: ", 14);
 			ft_putnbr_fd(i, 1, "0123456789", 1);
 			write(1, "\n", 1);
 			// write_intlist(intlist.b.item_1st, true);
@@ -78,6 +78,8 @@ int	main(void)
 			write(1, "\nintlist.b.length = ", 21);
 			ft_putnbr_fd(intlist.b.length, 1, "0123456789", 1);
 			write(1, "\n", 1);
+			write_intlist(intlist.a.item_1st, true);
+			write_intlist(intlist.b.item_1st, true);
 			write_intarr(turk_cost.target_a, turk_cost.length);
 			write_intarr(target_a[i], turk_cost.length);
 			write_intarr(turk_cost.rotate_cost, turk_cost.length);

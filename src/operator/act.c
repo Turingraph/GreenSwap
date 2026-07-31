@@ -59,13 +59,12 @@ void	act_ppush(t_intlist *src, t_intlist *dst)
 	if (is_intlist_n_more(dst, 1) == true && is_intlist_n_more(src, 1) == true)
 	{
 		temp = src->item_1st;
-		dst->item_1st->prev = src->item_1st;
 		src->item_1st = src->item_1st->next;
-		if (src->item_1st != NULL)
-			src->item_1st->prev = NULL;
+		src->item_1st->prev = NULL;
+		dst->item_1st->prev = temp;
 		temp->next = dst->item_1st;
 		temp->prev = NULL;
-		dst->item_1st = dst->item_1st->prev;
+		dst->item_1st = temp;
 		dst->length += 1;
 		src->length -= 1;
 	}
