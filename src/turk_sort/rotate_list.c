@@ -2,33 +2,8 @@
 
 // time : O(n)
 // space: O(1)
-int	single_rotate_1st(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
-{
-	size_t	i;
-	int		cost;
-
-	cost = 0;
-	i = 0;
-	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
-	{
-		while (i < target_b)
-		{
-			action_rrotate(dst, show, E_B);
-			i += 1;
-		}
-		i = 0;
-		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
-		{
-			cost += (int)action_rotate(dst, show, E_A);
-			i += 1;
-		}
-	}
-	return (cost);
-}
-
-// time : O(n)
-// space: O(1)
-int	single_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
+int	single_rotate_1st(size_t target_b, t_2intlist *dst,
+	const t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
 	int		cost;
@@ -43,9 +18,9 @@ int	single_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 			i += 1;
 		}
 		i = 0;
-		while ((int)i < -1 * turk_cost->rotate_cost[target_b])
+		while ((int)i < f_abs((int)turk_cost->rotate_cost[target_b]))
 		{
-			cost += -1 * (int)action_rrotate(dst, show, E_A);
+			cost += (int)action_rrotate(dst, show, E_A);
 			i += 1;
 		}
 	}
@@ -54,64 +29,59 @@ int	single_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 
 // time : O(n)
 // space: O(1)
-int	double_rotate_1st(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
+int	single_rotate_2nd(size_t target_b, t_2intlist *dst,
+	const t_turk_costs *turk_cost, int show)
 {
 	size_t	i;
-	size_t	j;
 	int		cost;
 
 	cost = 0;
 	i = 0;
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
 	{
-		j = 0;
-		while (i < target_b && j < (size_t)turk_cost->rotate_cost[target_b])
-		{
-			cost += (int)action_rrotate(dst, show, E_AB);
-			i += 1;
-			j += 1;
-		}
 		while (i < target_b)
 		{
 			action_rrotate(dst, show, E_B);
 			i += 1;
 		}
-		while (j < (size_t)turk_cost->rotate_cost[target_b])
-		{
-			cost += (int)action_rrotate(dst, show, E_B);
-			j += 1;
-		}
-	}
-	return (cost);
-}
-
-// time : O(n)
-// space: O(1)
-int	double_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
-{
-	size_t	i;
-	size_t	j;
-	int		cost;
-
-	cost = 0;
-	i = 0;
-	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
-	{
-		j = 0;
-		while (i < target_b && j < (size_t)(turk_cost->rotate_cost[target_b] * -1))
-		{
-			cost += -1 * (int)action_rotate(dst, show, E_AB);
-			i += 1;
-			j += 1;
-		}
-		while (i < target_b)
-		{
-			action_rotate(dst, show, E_B);
-			i += 1;
-		}
-		while (j < (size_t)(turk_cost->rotate_cost[target_b] * -1))
+		i = 0;
+		while ((int)i < f_abs((int)turk_cost->rotate_cost[target_b]))
 		{
 			cost += -1 * (int)action_rotate(dst, show, E_A);
+			i += 1;
+		}
+	}
+	return (cost);
+}
+
+// time : O(n)
+// space: O(1)
+int	double_rotate_1st(size_t target_b, t_2intlist *dst,
+	const t_turk_costs *turk_cost, int show)
+{
+	size_t	i;
+	size_t	j;
+	int		cost;
+
+	cost = 0;
+	i = 0;
+	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
+	{
+		j = 0;
+		while (i < target_b && j < (size_t)f_abs((int)turk_cost->rotate_cost[target_b]))
+		{
+			cost += (int)action_rotate(dst, show, E_AB);
+			i += 1;
+			j += 1;
+		}
+		while (i < target_b)
+		{
+			action_rotate(dst, show, E_B);
+			i += 1;
+		}
+		while (j < (size_t)f_abs((int)turk_cost->rotate_cost[target_b]))
+		{
+			cost += (int)action_rotate(dst, show, E_A);
 			j += 1;
 		}
 	}
@@ -120,7 +90,42 @@ int	double_rotate_2nd(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost,
 
 // time : O(n)
 // space: O(1)
-int	rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show)
+int	double_rotate_2nd(size_t target_b, t_2intlist *dst,
+	const t_turk_costs *turk_cost, int show)
+{
+	size_t	i;
+	size_t	j;
+	int		cost;
+
+	cost = 0;
+	i = 0;
+	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
+	{
+		j = 0;
+		while (i < target_b && j < (size_t)(f_abs((int)turk_cost->rotate_cost[target_b])))
+		{
+			cost += -1 * (int)action_rrotate(dst, show, E_AB);
+			i += 1;
+			j += 1;
+		}
+		while (i < target_b)
+		{
+			action_rrotate(dst, show, E_B);
+			i += 1;
+		}
+		while (j < (size_t)(f_abs((int)turk_cost->rotate_cost[target_b])))
+		{
+			cost += -1 * (int)action_rrotate(dst, show, E_A);
+			j += 1;
+		}
+	}
+	return (cost);
+}
+
+// time : O(n)
+// space: O(1)
+int	rotate_2intlist(size_t target_b, t_2intlist *dst,
+	const t_turk_costs *turk_cost, int show)
 {
 	int	cost;
 

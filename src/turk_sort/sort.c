@@ -52,9 +52,34 @@ t_turk_costs	first_turk_sort(t_2intlist *src, int show)
 	return (dst);
 }
 
+/*
+Warning: 0 is wrong.
+>>> 54, 74, 54, 54, 11, 54, 74, 
+>>> 54, 74, 54, 54, 11, 54, 74, 
+>>> -1, 0, -1, -1, 1, -1, 0, 
+>>> 0, 1, 0, 0, -1, 0, 1, 
+Warning: 3 is wrong.
+>>> 74, 74, 11, 11, 54, 54, 54, 
+>>> 74, 74, 11, 11, 54, 54, 54, 
+>>> -1, -1, 0, 0, 1, 1, 1, 
+>>> 0, 0, 1, 1, -1, -1, -1, 
+
+Warning: 0 is wrong.
+>>> 54, 74, 54, 54, 11, 54, 74, 
+>>> 54, 74, 54, 54, 11, 54, 74, 
+>>> 1, -1, 1, 1, 0, 1, -1, 
+>>> 0, 1, 0, 0, -1, 0, 1, 
+Warning: 3 is wrong.
+>>> 74, 74, 11, 11, 54, 54, 54, 
+>>> 74, 74, 11, 11, 54, 54, 54, 
+>>> -1, -1, 0, 0, 1, 1, 1, 
+>>> 0, 0, 1, 1, -1, -1, -1, 
+*/
+
+
 // time : O(n)
 // space: O(n)
-void	rotate_turk_cost(t_turk_costs *dst, size_t rotate_b, size_t rotate_a, size_t length_a)
+void	rotate_turk_cost(t_turk_costs *dst, size_t rotate_b)
 {
 	int	*temp;
 
@@ -66,7 +91,6 @@ void	rotate_turk_cost(t_turk_costs *dst, size_t rotate_b, size_t rotate_a, size_
 		temp = rrotate_arr(dst->target_a, dst->length, rotate_b);
 		free(dst->target_a);
 		dst->target_a = temp;
-		rrotate_value(dst->rotate_cost, dst->length, rotate_a, length_a);
 	}
 }
 
@@ -125,7 +149,9 @@ void	double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show)
 		}
 		if (rotate_effect < 0)
 			rotate_effect += (int)src->a.length;
-		rotate_turk_cost(turk_cost, cheap_trick, (size_t)rotate_effect, src->a.length);
+		// rotate_turk_cost(turk_cost, cheap_trick);
+		rotate_turk_cost(turk_cost, cheap_trick);
+		rotate_value(turk_cost->rotate_cost, turk_cost->length, (size_t)rotate_effect, src->a.length);
 		pop_turk(turk_cost, reverse, src->a.length);
 		update_target_a(turk_cost, &(src->b), dekmia, reverse);
 	}

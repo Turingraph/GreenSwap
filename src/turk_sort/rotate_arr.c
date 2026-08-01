@@ -83,12 +83,15 @@ int	*rrotate_value(int *src, size_t length_b,
 	size_t rotate_effect, size_t length_a)
 {
 	size_t	i;
+	// int		before;
 
 	if (src == NULL || length_b == 0 || rotate_effect > length_b)
 		return (src);
 	i = 0;
+	// write(1, "\nNujabes\n", 10);
 	while (i < length_b)
 	{
+		// before = src[i];
 		if (src[i] < 0)
 			src[i] += (int)length_a;
 		src[i] += (int)rotate_effect;
@@ -97,6 +100,10 @@ int	*rrotate_value(int *src, size_t length_b,
 		src[i] = src[i] % length_a;
 		if (src[i] > (int)(length_a / 2))
 			src[i] = -1 * (int)(length_a - src[i]);
+		// if (before == src[i])
+		// 	write(1, "AAA BBB CCC\n", 13);
+		// else
+		// 	write(1, "XXX YYY ZZZ\n", 13);
 		i += 1;
 	}
 	return (src);

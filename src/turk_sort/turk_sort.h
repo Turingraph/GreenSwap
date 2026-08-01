@@ -28,9 +28,10 @@ int				*rotate_value(int *src, size_t length_b, size_t rotate_effect, size_t len
 int				*rrotate_value(int *src, size_t length_b, size_t rotate_effect, size_t length_a);
 
 // rotate_list.c
-int				rotate_2intlist(size_t target_b, t_2intlist *dst, t_turk_costs *turk_cost, int show);
+int				rotate_2intlist(size_t target_b, t_2intlist *dst, const t_turk_costs *turk_cost, int show);
 
 // sort.c
+void			rotate_turk_cost(t_turk_costs *dst, size_t rotate_b);
 t_turk_costs	first_turk_sort(t_2intlist *src, int show);
 void			double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show);
 void			turk_sort(t_2intlist *src, int show);
@@ -38,7 +39,7 @@ void			turk_sort(t_2intlist *src, int show);
 // utils.c
 int				f_abs(int dst);
 int				f_max(int a, int b);
-bool			is_turk_cost_valid(t_turk_costs *dst, size_t index);
+bool			is_turk_cost_valid(const t_turk_costs *dst, size_t index);
 void			sort_two(t_2intlist *dst, int show);
 void			sort_three(t_2intlist *dst, int show);
 

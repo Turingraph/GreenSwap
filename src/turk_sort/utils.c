@@ -22,7 +22,7 @@ int	f_max(int a, int b)
 
 // time : O(1)
 // space: O(1)
-bool	is_turk_cost_valid(t_turk_costs *dst, size_t index)
+bool	is_turk_cost_valid(const t_turk_costs *dst, size_t index)
 {
 	if (dst == NULL || dst->rotate_cost == NULL
 		|| dst->capacity < dst->length || dst->capacity <= index

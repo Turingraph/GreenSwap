@@ -6,8 +6,11 @@ int	main(void)
 	size_t			col = 6;
 	size_t			score;
 	size_t			score_0;
+	size_t			score_1;
+	size_t			score_cheap;
 	size_t			max_score = 6;
 	size_t			i;
+	size_t			cheap_trick;
 	t_2intlist		intlist;
 	bool			check_0;
 	t_turk_costs	turk_cost;
@@ -222,6 +225,8 @@ int	main(void)
 
 	score = 0;
 	score_0 = 0;
+	score_1 = 0;
+	score_cheap = 0;
 	i = 0;
 	while (i < max_score)
 	{
@@ -239,12 +244,31 @@ int	main(void)
 			&& is_2intarr_same(turk_cost.target_a, target_0[i], turk_cost.length) == true
 			&& is_2intarr_same(turk_cost.rotate_cost, rotate_cost_0[i], turk_cost.length) == true)
 			check_0 = true;
-		if (turk_cost.length == intlist.b.length
+		cheap_trick = pod_of_greed(&turk_cost);
+		if (cheap_trick == 0)
+			score_cheap += 1;
+		rotate_2intlist(cheap_trick, &intlist, (const t_turk_costs *)&turk_cost, -2);
+		rotate_turk_cost(&turk_cost, cheap_trick);
+		if (turk_cost.length == intlist.b.length && cheap_trick == 0
 			&& is_intarr_and_list_same(stack_a_1[i], intlist.a.item_1st, intlist.a.length, true) == true
 			&& is_intarr_and_list_same(stack_b_1[i], intlist.b.item_1st, turk_cost.length, true) == true
 			&& is_2intarr_same(turk_cost.target_a, target_1[i], turk_cost.length) == true
 			&& is_2intarr_same(turk_cost.rotate_cost, rotate_cost_1[i], turk_cost.length) == true)
 			check_1 = true;
+		else
+		{
+			write(1, "Warning: ", 10);
+			ft_putnbr_fd(i, 1, "0123456789", 1);
+			write(1, " is wrong.\n", 12);
+			write_intarr(turk_cost.target_a, turk_cost.length);
+			write_intarr(target_1[i], turk_cost.length);
+			write_intarr(turk_cost.rotate_cost, turk_cost.length);
+			write_intarr(rotate_cost_1[i], turk_cost.length);
+			// write_intarr(stack_a_1[i], intlist.a.length);
+			// write_intlist(intlist.a.item_1st, true);
+			// write_intarr(stack_b_1[i], intlist.b.length);
+			// write_intlist(intlist.b.item_1st, true);
+		}
 		if (turk_cost.length == 6
 			&& is_intarr_and_list_same(stack_a_2[i], intlist.a.item_1st, 4, true) == true
 			&& is_intarr_and_list_same(stack_b_2[i], intlist.b.item_1st, 6, true) == true
@@ -273,12 +297,18 @@ int	main(void)
 			score += 1;
 		if (check_0 == true)
 			score_0 += 1;
+		if (check_1 == true)
+			score_1 += 1;
+		// if (check_2 == true)
+		// 	score_2 += 1;
 		free_turk_cost(&turk_cost);
 		free_2intlist(&intlist);
 		i += 1;
 	}
 	write_total_score(score, max_score);
 	write_total_score(score_0, max_score);
+	write_total_score(score_1, max_score);
+	write_total_score(score_cheap, max_score);
 }
 
 /*
