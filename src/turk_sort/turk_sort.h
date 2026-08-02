@@ -22,6 +22,7 @@ size_t			pod_of_greed(t_turk_costs *dst);
 
 // push_turk_cost.c
 void			pop_turk_cost(int first_item_a, t_turk_costs *turk_cost, t_intlist *stack_b, size_t length_a);
+void			reverse_turk_cost(t_turk_costs *turk_cost, t_intlist *stack_b, size_t length_a);
 
 // rotate_arr.c
 int				*shift_arr(int *dst, size_t length);
