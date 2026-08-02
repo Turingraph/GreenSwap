@@ -13,15 +13,6 @@ int	f_abs(int dst)
 
 // time : O(1)
 // space: O(1)
-int	f_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-// time : O(1)
-// space: O(1)
 bool	is_turk_cost_valid(const t_turk_costs *dst, size_t index)
 {
 	if (dst == NULL || dst->rotate_cost == NULL

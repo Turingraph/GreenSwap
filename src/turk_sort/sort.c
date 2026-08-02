@@ -1,37 +1,6 @@
 #include"turk_sort.h"
 
 // time : O(n)
-// space: O(1)
-void	update_target_a(t_turk_costs *turk_cost,
-	t_intlist *list_b, int target_a, bool reverse)
-{
-	size_t		i;
-	t_intnode	*item;
-	int			rotate_cost;
-
-	rotate_cost = 0;
-	if (reverse == true)
-		rotate_cost = -1;
-	item = NULL;
-	if (list_b != NULL)
-		item = list_b->item_1st;
-	i = 0;
-	while (is_turk_cost_valid(turk_cost, i) == true && item != NULL)
-	{
-		if ((target_a >= item->value && (target_a < turk_cost->target_a[i]
-					|| turk_cost->target_a[i] <= item->value))
-			|| (target_a <= turk_cost->target_a[i]
-				&& turk_cost->target_a[i] <= item->value))
-		{
-			turk_cost->rotate_cost[i] = rotate_cost;
-			turk_cost->target_a[i] = target_a;
-		}
-		item = item->next;
-		i += 1;
-	}
-}
-
-// time : O(n)
 // space: O(n)
 t_turk_costs	first_turk_sort(t_2intlist *src, int show)
 {
@@ -52,128 +21,43 @@ t_turk_costs	first_turk_sort(t_2intlist *src, int show)
 	return (dst);
 }
 
-/*
-Warning: 0 is wrong.
->>> 54, 74, 54, 54, 11, 54, 74, 
->>> 54, 74, 54, 54, 11, 54, 74, 
->>> -1, 0, -1, -1, 1, -1, 0, 
->>> 0, 1, 0, 0, -1, 0, 1, 
-Warning: 3 is wrong.
->>> 74, 74, 11, 11, 54, 54, 54, 
->>> 74, 74, 11, 11, 54, 54, 54, 
->>> -1, -1, 0, 0, 1, 1, 1, 
->>> 0, 0, 1, 1, -1, -1, -1, 
-
-Warning: 0 is wrong.
->>> 54, 74, 54, 54, 11, 54, 74, 
->>> 54, 74, 54, 54, 11, 54, 74, 
->>> 1, -1, 1, 1, 0, 1, -1, 
->>> 0, 1, 0, 0, -1, 0, 1, 
-Warning: 3 is wrong.
->>> 74, 74, 11, 11, 54, 54, 54, 
->>> 74, 74, 11, 11, 54, 54, 54, 
->>> -1, -1, 0, 0, 1, 1, 1, 
->>> 0, 0, 1, 1, -1, -1, -1, 
-*/
-
-
-// time : O(n)
-// space: O(n)
-void	rotate_turk_cost(t_turk_costs *dst, size_t rotate_b)
+// time : O(1)
+// space: O(1)
+void	update_min_cost(size_t index, size_t cost, size_t *min_cost, size_t *min_index)
 {
-	int	*temp;
-
-	if (is_turk_cost_valid(dst, 0) == true)
+	if (min_cost != NULL && min_index != NULL
+		&& (index == 0 || *min_cost > cost))
 	{
-		temp = rrotate_arr(dst->rotate_cost, dst->length, rotate_b);
-		free(dst->rotate_cost);
-		dst->rotate_cost = temp;
-		temp = rrotate_arr(dst->target_a, dst->length, rotate_b);
-		free(dst->target_a);
-		dst->target_a = temp;
+		*min_cost = cost;
+		*min_index = index;
 	}
 }
 
 // time : O(n)
 // space: O(1)
-void	pop_turk(t_turk_costs *dst, bool reverse, size_t length_a)
+size_t	pod_of_greed(t_turk_costs *dst)
 {
 	size_t	i;
+	size_t	min_cost;
+	size_t	min_index;
+	size_t	cost;
 
-	if (is_turk_cost_valid(dst, 0) == true)
+	if (is_turk_cost_valid(dst, 0) == false)
+		return (0);
+	min_cost = 0;
+	min_index = 0;
+	i = 0;
+	while (is_turk_cost_valid(dst, i) == true && i <= dst->length / 2)
 	{
-		i = 0;
-		while (i < dst->length)
-		{
-			if (reverse == true && length_a % 2 == 1
-				&& dst->rotate_cost[i] == (int)(length_a / 2))
-				dst->rotate_cost[i] *= -1;
-			else if (reverse == true && dst->rotate_cost[i] >= 0)
-				dst->rotate_cost[i] += 1;
-			else if (reverse == false && length_a % 2 == 1
-				&& dst->rotate_cost[i] == -1 * (int)(length_a / 2))
-				dst->rotate_cost[i] *= -1;
-			else if (reverse == false && dst->rotate_cost[i] < 0)
-				dst->rotate_cost[i] -= 1;
-			i += 1;
-		}
-		shift_arr(dst->target_a, dst->length);
-		shift_arr(dst->rotate_cost, dst->length);
-		dst->length -= 1;
+		cost = (size_t)(i + f_abs(dst->rotate_cost[i]));
+		update_min_cost(i, cost, &min_cost, &min_index);
+		i += 1;
 	}
-}
-
-// look at rotate_turk_cost.
-// time : O(n)
-// space: O(n)
-void	double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show)
-{
-	size_t	cheap_trick;
-	int		rotate_effect;
-	bool	reverse;
-	int		dekmia;
-
-	if (is_2intlist_n_more(src, 3, 0) == true
-		&& is_turk_cost_valid(turk_cost, 0) == true)
+	while (is_turk_cost_valid(dst, i) == true && i < dst->length)
 	{
-		cheap_trick = pod_of_greed(turk_cost);
-		rotate_effect = turk_cost->rotate_cost[cheap_trick];
-		rotate_2intlist(cheap_trick, src, turk_cost, show);
-		action_push(src, show, E_B);
-		reverse = false;
-		dekmia = src->a.item_1st->value;
-		if (src->a.item_1st->next->value >= src->a.item_1st->value)
-		{
-			action_rotate(src, show, E_A);
-			reverse = true;
-		}
-		if (rotate_effect < 0)
-			rotate_effect += (int)src->a.length;
-		// rotate_turk_cost(turk_cost, cheap_trick);
-		rotate_turk_cost(turk_cost, cheap_trick);
-		rotate_value(turk_cost->rotate_cost, turk_cost->length, (size_t)rotate_effect, src->a.length);
-		pop_turk(turk_cost, reverse, src->a.length);
-		update_target_a(turk_cost, &(src->b), dekmia, reverse);
+		cost = (size_t)((dst->length - i) + f_abs(dst->rotate_cost[i]));
+		update_min_cost(i, cost, &min_cost, &min_index);
+		i += 1;
 	}
-}
-
-// time : O(n^2)
-// space: O(n)
-void	turk_sort(t_2intlist *src, int show)
-{
-	t_turk_costs	turk_cost;
-
-	turk_cost = load_turk_cost(NULL);
-	if (is_2intlist_n_more(src, 3, 0) == false
-		&& is_2intlist_n_more(src, 0, 0) == true)
-		sort_two(src, show);
-	else if (is_2intlist_n_more(src, 3, 0) == true)
-		turk_cost = first_turk_sort(src, show);
-	if (is_2intlist_n_more(src, 3, 0) == true
-		&& is_turk_cost_valid(&turk_cost, 0) == true)
-	{
-		while (src->b.length > 0)
-			double_draw(src, &turk_cost, show);
-	}
-	free_turk_cost(&turk_cost);
+	return (min_index);
 }

@@ -1,6 +1,23 @@
 #include"turk_sort.h"
 
 // time : O(n)
+// space: O(n)
+void	rotate_turk_cost(t_turk_costs *dst, size_t rotate_b)
+{
+	int	*temp;
+
+	if (is_turk_cost_valid(dst, 0) == true)
+	{
+		temp = rrotate_arr(dst->rotate_cost, dst->length, rotate_b);
+		free(dst->rotate_cost);
+		dst->rotate_cost = temp;
+		temp = rrotate_arr(dst->target_a, dst->length, rotate_b);
+		free(dst->target_a);
+		dst->target_a = temp;
+	}
+}
+
+// time : O(n)
 // space: O(1)
 void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost, t_intlist *stack_b, size_t length_a)
 {
