@@ -13,7 +13,7 @@ void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost, t_intlist *stack_b
 	i = 0;
 	while (item_b != NULL && is_turk_cost_valid(turk_cost, i))
 	{
-		if ((item_b->value >= turk_cost->target_a[i] && turk_cost->target_a[i] >= first_item_a)
+		if ((item_b->value > turk_cost->target_a[i] && turk_cost->target_a[i] > first_item_a)
 			|| (item_b->value <= first_item_a && ((item_b->value > turk_cost->target_a[i])
 				|| (item_b->value <= turk_cost->target_a[i] && first_item_a < turk_cost->target_a[i]))))
 		{
