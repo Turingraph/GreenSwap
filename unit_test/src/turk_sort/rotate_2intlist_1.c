@@ -9,10 +9,12 @@ int	main(void)
 	size_t			score_1;
 	size_t			score_2;
 	size_t			score_3;
+	size_t			score_4;
 	size_t			max_score = 6;
 	size_t			i;
 	size_t			cheap_trick;
 	t_2intlist		intlist;
+	int				rotate_effect;
 	bool			check_0;
 	t_turk_costs	turk_cost;
 	int				intarr[][10] = {
@@ -174,22 +176,22 @@ int	main(void)
 		{12,	10,	83,	70,	39,	27},
 		{42,	15,	40,	19,	50,	44},
 	};
-	int				target_4[][6] = {
-		{74,	54,	54,	11,	54,	74},
-		{74,	98,	98,	54,	98,	98},
-		{54,	54,	11,	11,	74,	74},
-		{74,	11,	11,	54,	54,	54},
-		{54,	11,	95,	74,	54,	54},
-		{54,	54,	54,	54,	54,	54},
-	};
-	int				rotate_cost_4[][6] = {
-		{0,	-1,	-1,	1,	-1,	0},
-		{0,	1,	1,	-1,	1,	1},
-		{0,	0,	-1,	-1,	1,	1},
-		{0,	1,	1,	2,	2,	2},
-		{0,	-1,	2,	1,	0,	0},
-		{0,	0,	0,	0,	0,	0},
-	};
+	// int				target_4[][6] = {
+	// 	{74,	54,	54,	11,	54,	74},
+	// 	{74,	98,	98,	54,	98,	98},
+	// 	{54,	54,	11,	11,	74,	74},
+	// 	{74,	11,	11,	54,	54,	54},
+	// 	{54,	11,	95,	74,	54,	54},
+	// 	{54,	54,	54,	54,	54,	54},
+	// };
+	// int				rotate_cost_4[][6] = {
+	// 	{0,	-1,	-1,	1,	-1,	0},
+	// 	{0,	1,	1,	-1,	1,	1},
+	// 	{0,	0,	-1,	-1,	1,	1},
+	// 	{0,	1,	1,	2,	2,	2},
+	// 	{0,	-1,	2,	1,	0,	0},
+	// 	{0,	0,	0,	0,	0,	0},
+	// };
 	bool			check_5;
 	int				stack_a_5[][5] = {
 		{60,	74,	11,	19,	54},
@@ -229,6 +231,7 @@ int	main(void)
 	score_1 = 0;
 	score_2 = 0;
 	score_3 = 0;
+	score_4 = 0;
 	i = 0;
 	while (i < max_score)
 	{
@@ -247,7 +250,25 @@ int	main(void)
 			&& is_2intarr_same(turk_cost.rotate_cost, rotate_cost_0[i], turk_cost.length) == true)
 			check_0 = true;
 		cheap_trick = pod_of_greed(&turk_cost);
-		rotate_2intlist(cheap_trick, &intlist, (const t_turk_costs *)&turk_cost, -2);
+		rotate_effect = rotate_2intlist(cheap_trick, &intlist, (const t_turk_costs *)&turk_cost, -2);
+		if (i == 0)
+		{
+			write(1, "### 1 == ", 10);
+			ft_putnbr_fd(rotate_effect, 1, "0123456789", 1);
+			write(1, "\n", 1);
+		}
+		else if (i == 3)
+		{
+			write(1, "### -1 == ", 11);
+			ft_putnbr_fd(rotate_effect, 1, "0123456789", 1);
+			write(1, "\n", 1);
+		}
+		else
+		{
+			write(1, "### 0 == ", 10);
+			ft_putnbr_fd(rotate_effect, 1, "0123456789", 1);
+			write(1, "\n", 1);
+		}
 		rotate_turk_cost(&turk_cost, cheap_trick);
 		if (turk_cost.rotate_cost[cheap_trick] >= 0)
 			rotate_value(turk_cost.rotate_cost, turk_cost.length,
@@ -284,26 +305,52 @@ int	main(void)
 			&& is_2intarr_same(turk_cost.target_a, target_3[i], 6) == true
 			&& is_2intarr_same(turk_cost.rotate_cost, rotate_cost_3[i], 6) == true)
 			check_3 = true;
+		// if (i == 0 || i == 1)
+		// {
+		// 	write(1, "Warning: ", 10);
+		// 	ft_putnbr_fd(i, 1, "0123456789", 1);
+		// 	write(1, " is wrong.\n", 12);
+		// 	write_intlist(intlist.a.item_1st, true);
+		// }
+		cheap_trick = pod_of_greed(&turk_cost);
+		rotate_effect = rotate_2intlist(cheap_trick, &intlist, (const t_turk_costs *)&turk_cost, -2);
+		// rotate_turk_cost(&turk_cost, cheap_trick);
+		// if (turk_cost.rotate_cost[cheap_trick] >= 0)
+		// 	rotate_value(turk_cost.rotate_cost, turk_cost.length,
+		// 		turk_cost.rotate_cost[cheap_trick], intlist.a.length);
+		// else
+		// 	rotate_value(turk_cost.rotate_cost, turk_cost.length,
+		// 		turk_cost.length + turk_cost.rotate_cost[cheap_trick],
+		// 		intlist.a.length);
+		if (turk_cost.length == 6
+			&& is_intarr_and_list_same(stack_a_4[i], intlist.a.item_1st, 4, true) == true
+			&& is_intarr_and_list_same(stack_b_4[i], intlist.b.item_1st, 6, true) == true)
+			// && is_2intarr_same(turk_cost.target_a, target_4[i], 6) == true
+			// && is_2intarr_same(turk_cost.rotate_cost, rotate_cost_4[i], 6) == true)
+			check_4 = true;
 		else
 		{
 			write(1, "Warning: ", 10);
 			ft_putnbr_fd(i, 1, "0123456789", 1);
 			write(1, " is wrong.\n", 12);
-			write_intarr(turk_cost.target_a, turk_cost.length);
-			write_intarr(target_3[i], turk_cost.length);
-			write_intarr(turk_cost.rotate_cost, turk_cost.length);
-			write_intarr(rotate_cost_3[i], turk_cost.length);
-			// write_intarr(stack_a_2[i], intlist.a.length);
-			// write_intlist(intlist.a.item_1st, true);
-			// write_intarr(stack_b_2[i], intlist.b.length);
-			// write_intlist(intlist.b.item_1st, true);
+			write(1, "cheap_trick = 0 = ", 19);
+			ft_putnbr_fd(cheap_trick, 1, "0123456789", 1);
+			write(1, "\n", 1);
+			write(1, "::: 2 == ", 10);
+			// ft_putnbr_fd(rotate_effect, 1, "0123456789", 1);
+			// write(1, "\n", 1);
+			ft_putnbr_fd(turk_cost.rotate_cost[cheap_trick], 1, "0123456789", 1);
+			write(1, "\n", 1);
+			// write_intarr(turk_cost.target_a, turk_cost.length);
+			// write_intarr(target_4[i], turk_cost.length);
+			// write_intarr(turk_cost.rotate_cost, turk_cost.length);
+			// write_intarr(rotate_cost_4[i], turk_cost.length);
+			write_intarr(stack_a_3[i], intlist.a.length);
+			write_intarr(stack_a_4[i], intlist.a.length);
+			write_intlist(intlist.a.item_1st, true);
+			write_intarr(stack_b_4[i], intlist.b.length);
+			write_intlist(intlist.b.item_1st, true);
 		}
-		if (turk_cost.length == 6
-			&& is_intarr_and_list_same(stack_a_4[i], intlist.a.item_1st, 4, true) == true
-			&& is_intarr_and_list_same(stack_b_4[i], intlist.b.item_1st, 6, true) == true
-			&& is_2intarr_same(turk_cost.target_a, target_4[i], 6) == true
-			&& is_2intarr_same(turk_cost.rotate_cost, rotate_cost_4[i], 6) == true)
-			check_4 = true;
 		if (turk_cost.length == 5
 			&& is_intarr_and_list_same(stack_a_5[i], intlist.a.item_1st, 5, true) == true
 			&& is_intarr_and_list_same(stack_b_5[i], intlist.b.item_1st, 5, true) == true
@@ -320,6 +367,8 @@ int	main(void)
 			score_2 += 1;
 		if (check_3 == true)
 			score_3 += 1;
+		if (check_4 == true)
+			score_4 += 1;
 		free_turk_cost(&turk_cost);
 		free_2intlist(&intlist);
 		i += 1;
@@ -329,6 +378,7 @@ int	main(void)
 	write_total_score(score_1, max_score);
 	write_total_score(score_2, max_score);
 	write_total_score(score_3, max_score);
+	write_total_score(score_4, max_score);
 }
 
 /*

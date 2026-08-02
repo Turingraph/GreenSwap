@@ -20,7 +20,7 @@ int	single_rotate_1st(size_t target_b, t_2intlist *dst,
 		i = 0;
 		while ((int)i < f_abs((int)turk_cost->rotate_cost[target_b]))
 		{
-			cost += (int)action_rrotate(dst, show, E_A);
+			cost += -1 * (int)action_rrotate(dst, show, E_A);
 			i += 1;
 		}
 	}

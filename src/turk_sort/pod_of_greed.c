@@ -22,10 +22,7 @@ void	first_card(t_turk_costs *dst, size_t *i, size_t *min_cost, size_t *min_inde
 		&& *i <= dst->length / 2
 		&& min_cost != NULL && min_index != NULL)
 	{
-		if (dst->rotate_cost[*i] < 0)
-			cost = (size_t)(*i + f_abs(dst->rotate_cost[*i]));
-		else
-			cost = (size_t)(f_max(*i, dst->rotate_cost[*i]));
+		cost = (size_t)(*i + f_abs(dst->rotate_cost[*i]));
 		update_min_cost(*i, cost, min_cost, min_index);
 		*i += 1;
 	}
@@ -41,10 +38,7 @@ void	second_card(t_turk_costs *dst, size_t *i, size_t *min_cost, size_t *min_ind
 		&& *i < dst->length
 		&& min_cost != NULL && min_index != NULL)
 	{
-		if (dst->rotate_cost[*i] > 0)
-			cost = (size_t)((dst->length - *i) + f_abs(dst->rotate_cost[*i]));
-		else
-			cost = (size_t)(f_max((dst->length - *i), dst->rotate_cost[*i]));
+		cost = (size_t)((dst->length - *i) + f_abs(dst->rotate_cost[*i]));
 		update_min_cost(*i, cost, min_cost, min_index);
 		*i += 1;
 	}
