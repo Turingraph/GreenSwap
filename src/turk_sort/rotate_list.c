@@ -8,6 +8,8 @@ int	single_rotate_1st(size_t target_b, t_2intlist *dst,
 	size_t	i;
 	int		cost;
 
+	if (target_b > 0)
+		write(1, "single_rotate_1st\n", 19);
 	cost = 0;
 	i = 0;
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
@@ -35,6 +37,8 @@ int	single_rotate_2nd(size_t target_b, t_2intlist *dst,
 	size_t	i;
 	int		cost;
 
+	if (target_b > 0)
+		write(1, "single_rotate_2nd\n", 19);
 	cost = 0;
 	i = 0;
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
@@ -63,6 +67,8 @@ int	double_rotate_1st(size_t target_b, t_2intlist *dst,
 	size_t	j;
 	int		cost;
 
+	if (target_b > 0)
+		write(1, "double_rotate_1st\n", 19);
 	cost = 0;
 	i = 0;
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
@@ -97,6 +103,8 @@ int	double_rotate_2nd(size_t target_b, t_2intlist *dst,
 	size_t	j;
 	int		cost;
 
+	if (target_b > 0)
+		write(1, "double_rotate_2nd\n", 19);
 	cost = 0;
 	i = 0;
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
@@ -141,10 +149,12 @@ int	rotate_2intlist(size_t target_b, t_2intlist *dst,
 			cost = single_rotate_1st(target_b, dst, turk_cost, show);
 		else if (target_b > dst->b.length / 2
 			&& turk_cost->rotate_cost[target_b] >= 0)
-			cost = single_rotate_2nd(target_b, dst, turk_cost, show);
+			cost = single_rotate_2nd(dst->b.length - target_b,
+				dst, turk_cost, show);
 		else if (target_b > dst->b.length / 2
 			&& turk_cost->rotate_cost[target_b] < 0)
-			cost = double_rotate_2nd(target_b, dst, turk_cost, show);
+			cost = double_rotate_2nd(dst->b.length - target_b,
+				dst, turk_cost, show);
 	}
 	return (cost);
 }

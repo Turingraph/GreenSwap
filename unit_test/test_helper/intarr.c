@@ -81,3 +81,24 @@ int	*copy_reverse_intarr(int *dst, const int *src, size_t length)
 	return (dst);
 }
 
+// time : O(n)
+// space: O(n)
+int	*clone_intarr(const int *src, size_t length)
+{
+	int		*dst;
+	size_t	i;
+
+	if (src == NULL || length == 0)
+		return (NULL);
+	dst = malloc(sizeof(int) * length);
+	if (dst == NULL)
+		return (NULL);
+	i = 0;
+	while (i < length)
+	{
+		dst[i] = src[i];
+		i += 1;
+	}
+	return (dst);
+}
+

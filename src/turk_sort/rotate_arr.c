@@ -30,6 +30,15 @@ int	*rotate_value(int *src, size_t length_b,
 	if (src == NULL || length_b == 0 || rotate_effect > length_b)
 		return (src);
 	i = 0;
+	if (length_b == 2)
+	{
+		write(1, "rotate_effect\t=\t", 17);
+		ft_putnbr_fd(rotate_effect, 1, "0123456789", 1);
+		write(1, "\n", 1);
+		write(1, "length_a\t=\t", 12);
+		ft_putnbr_fd(length_a, 1, "0123456789", 1);
+		write(1, "\n", 1);
+	}
 	while (i < length_b)
 	{
 		src[i] += (int)length_a;

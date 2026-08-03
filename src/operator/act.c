@@ -60,13 +60,20 @@ void	act_ppush(t_intlist *src, t_intlist *dst)
 	{
 		temp = src->item_1st;
 		src->item_1st = src->item_1st->next;
-		src->item_1st->prev = NULL;
+		if (src->item_1st != NULL)
+			src->item_1st->prev = NULL;
+		else if (src->length == 1 && src->item_1st == NULL)
+		{
+			src->length -= 1;
+			src->item_last = NULL;
+		}
 		dst->item_1st->prev = temp;
 		temp->next = dst->item_1st;
 		temp->prev = NULL;
 		dst->item_1st = temp;
 		dst->length += 1;
-		src->length -= 1;
+		if (src->length > 0)
+			src->length -= 1;
 	}
 }
 
