@@ -5,10 +5,14 @@ int	main(void)
 {
 	size_t			col = 18;
 	size_t			score = 0;
-	size_t			max_score = 6;
+	size_t			max_score = 10;
 	size_t			i = 0;
 	t_2intlist		intlist;
 	int				intarr[][18] = {
+		{1,	29,	3,	4,	5,	6,	7,	0,	9,	10,	11,	12,	13,	14,	15,	16,	17,	18},
+		{19, 21, 64, 73, 31, 98, 10, 54, 60, 53, 56, 74, 39, 40, 42, 11, 12, 95},
+		{41, 11, 72, 79, 90, 59, 61, 13, 71, 17, 36, 54, 93, 15, 70, 93, 96, 97},
+		{11, 12, 95, 54, 85, 74, 14, 11, 12, 95, 54, 85, 74, 14, 22, 93, 82, 0},
 		{64,	98,	12,	10,	73,	56,	39,	40,	53,	42,	95,	21,	31,	60,	19,	11,	54,	74},
 		{89,	78,	69,	42,	24,	59,	81,	96,	19,	87,	15,	80,	98,	63,	98,	54,	74, 11},
 		{74,	47,	70,	27,	96,	79,	20,	97,	93,	70,	93,	88,	20,	15,	78,	74, 11,	54},
@@ -43,7 +47,7 @@ int	main(void)
 }
 
 /*
-valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_1.out
+valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_18.out
 */
 
 /*

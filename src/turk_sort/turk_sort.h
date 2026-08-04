@@ -24,6 +24,8 @@ t_turk_costs	load_turk_cost(t_2intlist *src);
 int				*shift_arr(int *dst, size_t length);
 int				*rotate_value(int *src, size_t length_b,
 					size_t rotate_effect, size_t length_a);
+int				*rrotate_value(int *src, size_t length_b,
+					size_t rotate_effect, size_t length_a);
 int				*rrotate_arr(int *src, size_t length, size_t rotate_effect);
 
 // rotate_list.c

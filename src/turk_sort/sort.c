@@ -23,7 +23,8 @@ t_turk_costs	first_turk_sort(t_2intlist *src, int show)
 
 // time : O(1)
 // space: O(1)
-void	update_min_cost(size_t index, size_t cost, size_t *min_cost, size_t *min_index)
+void	update_min_cost(size_t index, size_t cost,
+	size_t *min_cost, size_t *min_index)
 {
 	if (min_cost != NULL && min_index != NULL
 		&& (index == 0 || *min_cost > cost))
@@ -64,7 +65,8 @@ size_t	pod_of_greed(t_turk_costs *dst)
 
 // time : O(n)
 // space: O(n)
-void	double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show)
+void	double_draw(t_2intlist *src,
+			t_turk_costs *turk_cost, int show)
 {
 	size_t	cheap_trick;
 
@@ -72,46 +74,15 @@ void	double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show)
 		&& is_turk_cost_valid(turk_cost, 0) == true)
 	{
 		cheap_trick = pod_of_greed(turk_cost);
-		// if (cheap_trick > 0)
-		// {
-		// 	write(1, "What behinds Rohan?: ", 22);
-		// 	ft_putnbr_fd(cheap_trick, 1, "0123456789", 1);
-		// 	write(1, "\n", 1);
-		// 	write(1, "What is the second card?: ", 27);
-		// 	ft_putnbr_fd(turk_cost->rotate_cost[cheap_trick], 1, "0123456789", 1);
-		// 	write(1, "\n", 1);
-		// }
-		// else
-		// 	write(1, "Spanish\n", 9);
-		// if (src->b.length == 2)
-		// {
-		// 	write(1, "Before\n", 8);
-		// 	write_intarr(turk_cost->rotate_cost, turk_cost->length);
-		// 	write_intarr(turk_cost->target_a, turk_cost->length);
-		// }
 		rotate_2intlist(cheap_trick, src, (const t_turk_costs *)turk_cost, show);
-		rotate_turk_cost(turk_cost, cheap_trick);
-		// if (src->b.length == 2)
-		// {
-		// 	write(1, "After\n", 7);
-		// 	write_intarr(turk_cost->rotate_cost, turk_cost->length);
-		// 	write_intarr(turk_cost->target_a, turk_cost->length);
-		// }
 		if (turk_cost->rotate_cost[cheap_trick] >= 0)
-		{
-			if (src->b.length == 2)
-				write(1, "Nujabes\n", 9);
 			rotate_value(turk_cost->rotate_cost, turk_cost->length,
 				turk_cost->rotate_cost[cheap_trick], src->a.length);
-		}
 		else
-		{
-			if (src->b.length == 2)
-				write(1, "J.S. Bach\n", 11);
-			rotate_value(turk_cost->rotate_cost, turk_cost->length,
+			rrotate_value(turk_cost->rotate_cost, turk_cost->length,
 				turk_cost->length + turk_cost->rotate_cost[cheap_trick],
 				src->a.length);
-		}
+		rotate_turk_cost(turk_cost, cheap_trick);
 		action_push(src, show, E_B);
 		shift_arr(turk_cost->target_a, turk_cost->length);
 		shift_arr(turk_cost->rotate_cost, turk_cost->length);
@@ -124,6 +95,15 @@ void	double_draw(t_2intlist *src, t_turk_costs *turk_cost, int show)
 		}
 	}
 }
+
+			// if (src->b.length == 2)
+			// {
+			// 	write(1, "turk_cost->rotate_cost[", 24);
+			// 	ft_putnbr_fd(cheap_trick, 1, "0123456789", 1);
+			// 	write(1, "] = ", 4);
+			// 	ft_putnbr_fd(turk_cost->rotate_cost[cheap_trick], 1, "0123456789", 1);
+			// 	write(1, "\n", 1);
+			// }
 
 // time : O(n^2)
 // space: O(n)
@@ -139,16 +119,8 @@ void	turk_sort(t_2intlist *src, int show)
 	{
 		turk_cost = first_turk_sort(src, show);
 		while (0 < src->b.length)
-		{
-			// if (src->b.length == 2 || src->b.length == 1)
-			// {
-			// 	write(1, "*** ***\n", 8);
-			// 	write_intarr(turk_cost.rotate_cost, turk_cost.length);
-			// 	write_intarr(turk_cost.target_a, turk_cost.length);
-			// }
 			double_draw(src, &turk_cost, show);
-		}
-		// epilogue_rotate_action(src, show);
+		epilogue_rotate_action(src, show);
 	}
 	free_turk_cost(&turk_cost);
 }
