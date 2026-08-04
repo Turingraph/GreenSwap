@@ -47,35 +47,16 @@ int	main(void)
 
 /*
 valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_06.out
-valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_06.out
 */
 
 /*
-1
-1
+// while (3 < src->b.length)
+>>> 2, 20, 101, 
+>>> 54, 98, 97, 
 
-// with epilogue_rotate_action
-2 is wrong.
->>> 18, 11, 19, 33, 51, 
->>> 
-5 is wrong.
->>> 8, 86, 11, 53, 67, 
->>> 
+// while (2 < src->b.length)
+>>> 2, 20, 54, 101, 
+>>> 98, 97, 
 
-// without epilogue_rotate_action
-0 is wrong.
->>> 65, 70, 2, 29, 51, 
->>> 
-1 is wrong.
->>> 97, 98, 2, 20, 54, 
->>> 
-2 is wrong.
->>> 11, 19, 33, 51, 18, 
->>> 
-3 is wrong.
->>> 42, 68, 76, 95, 23, 
->>> 
-5 is wrong.
->>> 11, 53, 67, 8, 86, 
->>> 
+
 */

@@ -96,6 +96,12 @@ void	double_draw(t_2intlist *src,
 	}
 }
 
+		// if (iii == 1 && turk_cost->rotate_cost[0] == 2 && turk_cost->rotate_cost[1] == 2)
+		// {
+		// 	turk_cost->rotate_cost[0] = 1;
+		// 	turk_cost->rotate_cost[1] = 1;
+		// }
+
 			// if (src->b.length == 2)
 			// {
 			// 	write(1, "turk_cost->rotate_cost[", 24);
@@ -124,3 +130,34 @@ void	turk_sort(t_2intlist *src, int show)
 	}
 	free_turk_cost(&turk_cost);
 }
+
+/*
+void	turk_sort(t_2intlist *src, int show, size_t iii)
+{
+	t_turk_costs	turk_cost;
+	size_t			stop;
+
+	turk_cost = load_turk_cost(NULL);
+	if (is_2intlist_n_more(src, 3, 0) == false
+		&& is_2intlist_n_more(src, 0, 0) == true)
+		sort_two(src, show);
+	else if (is_2intlist_n_more(src, 3, 0) == true)
+	{
+		turk_cost = first_turk_sort(src, show);
+		stop = 0;
+		if (iii == 1)
+			stop = 2;
+		while (stop < src->b.length)
+			double_draw(src, &turk_cost, show, iii);
+		if (iii == 1)
+		{
+			write(1, "turk_cost\n", 11);
+			write_intarr(turk_cost.rotate_cost, turk_cost.length);
+			write_intarr(turk_cost.target_a, turk_cost.length);
+		}
+		else
+			epilogue_rotate_action(src, show);
+	}
+	free_turk_cost(&turk_cost);
+}
+*/

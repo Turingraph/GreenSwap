@@ -28,7 +28,7 @@ int	main(void)
 		temp_intarr = clone_intarr(intarr[i], col);
 		sorted_intarr = merge_sort(temp_intarr, col);
 		intlist = load_2intlist(intarr[i], col);
-		turk_sort(&intlist, -2);
+		turk_sort(&intlist, -2);//, i + 80042);
 		if (is_intarr_and_list_same(sorted_intarr, intlist.a.item_1st, col, true) == true)
 			score += 1;
 		else
