@@ -1,6 +1,5 @@
 #include"turk_sort.h"
 
-
 int	main(void)
 {
 	size_t			col = 5;
