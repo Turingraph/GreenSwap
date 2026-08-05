@@ -2,15 +2,17 @@ CC = cc -Wall -Wextra -Werror
 
 .SECONDEXPANSION:
 
-LIBRARY = $(patsubst %, lib/%.a, input duplicate_check operator turk_sort)
+LIBRARY = $(patsubst %, lib/%.a, input debug dejavu operator turk_sort)
 
 SRC_input = $(wildcard input/*.c)
-SRC_duplicate_check = $(wildcard duplicate_check/*.c)
+SRC_debug = $(wildcard debug/*.c)
+SRC_dejavu = $(wildcard dejavu/*.c)
 SRC_operator = $(wildcard operator/*.c)
 SRC_turk_sort = $(wildcard turk_sort/*.c)
 
 OBJ_input = $(patsubst %.c, obj/%.o, $(SRC_input))
-OBJ_duplicate_check = $(patsubst %.c, obj/%.o, $(SRC_duplicate_check)) $(OBJ_input)
+OBJ_debug = $(patsubst %.c, obj/%.o, $(SRC_debug)) $(OBJ_input)
+OBJ_dejavu = $(patsubst %.c, obj/%.o, $(SRC_dejavu)) $(OBJ_input)
 OBJ_operator = $(patsubst %.c, obj/%.o, $(SRC_operator)) $(OBJ_input)
 OBJ_turk_sort = $(patsubst %.c, obj/%.o, $(SRC_turk_sort)) $(OBJ_operator)
 
