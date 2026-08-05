@@ -42,15 +42,45 @@ int	*rotate_value(int *src, size_t length_b,
 	i = 0;
 	while (i < length_b)
 	{
+		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2 && length_a % 2 == 1)
+			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2 && length_a % 2 == 0))
+			src[i] -= (int)rotate_effect;
+		else
+			src[i] = src[i] - (int)rotate_effect + length_a;
+		i += 1;
+	}
+	return (src);
+}
+
+/*
+// version 1
 		src[i] += (int)length_a;
 		src[i] -= (int)rotate_effect;
 		src[i] = src[i] % length_a;
 		if (src[i] > (int)(length_a / 2))
 			src[i] = -1 * (int)(length_a - src[i]);
-		i += 1;
-	}
-	return (src);
-}
+
+// version 2 (this is wrong)
+		if ((src[i] - (int)rotate_effect <= -1 * (int)length_a / 2 && length_a % 2 == 1)
+			|| (src[i] - (int)rotate_effect < -1 * (int)length_a / 2 && length_a % 2 == 0))
+			src[i] -= (int)rotate_effect;
+		else
+			src[i] = (int)length_a + src[i] - (int)rotate_effect;
+
+// version 3
+		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2 && length_a % 2 == 1)
+			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2 && length_a % 2 == 0))
+			src[i] -= (int)rotate_effect;
+		else
+			src[i] = src[i] - (int)rotate_effect + length_a;
+
+// version 4
+		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2 && length_a % 2 == 1)
+			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2 && length_a % 2 == 0))
+			src[i] -= (int)rotate_effect;
+		else
+			src[i] = src[i] - (int)rotate_effect + length_a;
+*/
 
 // time : O(n)
 // space: O(1)
@@ -64,11 +94,10 @@ int	*rrotate_value(int *src, size_t length_b,
 	i = 0;
 	while (i < length_b)
 	{
-		src[i] += (int)length_a;
-		src[i] += (int)rotate_effect;
-		src[i] = src[i] % length_a;
-		if (src[i] > (int)(length_a / 2))
-			src[i] = -1 * (int)(length_a - src[i]);
+		if (src[i] + (int)rotate_effect <= (int)length_a / 2)
+			src[i] += (int)rotate_effect;
+		else
+			src[i] = src[i] + (int)rotate_effect - (int)length_a;
 		i += 1;
 	}
 	return (src);

@@ -2,6 +2,7 @@
 # define TURK_SORT_H
 
 #include"../operator/operator.h"
+#include"../debug/debug.h"
 
 typedef struct t_turk_costs t_turk_costs;
 
@@ -35,6 +36,10 @@ int				rotate_2intlist(size_t target_b, t_2intlist *dst, const t_turk_costs *tur
 size_t			pod_of_greed(t_turk_costs *dst);
 t_turk_costs	first_turk_sort(t_2intlist *src, int show);
 void			turk_sort(t_2intlist *src, int show);
+t_turk_costs	debug_turk_sort(t_2intlist *src, int show, size_t stop);
+
+// sort_v01.txt
+// t_turk_costs	prev_turk_sort(t_2intlist *src, int show, size_t stop);
 
 // update_turk_cost.c
 void			rotate_turk_cost(t_turk_costs *dst, size_t rotate_b);

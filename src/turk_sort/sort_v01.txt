@@ -1,0 +1,99 @@
+#include"turk_sort.h"
+
+// time : O(n)
+// space: O(1)
+int	*prev_rrotate_value(int *src, size_t length_b,
+	size_t rotate_effect, size_t length_a)
+{
+	size_t	i;
+
+	if (src == NULL || length_b == 0 || rotate_effect > length_b)
+		return (src);
+	i = 0;
+	while (i < length_b)
+	{
+		src[i] += (int)length_a;
+		src[i] += (int)rotate_effect;
+		src[i] = src[i] % length_a;
+		if (src[i] > (int)(length_a / 2))
+			src[i] = -1 * (int)(length_a - src[i]);
+		i += 1;
+	}
+	return (src);
+}
+
+// time : O(n)
+// space: O(1)
+int	*prev_rotate_value(int *src, size_t length_b,
+	size_t rotate_effect, size_t length_a)
+{
+	size_t	i;
+
+	if (src == NULL || length_b == 0 || rotate_effect > length_b)
+		return (src);
+	i = 0;
+	while (i < length_b)
+	{
+		src[i] += (int)length_a;
+		src[i] -= (int)rotate_effect;
+		src[i] = src[i] % length_a;
+		if (src[i] > (int)(length_a / 2))
+			src[i] = -1 * (int)(length_a - src[i]);
+		i += 1;
+	}
+	return (src);
+}
+
+// time : O(n)
+// space: O(n)
+void	prev_double_draw(t_2intlist *src,
+			t_turk_costs *turk_cost, int show)
+{
+	size_t	cheap_trick;
+
+	if (is_2intlist_n_more(src, 3, 0) == true
+		&& is_turk_cost_valid(turk_cost, 0) == true)
+	{
+		cheap_trick = pod_of_greed(turk_cost);
+		rotate_2intlist(cheap_trick, src, (const t_turk_costs *)turk_cost, show);
+		if (turk_cost->rotate_cost[cheap_trick] >= 0)
+			prev_rotate_value(turk_cost->rotate_cost, turk_cost->length,
+				turk_cost->rotate_cost[cheap_trick], src->a.length);
+		else
+			prev_rrotate_value(turk_cost->rotate_cost, turk_cost->length,
+				turk_cost->length + turk_cost->rotate_cost[cheap_trick],
+				src->a.length);
+		rotate_turk_cost(turk_cost, cheap_trick);
+		action_push(src, show, E_B);
+		shift_arr(turk_cost->target_a, turk_cost->length);
+		shift_arr(turk_cost->rotate_cost, turk_cost->length);
+		turk_cost->length -= 1;
+		pop_turk_cost(src->a.item_1st->value, turk_cost, &(src->b), src->a.length);
+		if (src->a.item_1st->next->value < src->a.item_1st->value)
+		{
+			action_rotate(src, show, E_A);
+			reverse_turk_cost(turk_cost, &(src->b), src->a.length);
+		}
+	}
+}
+
+// time : O(n^3)
+// space: O(n)
+t_turk_costs	prev_turk_sort(t_2intlist *src, int show, size_t stop)
+{
+	t_turk_costs	turk_cost;
+
+	turk_cost = load_turk_cost(NULL);
+	if (is_2intlist_n_more(src, 3, 0) == false
+		&& is_2intlist_n_more(src, 0, 0) == true)
+		sort_two(src, show);
+	else if (is_2intlist_n_more(src, 3, 0) == true)
+	{
+		turk_cost = first_turk_sort(src, show);
+		while (stop < src->b.length && is_intlist_sort(src->a.item_1st, 1, 1) == true)
+			prev_double_draw(src, &turk_cost, show);
+		if (is_intlist_sort(src->a.item_1st, 1, 1) == true)
+			epilogue_rotate_action(src, show);
+	}
+	return (turk_cost);
+}

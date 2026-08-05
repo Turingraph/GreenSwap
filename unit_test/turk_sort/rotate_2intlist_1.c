@@ -251,14 +251,14 @@ int	main(void)
 			check_0 = true;
 		cheap_trick = pod_of_greed(&turk_cost);
 		rotate_2intlist(cheap_trick, &intlist, (const t_turk_costs *)&turk_cost, -2);
-		rotate_turk_cost(&turk_cost, cheap_trick);
 		if (turk_cost.rotate_cost[cheap_trick] >= 0)
 			rotate_value(turk_cost.rotate_cost, turk_cost.length,
 				turk_cost.rotate_cost[cheap_trick], intlist.a.length);
 		else
-			rotate_value(turk_cost.rotate_cost, turk_cost.length,
-				turk_cost.length + turk_cost.rotate_cost[cheap_trick],
+			rrotate_value(turk_cost.rotate_cost, turk_cost.length,
+				f_abs(turk_cost.rotate_cost[cheap_trick]),
 				intlist.a.length);
+		rotate_turk_cost(&turk_cost, cheap_trick);
 		if (turk_cost.length == intlist.b.length && cheap_trick == 0
 			&& is_intarr_and_list_same(stack_a_1[i], intlist.a.item_1st, intlist.a.length, true) == true
 			&& is_intarr_and_list_same(stack_b_1[i], intlist.b.item_1st, turk_cost.length, true) == true
@@ -296,14 +296,14 @@ int	main(void)
 		// }
 		cheap_trick = pod_of_greed(&turk_cost);
 		rotate_2intlist(cheap_trick, &intlist, (const t_turk_costs *)&turk_cost, -2);
-		rotate_turk_cost(&turk_cost, cheap_trick);
 		if (turk_cost.rotate_cost[cheap_trick] >= 0)
 			rotate_value(turk_cost.rotate_cost, turk_cost.length,
 				turk_cost.rotate_cost[cheap_trick], intlist.a.length);
 		else
-			rotate_value(turk_cost.rotate_cost, turk_cost.length,
-				turk_cost.length + turk_cost.rotate_cost[cheap_trick],
+			rrotate_value(turk_cost.rotate_cost, turk_cost.length,
+				f_abs(turk_cost.rotate_cost[cheap_trick]),
 				intlist.a.length);
+		rotate_turk_cost(&turk_cost, cheap_trick);
 		if (turk_cost.length == 6
 			&& is_intarr_and_list_same(stack_a_4[i], intlist.a.item_1st, 4, true) == true
 			&& is_intarr_and_list_same(stack_b_4[i], intlist.b.item_1st, 6, true) == true

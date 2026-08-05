@@ -66,3 +66,7 @@ bool	is_intlist_sort(const t_intnode *src, int ascending, size_t tolerate)
 		return (false);
 	return (true);
 }
+
+	// write(1, ";;; ", 4);
+	// ft_putnbr_fd(i, 1, "0123456789", 1);
+	// write(1, "\n", 1);

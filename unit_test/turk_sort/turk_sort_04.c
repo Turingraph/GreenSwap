@@ -45,12 +45,3 @@ int	main(void)
 /*
 valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_04.out
 */
-
-/*
-1 is wrong.
->>> 97, 98, 2, 54, 
->>> 
-3 is wrong.
->>> 42, 68, 95, 23, 
->>> 
-*/

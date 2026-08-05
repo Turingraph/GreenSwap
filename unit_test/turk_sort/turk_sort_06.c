@@ -21,13 +21,14 @@ int	main(void)
 	};
 	int				*temp_intarr;
 	int				*sorted_intarr;
+	t_turk_costs	turk_cost;
 
 	while (i < max_score)
 	{
 		temp_intarr = clone_intarr(intarr[i], col);
 		sorted_intarr = merge_sort(temp_intarr, col);
 		intlist = load_2intlist(intarr[i], col);
-		turk_sort(&intlist, -2);
+		turk_cost = debug_turk_sort(&intlist, -2, 0);
 		if (is_intarr_and_list_same(sorted_intarr, intlist.a.item_1st, col, true) == true)
 			score += 1;
 		else
@@ -36,10 +37,13 @@ int	main(void)
 			write(1, " is wrong.\n", 12);
 			write_intlist(intlist.a.item_1st, true, "stack_a: ");
 			write_intlist(intlist.b.item_1st, true, "stack_b: ");
+			write_intarr(turk_cost.target_a, turk_cost.length, "target_a: ");
+			write_intarr(turk_cost.rotate_cost, turk_cost.length, "rotate_cost: ");
 		}
 		free_2intlist(&intlist);
 		free(temp_intarr);
 		free(sorted_intarr);
+		free_turk_cost(&turk_cost);
 		i += 1;
 	}
 	write_total_score(score, max_score);
@@ -47,16 +51,4 @@ int	main(void)
 
 /*
 valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_06.out
-*/
-
-/*
-// while (3 < src->b.length)
->>> 2, 20, 101, 
->>> 54, 98, 97, 
-
-// while (2 < src->b.length)
->>> 2, 20, 54, 101, 
->>> 98, 97, 
-
-
 */
