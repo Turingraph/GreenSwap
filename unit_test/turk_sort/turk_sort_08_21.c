@@ -1,6 +1,6 @@
 #include"turk_sort.h"
 
-int	main(void)
+int	main(int len, char **str)
 {
 	size_t			col = 8;
 	t_2intlist		intlist;
@@ -8,11 +8,21 @@ int	main(void)
 	int				*temp_intarr;
 	int				*sorted_intarr;
 	t_turk_costs	turk_cost;
+	int				stop;
+	bool			is_int;
 
+	stop = 0;
+	if (len > 1)
+	{
+		is_int = true;
+		stop = f_atoi(str[1], &is_int, "0123456789", 0);
+		if (is_int == false)
+			stop = 0;
+	}
 	temp_intarr = clone_intarr(intarr, col);
 	sorted_intarr = merge_sort(temp_intarr, col);
 	intlist = load_2intlist(intarr, col);
-	turk_cost = debug_turk_sort(&intlist, -2, 0);
+	turk_cost = debug_turk_sort(&intlist, -2, (size_t)stop);
 	if (is_intarr_and_list_same(sorted_intarr, intlist.a.item_1st, col, true) == true)
 		write(1, "Correct\n", 9);
 	else
