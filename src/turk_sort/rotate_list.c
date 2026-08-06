@@ -45,7 +45,7 @@ int	single_rotate_2nd(size_t target_b, t_2intlist *dst,
 			i += 1;
 		}
 		i = 0;
-		while ((int)i < f_abs((int)turk_cost->rotate_cost[target_b]))
+		while ((int)i < f_abs((int)turk_cost->rotate_cost[turk_cost->length - target_b]))
 		{
 			cost += -1 * (int)action_rotate(dst, show, E_A);
 			i += 1;
@@ -102,7 +102,7 @@ int	double_rotate_2nd(size_t target_b, t_2intlist *dst,
 	if (dst != NULL && is_turk_cost_valid(turk_cost, target_b) == true)
 	{
 		j = 0;
-		while (i < target_b && j < (size_t)(f_abs((int)turk_cost->rotate_cost[target_b])))
+		while (i < target_b && j < (size_t)(f_abs((int)turk_cost->rotate_cost[turk_cost->length - target_b])))
 		{
 			cost += -1 * (int)action_rrotate(dst, show, E_AB);
 			i += 1;

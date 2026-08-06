@@ -34,7 +34,7 @@ int				rotate_2intlist(size_t target_b, t_2intlist *dst,
 					const t_turk_costs *turk_cost, int show);
 
 // sort.c
-size_t			pod_of_greed(t_turk_costs *dst);
+size_t			pod_of_greed(const t_turk_costs *dst);
 t_turk_costs	first_turk_sort(t_2intlist *src, int show);
 void			turk_sort(t_2intlist *src, int show);
 t_turk_costs	debug_turk_sort(t_2intlist *src, int show, size_t stop);

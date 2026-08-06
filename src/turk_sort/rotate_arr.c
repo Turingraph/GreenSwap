@@ -37,7 +37,7 @@ int	*rotate_value(int *src, size_t length_b,
 {
 	size_t	i;
 
-	if (src == NULL || length_b == 0 || rotate_effect > length_b)
+	if (src == NULL || length_b == 0 || rotate_effect > length_a)
 		return (src);
 	i = 0;
 	while (i < length_b)
@@ -89,7 +89,7 @@ int	*rrotate_value(int *src, size_t length_b,
 {
 	size_t	i;
 
-	if (src == NULL || length_b == 0 || rotate_effect > length_b)
+	if (src == NULL || length_b == 0 || rotate_effect > length_a)
 		return (src);
 	i = 0;
 	while (i < length_b)

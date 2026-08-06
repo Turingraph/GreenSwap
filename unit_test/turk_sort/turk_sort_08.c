@@ -80,12 +80,6 @@ Wrong but partial_progress = 8 / 8
 2.	16
 3.	24
 4.	27
-5.	29
-
-Wrong and get fewer than 8 / 8 score
-1.	6	(6)
-2.	8	(7)
-3.	21	(7)
 
 */
 

@@ -83,6 +83,9 @@ int	*merge_sort(int *src, size_t length)
 	dst = (int *)malloc(sizeof(int) * length);
 	if (dst == NULL)
 		return (NULL);
-	space_free_merge_sort(src, dst, 0, length - 1);
+	if (length == 1)
+		dst[0] = src[0];
+	else
+		space_free_merge_sort(src, dst, 0, length - 1);
 	return (dst);
 }
