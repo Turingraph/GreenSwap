@@ -95,79 +95,6 @@ void	double_draw(t_2intlist *src,
 	}
 }
 
-// time : O(n)
-// space: O(n)
-void	debug_double_draw(t_2intlist *src,
-			t_turk_costs *turk_cost, int show, size_t iii)
-{
-	size_t	cheap_trick;
-
-	if (is_2intlist_n_more(src, 3, 0) == true
-		&& is_turk_cost_valid(turk_cost, 0) == true)
-	{
-		cheap_trick = pod_of_greed(turk_cost);
-		if (src->b.length == iii)
-		{
-			write(1, "\nBefore Rotate\n", 16);
-			write(1, "turk_cost->rotate_cost[", 24);
-			ft_putnbr_fd((int)cheap_trick, 1, "0123456789", 1);
-			write(1, "] = ", 4);
-			ft_putnbr_fd(turk_cost->rotate_cost[cheap_trick], 1, "0123456789", 1);
-			write(1, "\n", 1);
-			write_intlist(src->a.item_1st, true, "a.item: ");
-			write_intlist(src->b.item_1st, true, "b.item: ");
-			write_intarr(turk_cost->target_a, turk_cost->length, "target: ");
-			write_intarr(turk_cost->rotate_cost, turk_cost->length, "rotate: ");
-		}
-		rotate_2intlist(cheap_trick, src, turk_cost, show);
-		if (turk_cost->rotate_cost[cheap_trick] >= 0)
-		{
-			rotate_value(turk_cost->rotate_cost, turk_cost->length,
-				turk_cost->rotate_cost[cheap_trick], src->a.length);
-		}
-		else
-		{
-			if (src->b.length == iii)
-				write(1, "rrotate_value\n", 15);
-			rrotate_value(turk_cost->rotate_cost, turk_cost->length,
-				f_abs(turk_cost->rotate_cost[cheap_trick]), src->a.length);
-		}
-		if (src->b.length == iii)
-		{
-			write(1, "\nAfterr Rotate\n", 16);
-			write_intlist(src->a.item_1st, true, "a.item: ");
-			write_intlist(src->b.item_1st, true, "b.item: ");
-			write_intarr(turk_cost->target_a, turk_cost->length, "target: ");
-			write_intarr(turk_cost->rotate_cost, turk_cost->length, "rotate: ");
-		}
-			// write_intlist(src->a.item_1st, true, "a.item: ");
-			// write_intarr(turk_cost->rotate_cost, turk_cost->length, ">>> 01 : ");
-		rotate_turk_cost(turk_cost, cheap_trick);
-		action_push(src, show, E_B);
-		shift_arr(turk_cost->target_a, turk_cost->length);
-		shift_arr(turk_cost->rotate_cost, turk_cost->length);
-		if (src->b.length == iii - 1)
-		{
-			write(1, "\nAfter2 Rotate\n", 16);
-			write_intlist(src->a.item_1st, true, "a.item: ");
-			write_intlist(src->b.item_1st, true, "b.item: ");
-			write_intarr(turk_cost->target_a, turk_cost->length, "target: ");
-			write_intarr(turk_cost->rotate_cost, turk_cost->length, "rotate: ");
-		}
-		turk_cost->length -= 1;
-		pop_turk_cost(src->a.item_1st->value,
-			turk_cost, &(src->b), src->a.length);
-		// if (src->b.length == iii - 1)
-			// write_intarr(turk_cost->rotate_cost, turk_cost->length, ">>> 04 : ");
-		if (src->a.item_1st->next->value < src->a.item_1st->value)
-			reverse_turk_cost(turk_cost, &(src->b), src->a.length);
-		if (src->a.item_1st->next->value < src->a.item_1st->value)
-			action_rotate(src, show, E_A);
-		// if (src->b.length == iii - 1)
-			// write_intarr(turk_cost->rotate_cost, turk_cost->length, ">>> 05 : ");
-	}
-}
-
 /*
 // time : O(n)
 // space: O(n)
@@ -179,42 +106,99 @@ void	debug_double_draw(t_2intlist *src,
 	if (is_2intlist_n_more(src, 3, 0) == true
 		&& is_turk_cost_valid(turk_cost, 0) == true)
 	{
-		write_intarr(turk_cost->rotate_cost, turk_cost->length, "before: ");
 		cheap_trick = pod_of_greed(turk_cost);
-		rotate_2intlist(cheap_trick, src, (const t_turk_costs *)turk_cost, show);
+		rotate_2intlist(cheap_trick, src, turk_cost, show);
 		if (turk_cost->rotate_cost[cheap_trick] >= 0)
-		{
-			// write(1, "Alejandro y María Laura\n", 26);
 			rotate_value(turk_cost->rotate_cost, turk_cost->length,
 				turk_cost->rotate_cost[cheap_trick], src->a.length);
-		}
 		else
-		{
-			// write(1, "Yorushika ", 11);
-			// ft_putnbr_fd(turk_cost->length + turk_cost->rotate_cost[cheap_trick], 1, "0123456789", 1);
-			// write(1, "\n", 1);
 			rrotate_value(turk_cost->rotate_cost, turk_cost->length,
-				f_abs(turk_cost->rotate_cost[cheap_trick]),
-				src->a.length);
-		}
-		write_intarr(turk_cost->rotate_cost, turk_cost->length, "after : ");
+				f_abs(turk_cost->rotate_cost[cheap_trick]), src->a.length);
 		rotate_turk_cost(turk_cost, cheap_trick);
 		action_push(src, show, E_B);
 		shift_arr(turk_cost->target_a, turk_cost->length);
 		shift_arr(turk_cost->rotate_cost, turk_cost->length);
 		turk_cost->length -= 1;
-		write_intarr(turk_cost->rotate_cost, turk_cost->length, "after2 : ");
-		pop_turk_cost(src->a.item_1st->value, turk_cost, &(src->b), src->a.length);
-		write_intarr(turk_cost->rotate_cost, turk_cost->length, "after3 : ");
+		pop_turk_cost(src->a.item_1st->value,
+			turk_cost, &(src->b), src->a.length);
 		if (src->a.item_1st->next->value < src->a.item_1st->value)
-		{
-			action_rotate(src, show, E_A);
 			reverse_turk_cost(turk_cost, &(src->b), src->a.length);
-		}
-		write_intarr(turk_cost->rotate_cost, turk_cost->length, "after4 : ");
+		if (src->a.item_1st->next->value < src->a.item_1st->value)
+			action_rotate(src, show, E_A);
 	}
 }
 */
+
+// time : O(n)
+// space: O(n)
+void	debug_double_draw(t_2intlist *src,
+			t_turk_costs *turk_cost, int show)//, size_t iii)
+{
+	size_t	cheap_trick;
+
+	if (is_2intlist_n_more(src, 3, 0) == true
+		&& is_turk_cost_valid(turk_cost, 0) == true)
+	{
+		cheap_trick = pod_of_greed(turk_cost);
+		// if (src->b.length == iii)
+		// {
+		// 	write(1, "\nBefore Rotate\n", 16);
+		// 	write(1, "turk_cost->rotate_cost[", 24);
+		// 	ft_putnbr_fd((int)cheap_trick, 1, "0123456789", 1);
+		// 	write(1, "] = ", 4);
+		// 	ft_putnbr_fd(turk_cost->rotate_cost[cheap_trick], 1, "0123456789", 1);
+		// 	write(1, "\n", 1);
+		// 	write_intlist(src->a.item_1st, true, "a.item: ");
+		// 	write_intlist(src->b.item_1st, true, "b.item: ");
+		// 	write_intarr(turk_cost->target_a, turk_cost->length, "target: ");
+		// 	write_intarr(turk_cost->rotate_cost, turk_cost->length, "rotate: ");
+		// }
+		rotate_2intlist(cheap_trick, src, turk_cost, show);
+		if (turk_cost->rotate_cost[cheap_trick] >= 0)
+		{
+			rotate_value(turk_cost->rotate_cost, turk_cost->length,
+				turk_cost->rotate_cost[cheap_trick], src->a.length);
+		}
+		else
+		{
+			// if (src->b.length == iii)
+			// 	write(1, "rrotate_value\n", 15);
+			rrotate_value(turk_cost->rotate_cost, turk_cost->length,
+				f_abs(turk_cost->rotate_cost[cheap_trick]), src->a.length);
+		}
+		// if (src->b.length == iii)
+		// {
+		// 	write(1, "\nAfterr Rotate\n", 16);
+		// 	write_intlist(src->a.item_1st, true, "a.item: ");
+		// 	write_intlist(src->b.item_1st, true, "b.item: ");
+		// 	write_intarr(turk_cost->target_a, turk_cost->length, "target: ");
+		// 	write_intarr(turk_cost->rotate_cost, turk_cost->length, "rotate: ");
+		// }
+			// write_intlist(src->a.item_1st, true, "a.item: ");
+			// write_intarr(turk_cost->rotate_cost, turk_cost->length, ">>> 01 : ");
+		rotate_turk_cost(turk_cost, cheap_trick);
+		action_push(src, show, E_B);
+		shift_arr(turk_cost->target_a, turk_cost->length);
+		shift_arr(turk_cost->rotate_cost, turk_cost->length);
+		turk_cost->length -= 1;
+		pop_turk_cost(src->a.item_1st->value,
+			turk_cost, &(src->b), src->a.length);
+		// if (src->b.length == iii - 1)
+			// write_intarr(turk_cost->rotate_cost, turk_cost->length, ">>> 04 : ");
+		if (src->a.item_1st->next->value < src->a.item_1st->value)
+			reverse_turk_cost(turk_cost, &(src->b), src->a.length);
+		if (src->a.item_1st->next->value < src->a.item_1st->value)
+			action_rotate(src, show, E_A);
+		// if (src->b.length == iii - 1)
+		// {
+		// 	write(1, "\nAfter2 Rotate\n", 16);
+		// 	write_intlist(src->a.item_1st, true, "a.item: ");
+		// 	write_intlist(src->b.item_1st, true, "b.item: ");
+		// 	write_intarr(turk_cost->target_a, turk_cost->length, "target: ");
+		// 	write_intarr(turk_cost->rotate_cost, turk_cost->length, "rotate: ");
+		// }
+	}
+}
 
 // time : O(n^2)
 // space: O(n)
@@ -250,9 +234,9 @@ t_turk_costs	debug_turk_sort(t_2intlist *src, int show, size_t stop)
 	{
 		turk_cost = first_turk_sort(src, show);
 		while (stop < src->b.length && is_intlist_sort(src->a.item_1st, 1, 1) == true)
-			debug_double_draw(src, &turk_cost, show, 2);
-		if (is_intlist_sort(src->a.item_1st, 1, 1) == true)
-			epilogue_rotate_action(src, show);
+			debug_double_draw(src, &turk_cost, show);//, 8);
+		// if (is_intlist_sort(src->a.item_1st, 1, 1) == true)
+		// 	epilogue_rotate_action(src, show);
 	}
 	return (turk_cost);
 }

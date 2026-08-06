@@ -75,14 +75,5 @@ int	main(void)
 }
 
 /*
-Wrong but partial_progress = 8 / 8
-1.	4
-2.	16
-3.	24
-4.	27
-
-*/
-
-/*
 valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/turk_sort/turk_sort_08.out
 */
