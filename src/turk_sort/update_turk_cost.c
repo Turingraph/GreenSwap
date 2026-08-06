@@ -49,7 +49,8 @@ void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost, t_intlist *stack_b
 
 // time : O(n)
 // space: O(1)
-void	reverse_turk_cost(t_turk_costs *turk_cost, t_intlist *stack_b, size_t length_a)
+void	reverse_turk_cost(t_turk_costs *turk_cost,
+	const t_intlist *stack_b, size_t length_a)
 {
 	size_t		i;
 	t_intnode	*item_b;
@@ -62,8 +63,10 @@ void	reverse_turk_cost(t_turk_costs *turk_cost, t_intlist *stack_b, size_t lengt
 	{
 		if (turk_cost->rotate_cost[i] == 0)
 			turk_cost->rotate_cost[i] = -1;
-		else if ((turk_cost->rotate_cost[i] == -1 * (int)length_a / 2 + 1 && length_a % 2 == 0)
-			|| (turk_cost->rotate_cost[i] == -1 * (int)length_a / 2 && length_a % 2 == 1))
+		else if ((turk_cost->rotate_cost[i] == -1 * (int)length_a / 2 + 1
+				&& length_a % 2 == 0)
+			|| (turk_cost->rotate_cost[i] == -1 * (int)length_a / 2
+				&& length_a % 2 == 1))
 			turk_cost->rotate_cost[i] = (int)length_a / 2;
 		else
 			turk_cost->rotate_cost[i] -= 1;

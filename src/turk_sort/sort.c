@@ -74,25 +74,24 @@ void	double_draw(t_2intlist *src,
 		&& is_turk_cost_valid(turk_cost, 0) == true)
 	{
 		cheap_trick = pod_of_greed(turk_cost);
-		rotate_2intlist(cheap_trick, src, (const t_turk_costs *)turk_cost, show);
+		rotate_2intlist(cheap_trick, src, turk_cost, show);
 		if (turk_cost->rotate_cost[cheap_trick] >= 0)
 			rotate_value(turk_cost->rotate_cost, turk_cost->length,
 				turk_cost->rotate_cost[cheap_trick], src->a.length);
 		else
 			rrotate_value(turk_cost->rotate_cost, turk_cost->length,
-				f_abs(turk_cost->rotate_cost[cheap_trick]),
-				src->a.length);
+				f_abs(turk_cost->rotate_cost[cheap_trick]), src->a.length);
 		rotate_turk_cost(turk_cost, cheap_trick);
 		action_push(src, show, E_B);
 		shift_arr(turk_cost->target_a, turk_cost->length);
 		shift_arr(turk_cost->rotate_cost, turk_cost->length);
 		turk_cost->length -= 1;
-		pop_turk_cost(src->a.item_1st->value, turk_cost, &(src->b), src->a.length);
+		pop_turk_cost(src->a.item_1st->value,
+			turk_cost, &(src->b), src->a.length);
 		if (src->a.item_1st->next->value < src->a.item_1st->value)
-		{
-			action_rotate(src, show, E_A);
 			reverse_turk_cost(turk_cost, &(src->b), src->a.length);
-		}
+		if (src->a.item_1st->next->value < src->a.item_1st->value)
+			action_rotate(src, show, E_A);
 	}
 }
 
@@ -107,25 +106,24 @@ void	debug_double_draw(t_2intlist *src,
 		&& is_turk_cost_valid(turk_cost, 0) == true)
 	{
 		cheap_trick = pod_of_greed(turk_cost);
-		rotate_2intlist(cheap_trick, src, (const t_turk_costs *)turk_cost, show);
+		rotate_2intlist(cheap_trick, src, turk_cost, show);
 		if (turk_cost->rotate_cost[cheap_trick] >= 0)
 			rotate_value(turk_cost->rotate_cost, turk_cost->length,
 				turk_cost->rotate_cost[cheap_trick], src->a.length);
 		else
 			rrotate_value(turk_cost->rotate_cost, turk_cost->length,
-				f_abs(turk_cost->rotate_cost[cheap_trick]),
-				src->a.length);
+				f_abs(turk_cost->rotate_cost[cheap_trick]), src->a.length);
 		rotate_turk_cost(turk_cost, cheap_trick);
 		action_push(src, show, E_B);
 		shift_arr(turk_cost->target_a, turk_cost->length);
 		shift_arr(turk_cost->rotate_cost, turk_cost->length);
 		turk_cost->length -= 1;
-		pop_turk_cost(src->a.item_1st->value, turk_cost, &(src->b), src->a.length);
+		pop_turk_cost(src->a.item_1st->value,
+			turk_cost, &(src->b), src->a.length);
 		if (src->a.item_1st->next->value < src->a.item_1st->value)
-		{
-			action_rotate(src, show, E_A);
 			reverse_turk_cost(turk_cost, &(src->b), src->a.length);
-		}
+		if (src->a.item_1st->next->value < src->a.item_1st->value)
+			action_rotate(src, show, E_A);
 	}
 }
 
