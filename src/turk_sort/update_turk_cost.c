@@ -17,9 +17,37 @@ void	rotate_turk_cost(t_turk_costs *dst, size_t rotate_b)
 	}
 }
 
+// time : O(1)
+// space: O(1)
+bool	change_target_a(int value_b, int prev_target_a, int first_item_a)
+{
+	bool	smallest;
+	bool	smallest_larger;
+	bool	first_larger;
+	bool	larger;
+
+	smallest = false;
+	smallest_larger = false;
+	first_larger = false;
+	larger = false;
+	if (value_b <= first_item_a)
+		larger = true;
+	if (value_b > prev_target_a && larger == true)
+		first_larger = true;
+	if (value_b <= prev_target_a && first_item_a <= prev_target_a)
+		smallest_larger = true;
+	if (value_b > prev_target_a && prev_target_a >= first_item_a)
+		smallest = true;
+	if ((larger == true && (first_larger == true || smallest_larger == true))
+		|| smallest == true)
+		return (true);
+	return (false);
+}
+
 // time : O(n)
 // space: O(1)
-void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost, t_intlist *stack_b, size_t length_a)
+void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost,
+	t_intlist *stack_b, size_t length_a)
 {
 	size_t		i;
 	t_intnode	*item_b;
@@ -30,9 +58,8 @@ void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost, t_intlist *stack_b
 	i = 0;
 	while (item_b != NULL && is_turk_cost_valid(turk_cost, i))
 	{
-		if ((item_b->value > turk_cost->target_a[i] && turk_cost->target_a[i] > first_item_a)
-			|| (item_b->value <= first_item_a && ((item_b->value > turk_cost->target_a[i])
-				|| (item_b->value <= turk_cost->target_a[i] && first_item_a < turk_cost->target_a[i]))))
+		if (change_target_a(item_b->value,
+				turk_cost->target_a[i], first_item_a) == true)
 		{
 			turk_cost->target_a[i] = first_item_a;
 			turk_cost->rotate_cost[i] = 0;
