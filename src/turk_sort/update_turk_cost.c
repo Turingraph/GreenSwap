@@ -63,7 +63,8 @@ void	pop_turk_cost(int first_item_a, t_turk_costs *turk_cost,
 		else if (0 <= turk_cost->rotate_cost[i]
 			&& turk_cost->rotate_cost[i] < (int)length_a / 2)
 			turk_cost->rotate_cost[i] += 1;
-		else if (turk_cost->rotate_cost[i] == (int)length_a / 2)
+		else if (length_a % 2 == 1
+			&& turk_cost->rotate_cost[i] == (int)length_a / 2)
 			turk_cost->rotate_cost[i] *= -1;
 		item_b = item_b->next;
 		i += 1;

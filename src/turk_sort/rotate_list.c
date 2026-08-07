@@ -113,7 +113,7 @@ int	double_rotate_2nd(size_t target_b, t_2intlist *dst,
 			action_rrotate(dst, show, E_B);
 			i += 1;
 		}
-		while (j < (size_t)(f_abs((int)turk_cost->rotate_cost[target_b])))
+		while (j < (size_t)(f_abs((int)turk_cost->rotate_cost[turk_cost->length - target_b])))
 		{
 			cost += -1 * (int)action_rrotate(dst, show, E_A);
 			j += 1;
