@@ -24,21 +24,17 @@ bool	change_target_a(int value_b, int prev_target_a, int first_item_a)
 	bool	smallest;
 	bool	smallest_larger;
 	bool	first_larger;
-	bool	larger;
 
 	smallest = false;
 	smallest_larger = false;
 	first_larger = false;
-	larger = false;
-	if (value_b <= first_item_a)
-		larger = true;
-	if (value_b > prev_target_a && larger == true)
+	if (value_b > prev_target_a && value_b <= first_item_a)
 		first_larger = true;
-	if (value_b <= prev_target_a && first_item_a <= prev_target_a)
+	if (value_b <= first_item_a && first_item_a <= prev_target_a)
 		smallest_larger = true;
 	if (value_b > prev_target_a && prev_target_a >= first_item_a)
 		smallest = true;
-	if ((larger == true && (first_larger == true || smallest_larger == true))
+	if (first_larger == true || smallest_larger == true
 		|| smallest == true)
 		return (true);
 	return (false);
