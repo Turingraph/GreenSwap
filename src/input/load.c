@@ -1,20 +1,5 @@
 #include"input.h"
 
-/*
-// time : O(n)
-// space: O(1)
-void	free_2d_arr(void **arr, size_t len)
-{
-	while (len > 0 && arr != NULL)
-	{
-		if (len > 0 && arr[len - 1] != NULL)
-			free(arr[len - 1]);
-		len -= 1;
-	}
-	free(arr);
-}
-*/
-
 // time : O(n)
 // space: O(n)
 char	*copy_str(const char *src)
@@ -94,7 +79,10 @@ int	*strarr_to_intarr(const char **src, size_t length)
 	i = 0;
 	while (i < length && src[i] != NULL && is_int == true)
 	{
-		dst[i] = f_atoi(src[i], &is_int, "0123456789", f_strlen(src[i]));
+		if (f_strlen(src[i]) < 12)
+			dst[i] = f_atoi(src[i], &is_int, "0123456789", f_strlen(src[i]));
+		else
+			is_int = false;
 		i += 1;
 	}
 	if (is_int == false)

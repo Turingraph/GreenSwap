@@ -14,7 +14,7 @@ OBJ_input = $(patsubst %.c, obj/%.o, $(SRC_input))
 OBJ_debug = $(patsubst %.c, obj/%.o, $(SRC_debug)) $(OBJ_input)
 OBJ_dejavu = $(patsubst %.c, obj/%.o, $(SRC_dejavu)) $(OBJ_input)
 OBJ_operator = $(patsubst %.c, obj/%.o, $(SRC_operator)) $(OBJ_input)
-OBJ_turk_sort = $(patsubst %.c, obj/%.o, $(SRC_turk_sort)) $(OBJ_operator)
+OBJ_turk_sort = $(patsubst %.c, obj/%.o, $(SRC_turk_sort)) $(OBJ_operator) $(OBJ_debug)
 
 #-----------------------------------------------------------------------------------------------
 # *** create library ***

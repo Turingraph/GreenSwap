@@ -49,4 +49,8 @@ t_intnode			*load_intnode(const int *src, size_t length);
 t_intlist			load_intlist(const int *src, size_t length);
 t_2intlist			load_2intlist(const int *src, size_t length);
 
+// split.c
+size_t				f_split_len(const char *input, const char *space);
+char				**f_split(const char *input, const char *space);
+
 #endif

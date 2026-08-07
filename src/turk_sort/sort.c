@@ -95,6 +95,26 @@ void	double_draw(t_2intlist *src,
 	}
 }
 
+// time : O(n^2)
+// space: O(n)
+void	turk_sort(t_2intlist *src, int show)
+{
+	t_turk_costs	turk_cost;
+
+	turk_cost = load_turk_cost(NULL);
+	if (is_2intlist_n_more(src, 3, 0) == false
+		&& is_2intlist_n_more(src, 0, 0) == true)
+		sort_two(src, show);
+	else if (is_2intlist_n_more(src, 3, 0) == true)
+	{
+		turk_cost = first_turk_sort(src, show);
+		while (0 < src->b.length)
+			double_draw(src, &turk_cost, show);
+		epilogue_rotate_action(src, show);
+	}
+	free_turk_cost(&turk_cost);
+}
+
 // time : O(n)
 // space: O(n)
 void	debug_double_draw(t_2intlist *src,
@@ -174,26 +194,6 @@ void	debug_double_draw(t_2intlist *src,
 
 // time : O(n^2)
 // space: O(n)
-void	turk_sort(t_2intlist *src, int show)
-{
-	t_turk_costs	turk_cost;
-
-	turk_cost = load_turk_cost(NULL);
-	if (is_2intlist_n_more(src, 3, 0) == false
-		&& is_2intlist_n_more(src, 0, 0) == true)
-		sort_two(src, show);
-	else if (is_2intlist_n_more(src, 3, 0) == true)
-	{
-		turk_cost = first_turk_sort(src, show);
-		while (0 < src->b.length)
-			double_draw(src, &turk_cost, show);
-		epilogue_rotate_action(src, show);
-	}
-	free_turk_cost(&turk_cost);
-}
-
-// time : O(n^2)
-// space: O(n)
 t_turk_costs	debug_turk_sort(t_2intlist *src, int show, size_t stop)
 {
 	t_turk_costs	turk_cost;
@@ -213,11 +213,3 @@ t_turk_costs	debug_turk_sort(t_2intlist *src, int show, size_t stop)
 	}
 	return (turk_cost);
 }
-
-/*
-partial_progress: 9
-stack_a: 210, 213, 380, 438, 804, 622, 651, 657, 846, 
-stack_b: 570, 442, 
-target_a: 622, 622, 
-rotate_cost: -4, -4, 
-*/

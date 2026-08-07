@@ -6,12 +6,10 @@ remove_slash = $(patsubst %/,%,$1)
 SRC_input = $(wildcard input/*.c)
 SRC_dejavu = $(wildcard dejavu/*.c)
 SRC_operator = $(wildcard operator/*.c)
-# SRC_merge_sort = $(wildcard merge_sort/*.c)
 
 OBJ_input = $(patsubst %.c, obj/%.o, $(SRC_input))
 OBJ_dejavu = $(patsubst %.c, obj/%.o, $(SRC_dejavu)) $(OBJ_input)
 OBJ_operator = $(patsubst %.c, obj/%.o, $(SRC_operator)) $(OBJ_input)
-# OBJ_merge_sort = $(patsubst %.c, obj/%.o, $(SRC_merge_sort))
 
 SRC = $(wildcard */*.c)
 OUT = $(patsubst %.c, out/%.out, $(SRC))
@@ -19,7 +17,6 @@ OUT = $(patsubst %.c, out/%.out, $(SRC))
 #-----------------------------------------------------------------------------------------------
 # *** create testing file ***
 all: $(OUT)
-	@echo $^
 
 # for case where out/%.out = out/input/intarr_to_chapter_1.c
 # $@ = out/input/intarr_to_chapter_1.c
