@@ -39,9 +39,6 @@ t_turk_costs	first_turk_sort(t_2intlist *src, int show);
 void			turk_sort(t_2intlist *src, int show);
 t_turk_costs	debug_turk_sort(t_2intlist *src, int show, size_t stop);
 
-// sort_v01.txt
-// t_turk_costs	prev_turk_sort(t_2intlist *src, int show, size_t stop);
-
 // update_turk_cost.c
 void			rotate_turk_cost(t_turk_costs *dst, size_t rotate_b);
 void			pop_turk_cost(int first_item_a, t_turk_costs *turk_cost,

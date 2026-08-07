@@ -63,7 +63,7 @@ char	**copy_strarr(const char **src, size_t length)
 }
 
 // time : O(n)
-// space: O(1)
+// space: O(n)
 int	*strarr_to_intarr(const char **src, size_t length)
 {
 	size_t	i;
