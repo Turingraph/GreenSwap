@@ -42,11 +42,18 @@ size_t	f_atoonei(char c, const char *base, bool *is_int)
 
 // time : O(n)
 // space: O(1)
-long int	f_atolongi(const char *src, bool *is_int, const char *base, size_t digits)
+long int	f_atolongi(const char *src,
+	bool *is_int, const char *base, size_t digits)
 {
 	long int	y;
 	size_t		i;
 
+	if (src == NULL || src[0] == '\0')
+	{
+		if (is_int != NULL)
+			*is_int = false;
+		return (-1);
+	}
 	if (digits == 0)
 		digits = f_strlen(src);
 	i = 0;

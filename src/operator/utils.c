@@ -47,9 +47,9 @@ bool	is_operator_available(e_operator operator, const t_intlist *dst)
 void	write_operator(e_target target, e_operator operator, int show)
 {
 	if (show > -1 && target == E_A && operator == E_PUSH)
-		write(show, "pa\n", 3);
-	if (show > -1 && target == E_B && operator == E_PUSH)
 		write(show, "pb\n", 3);
+	if (show > -1 && target == E_B && operator == E_PUSH)
+		write(show, "pa\n", 3);
 	if (show > -1 && target == E_A && operator == E_SWAP)
 		write(show, "sa\n", 3);
 	if (show > -1 && target == E_B && operator == E_SWAP)

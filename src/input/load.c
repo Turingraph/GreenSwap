@@ -79,7 +79,7 @@ int	*strarr_to_intarr(const char **src, size_t length)
 	i = 0;
 	while (i < length && src[i] != NULL && is_int == true)
 	{
-		if (f_strlen(src[i]) < 12)
+		if (f_strlen(src[i]) < 13)
 			dst[i] = f_atoi(src[i], &is_int, "0123456789", f_strlen(src[i]));
 		else
 			is_int = false;
