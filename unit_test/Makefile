@@ -43,6 +43,4 @@ clean:
 	rm -r -f obj/
 	rm -r -f out/
 
-# Lol, both Makefile tutorial and Suisei already cover .PHONY
-# https://youtu.be/N029UUlH1Dc?si=8PragRfDm3MzFOBc
 .PHONY: all clean

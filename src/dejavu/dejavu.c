@@ -52,15 +52,14 @@ bool	subliminal_stimuli(t_intnode **memory, int event, size_t eclipse)
 		}
 		return (true);
 	}
-	rabbit_hole = memory[day];
-	while (rabbit_hole->next != NULL)
-		rabbit_hole = rabbit_hole->next;
-	rabbit_hole->next = init_intnode(event);
-	if (rabbit_hole->next == NULL)
+	rabbit_hole = init_intnode(event);
+	if (rabbit_hole == NULL)
 	{
 		burning_memory(memory, eclipse);
 		return (false);
 	}
+	rabbit_hole->next = memory[day];
+	memory[day] = rabbit_hole;
 	return (true);
 }
 

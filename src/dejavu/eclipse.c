@@ -82,8 +82,10 @@ size_t	the_wheel_of_fortune(int event, size_t eclipse)
 	size_t		knuthoth;
 	size_t		prediction;
 
-	if (event < 0)
+	if (event < 0 && event > -2147483648)
 		event *= -1;
+	else if (event == -2147483648)
+		event = 1;
 	prediction = (size_t) event;
 	knuthoth = 32 - numerology(event, 2);
 	trinity = 0;

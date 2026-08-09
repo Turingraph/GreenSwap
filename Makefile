@@ -26,4 +26,4 @@ clean_unit_test:
 
 #-----------------------------------------------------------------------------------------------
 
-.PHONY: all clean all_unit_test clean_unit_test
+.PHONY: all clean fclean all_unit_test clean_unit_test

@@ -52,5 +52,3 @@ t_intnode	*init_intnode(int src)
 	dst->next = NULL;
 	return (dst);
 }
-
-
