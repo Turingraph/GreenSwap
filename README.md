@@ -28,7 +28,3 @@ In order to use this Git repository, you can
 *	https://askubuntu.com/questions/802996/how-to-remove-directory-with-all-of-its-contents
 *	https://makefiletutorial-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=th&_x_tr_hl=th&_x_tr_pto=tc#the-call-function
 *	https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_node/make_79.html
-
-To Do List
-1.  fix unit_test/operator/
-2.  implement turk sort.
