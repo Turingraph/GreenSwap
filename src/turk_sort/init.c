@@ -1,9 +1,23 @@
-#include"turk_sort.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:22:34 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 12:38:38 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "turk_sort.h"
 
 // time : O(1)
 // space: O(1)
-void	free_turk_cost(t_turk_costs *src)
+t_turk_costs	free_turk_cost(t_turk_costs *src)
 {
+	t_turk_costs	dst;
+
 	if (src != NULL)
 	{
 		free(src->rotate_cost);
@@ -13,6 +27,11 @@ void	free_turk_cost(t_turk_costs *src)
 		src->target_a = NULL;
 		src->rotate_cost = NULL;
 	}
+	dst.length = 0;
+	dst.capacity = 0;
+	dst.target_a = NULL;
+	dst.rotate_cost = NULL;
+	return (dst);
 }
 
 // time : O(n)
@@ -33,10 +52,7 @@ t_turk_costs	init_turk_cost(size_t length)
 			return (dst);
 		dst.rotate_cost = (int *)malloc(sizeof(int) * length);
 		if (dst.rotate_cost == NULL)
-		{
-			free_turk_cost(&dst);
-			return (dst);
-		}
+			return (free_turk_cost(&dst));
 		i = 0;
 		while (i < length)
 		{
@@ -77,17 +93,12 @@ void	load_turk_cost_item(t_intlist *item_a, t_intnode *item_b,
 		while (item != NULL && i < item_a->length)
 		{
 			if (i <= item_a->length / 2 && item->value >= item_b->value)
-			{
 				define_ith_turk_cost(item->value, (int)i, turk_cost, index);
-				i = item_a->length;
-			}
 			else if (item->value >= item_b->value)
-			{
 				define_ith_turk_cost(item->value,
-					((int)item_a->length - (int)i) * -1,
-					turk_cost, index);
+					((int)item_a->length - (int)i) * -1, turk_cost, index);
+			if (item->value >= item_b->value)
 				i = item_a->length;
-			}
 			i += 1;
 			item = item->next;
 		}
@@ -115,4 +126,3 @@ t_turk_costs	load_turk_cost(t_2intlist *src)
 	}
 	return (dst);
 }
-

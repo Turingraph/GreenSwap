@@ -1,4 +1,16 @@
-#include"operator.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:22:02 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 12:38:00 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "operator.h"
 
 // time : O(1)
 // space: O(1)
@@ -31,7 +43,7 @@ bool	is_2intlist_n_more(const t_2intlist *src,
 
 // time : O(1)
 // space: O(1)
-bool	is_operator_available(e_operator operator, const t_intlist *dst)
+bool	is_operator_available(t_operator operator, const t_intlist *dst)
 {
 	if (dst == NULL)
 		return (false);
@@ -44,7 +56,7 @@ bool	is_operator_available(e_operator operator, const t_intlist *dst)
 
 // time : O(1)
 // space: O(1)
-void	write_operator(e_target target, e_operator operator, int show)
+void	write_operator(t_target target, t_operator operator, int show)
 {
 	if (show > -1 && target == E_A && operator == E_PUSH)
 		write(show, "pb\n", 3);
@@ -69,4 +81,3 @@ void	write_operator(e_target target, e_operator operator, int show)
 	if (show > -1 && target == E_AB && operator == E_RROTATE)
 		write(show, "rrr\n", 4);
 }
-

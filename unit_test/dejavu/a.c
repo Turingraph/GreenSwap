@@ -1,4 +1,16 @@
-#include"dejavu.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   a.c                                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:56:53 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 11:56:56 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "dejavu.h"
 
 int	main(void)
 {
@@ -7,10 +19,5 @@ int	main(void)
 }
 
 /*
-	if (kagerou_day((const int []){0, 1, 2, 3, 2}, 5) == false)
-		write(1, "Nujabes\n", 9);
-	else
-		write(1, "J.S. Bach\n", 11);
-
 valgrind --leak-check=full --show-leak-kinds=all ./unit_test/out/dejavu/a.out
 */

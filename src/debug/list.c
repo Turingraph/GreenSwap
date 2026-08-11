@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:05:01 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 11:05:15 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "debug.h"
 
 // time : O(n)
 // space: O(1)
-bool	is_intarr_and_list_same(const int *intarr, const t_intnode *intlist, size_t length, bool future_is_wild)
+bool	is_intarr_and_list_same(const int *intarr,
+	const t_intnode *intlist, size_t length, bool future_is_wild)
 {
 	size_t	i;
 
@@ -66,7 +79,3 @@ bool	is_intlist_sort(const t_intnode *src, int ascending, size_t tolerate)
 		return (false);
 	return (true);
 }
-
-	// write(1, ";;; ", 4);
-	// ft_putnbr_fd(i, 1, "0123456789", 1);
-	// write(1, "\n", 1);

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:00:45 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 11:01:09 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEBUG_H
 # define DEBUG_H
 
-#include"../input/input.h"
+# include "../input/input.h"
 
 // arr.c
 bool	is_intarr_sort(const int *src, size_t length, int ascending);
@@ -16,7 +28,8 @@ void	write_total_score(size_t score, size_t max_score);
 // list.c
 void	write_intlist(t_intnode *src, bool is_future, char *str);
 bool	is_intlist_sort(const t_intnode *src, int ascending, size_t tolerate);
-bool	is_intarr_and_list_same(const int *intarr, const t_intnode *intlist, size_t length, bool future_is_wild);
+bool	is_intarr_and_list_same(const int *intarr,
+			const t_intnode *intlist, size_t length, bool future_is_wild);
 
 // merge_sort.c
 int		*merge_sort(int *src, size_t length);

@@ -9,7 +9,8 @@ In order to use this Git repository, you can
 2.	`./push_swap "1 2 3" | ./checker_linux "1 2 3"` for any other number inputs beside `"1 2 3"`
 3.	The program will display error, if the input numbers aren't number, greater than 2147483647, less than -2147483648, and/or are duplicated.
 4.	You can `make fclean` to delete all of the build files, and `make re` to remake the build files.
-5.	Lastly, you can execute the files from `unit_test/` to check if each functions from `src/` works expectedly.
+5.  You can uncomment the "debugging" part of the Makefile at the root directory and add `unit_test/` directory from this URL (???) to verify if my implementation works correctly or not.
+6.  You can download `push_swap_test.sh` or `push_swap_tester_linux.sh` from this URL (https://github.com/gemartin99/Push-Swap-Tester) depending on what OS you are using, to verify if my implementation works correctly or not.
 
 # Resource
 
@@ -20,8 +21,8 @@ In order to use this Git repository, you can
 2.	How to implement Turk Sort ?
 *	https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0
 3.	Push Swap Tester
-*	https://github.com/LeoFu9487/push_swap_tester
 *	https://github.com/gemartin99/Push-Swap-Tester
+*	https://github.com/LeoFu9487/push_swap_tester
 4.	Makefile tips
 *	https://stackoverflow.com/questions/68292501/secondary-expansion-in-a-makefile-is-causing-unnecessary-targets-to-be-run
 *	https://stackoverflow.com/questions/1950926/create-directories-using-make-file

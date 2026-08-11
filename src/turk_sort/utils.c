@@ -1,4 +1,16 @@
-#include"turk_sort.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:54:50 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 11:54:55 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "turk_sort.h"
 
 // time : O(1)
 // space: O(1)
@@ -19,7 +31,7 @@ bool	is_turk_cost_valid(const t_turk_costs *dst, size_t index)
 		|| dst->capacity < dst->length || dst->capacity <= index
 		|| dst->target_a == NULL || dst->length <= index)
 		return (false);
-	return (true);	
+	return (true);
 }
 
 // time : O(1)

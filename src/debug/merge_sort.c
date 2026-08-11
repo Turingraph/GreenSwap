@@ -1,4 +1,16 @@
-#include"debug.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   merge_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:05:28 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 12:14:28 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "debug.h"
 
 // time : O(n)
 // space: O(1)
@@ -14,9 +26,21 @@ void	copy_intarr(int *src, int *dst, size_t length)
 	}
 }
 
+// time : O(1)
+// space: O(1)
+void	update_2_ints(int *dst, size_t *i, int src)
+{
+	if (dst != NULL && i != NULL)
+	{
+		*dst = src;
+		*i += 1;
+	}
+}
+
 // time : O(n)
 // space: O(1)
-void	linear_merge(int *src, int *dst, size_t start, size_t stop)
+void	linear_merge(int *src, int *dst,
+	size_t start, size_t stop)
 {
 	size_t	mid;
 	size_t	i;
@@ -32,15 +56,9 @@ void	linear_merge(int *src, int *dst, size_t start, size_t stop)
 		while (i <= mid && j <= stop)
 		{
 			if (src[i] <= src[j])
-			{
-				dst[k] = src[i];
-				i += 1;
-			}
+				update_2_ints(dst + k, &i, src[i]);
 			else
-			{
-				dst[k] = src[j];
-				j += 1;
-			}
+				update_2_ints(dst + k, &j, src[j]);
 			k += 1;
 		}
 		if (i <= mid)

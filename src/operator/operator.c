@@ -1,8 +1,21 @@
-#include"operator.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operator.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:20:19 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 12:06:06 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "operator.h"
 
 // time : O(1)
 // space: O(1)
-size_t	write_available_operator(t_2intlist *dst, e_target target, int show, e_operator operator)
+size_t	write_available_operator(t_2intlist *dst,
+	t_target target, int show, t_operator operator)
 {
 	if (dst == NULL)
 		return (0);
@@ -12,12 +25,14 @@ size_t	write_available_operator(t_2intlist *dst, e_target target, int show, e_op
 		write_operator(target, operator, show);
 		return (1);
 	}
-	else if (target != E_B && is_operator_available(operator, &(dst->a)) == true)
+	else if (target != E_B
+		&& is_operator_available(operator, &(dst->a)) == true)
 	{
 		write_operator(E_A, operator, show);
 		return (1);
 	}
-	else if (target != E_A && is_operator_available(operator, &(dst->b)) == true)
+	else if (target != E_A
+		&& is_operator_available(operator, &(dst->b)) == true)
 	{
 		write_operator(E_B, operator, show);
 		return (1);
@@ -27,7 +42,8 @@ size_t	write_available_operator(t_2intlist *dst, e_target target, int show, e_op
 
 // time : O(1)
 // space: O(1)
-char	operate_2intlist(t_2intlist *dst, e_target target, e_operator operator, void (*operator_action)(t_intlist *dst))
+char	operate_2intlist(t_2intlist *dst, t_target target,
+	t_operator operator, void (*operator_action)(t_intlist *dst))
 {
 	if (dst == NULL || (operator_action == NULL && operator != E_PUSH))
 		return (0);
@@ -46,9 +62,11 @@ char	operate_2intlist(t_2intlist *dst, e_target target, e_operator operator, voi
 		operator_action(&(dst->a));
 		operator_action(&(dst->b));
 	}
-	else if (target != E_B && is_operator_available(operator, &(dst->a)) == true)
+	else if (target != E_B
+		&& is_operator_available(operator, &(dst->a)) == true)
 		operator_action(&(dst->a));
-	else if (target != E_A && is_operator_available(operator, &(dst->b)) == true)
+	else if (target != E_A
+		&& is_operator_available(operator, &(dst->b)) == true)
 		operator_action(&(dst->b));
 	return (1);
 }

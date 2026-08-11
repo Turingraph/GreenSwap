@@ -1,4 +1,16 @@
-#include"operator.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   act.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:19:46 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 11:19:55 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "operator.h"
 
 // time : O(1)
 // space: O(1)
@@ -83,7 +95,8 @@ void	act_push(t_intlist *src, t_intlist *dst)
 {
 	if (is_intlist_n_more(dst, 1) == true && is_intlist_n_more(src, 1) == true)
 		act_ppush(src, dst);
-	else if (is_intlist_n_more(dst, 0) == true && is_intlist_n_more(src, 1) == true)
+	else if (is_intlist_n_more(dst, 0) == true
+		&& is_intlist_n_more(src, 1) == true)
 	{
 		dst->item_1st = src->item_1st;
 		src->item_1st = src->item_1st->next;

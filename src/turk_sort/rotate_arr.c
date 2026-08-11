@@ -1,4 +1,16 @@
-#include"turk_sort.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_arr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 11:37:51 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 11:37:52 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "turk_sort.h"
 
 // time : O(n)
 // space: O(1)
@@ -20,16 +32,6 @@ int	*shift_arr(int *dst, size_t length)
 	return (dst);
 }
 
-	// if (length_b == 2)
-	// {
-	// 	write(1, "rotate_effect\t=\t", 17);
-	// 	ft_putnbr_fd(rotate_effect, 1, "0123456789", 1);
-	// 	write(1, "\n", 1);
-	// 	write(1, "length_a\t=\t", 12);
-	// 	ft_putnbr_fd(length_a, 1, "0123456789", 1);
-	// 	write(1, "\n", 1);
-	// }
-
 // time : O(n)
 // space: O(1)
 int	*rotate_value(int *src, size_t length_b,
@@ -42,8 +44,10 @@ int	*rotate_value(int *src, size_t length_b,
 	i = 0;
 	while (i < length_b)
 	{
-		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2 && length_a % 2 == 1)
-			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2 && length_a % 2 == 0))
+		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2
+				&& length_a % 2 == 1)
+			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2
+				&& length_a % 2 == 0))
 			src[i] -= (int)rotate_effect;
 		else
 			src[i] = src[i] - (int)rotate_effect + length_a;
@@ -51,36 +55,6 @@ int	*rotate_value(int *src, size_t length_b,
 	}
 	return (src);
 }
-
-/*
-// version 1
-		src[i] += (int)length_a;
-		src[i] -= (int)rotate_effect;
-		src[i] = src[i] % length_a;
-		if (src[i] > (int)(length_a / 2))
-			src[i] = -1 * (int)(length_a - src[i]);
-
-// version 2 (this is wrong)
-		if ((src[i] - (int)rotate_effect <= -1 * (int)length_a / 2 && length_a % 2 == 1)
-			|| (src[i] - (int)rotate_effect < -1 * (int)length_a / 2 && length_a % 2 == 0))
-			src[i] -= (int)rotate_effect;
-		else
-			src[i] = (int)length_a + src[i] - (int)rotate_effect;
-
-// version 3
-		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2 && length_a % 2 == 1)
-			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2 && length_a % 2 == 0))
-			src[i] -= (int)rotate_effect;
-		else
-			src[i] = src[i] - (int)rotate_effect + length_a;
-
-// version 4
-		if ((src[i] - (int)rotate_effect >= -1 * (int)length_a / 2 && length_a % 2 == 1)
-			|| (src[i] - (int)rotate_effect > -1 * (int)length_a / 2 && length_a % 2 == 0))
-			src[i] -= (int)rotate_effect;
-		else
-			src[i] = src[i] - (int)rotate_effect + length_a;
-*/
 
 // time : O(n)
 // space: O(1)

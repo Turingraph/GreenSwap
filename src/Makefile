@@ -19,8 +19,6 @@ OBJ_turk_sort = $(patsubst %.c, obj/%.o, $(SRC_turk_sort)) $(OBJ_operator) $(OBJ
 #-----------------------------------------------------------------------------------------------
 # *** create library ***
 
-.PRECIOUS: $(OBJ_input)
-
 all: $(LIBRARY)
 
 # This line works for every library in $(LIBRARY) list, but I use lib/input.a as a simple example.

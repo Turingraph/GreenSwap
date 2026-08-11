@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   merge_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/11 12:12:06 by phsottat          #+#    #+#             */
+/*   Updated: 2026/08/11 12:16:39 by phsottat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"input.h"
 
 int	main(void)
@@ -32,7 +44,7 @@ int	main(void)
 	{
 		dst = merge_sort(intarr[i], col);
 		write_intarr(dst, col, ">>> ");
-		if (is_2intarr_same(dst, outarr[i], col) == 0 && is_intarr_sort(dst, col, 1) == true)
+		if (is_2intarr_same(dst, outarr[i], col) == true && is_intarr_sort(dst, col, 1) == true)
 			score += 1;
 		free(dst);
 		i += 1;
