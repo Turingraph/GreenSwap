@@ -9,7 +9,7 @@ In order to use this Git repository, you can
 2.	`./push_swap "1 2 3" | ./checker_linux "1 2 3"` for any other number inputs beside `"1 2 3"`
 3.	The program will display error, if the input numbers aren't number, greater than 2147483647, less than -2147483648, and/or are duplicated.
 4.	You can `make fclean` to delete all of the build files, and `make re` to remake the build files.
-5.  You can uncomment the "debugging" part of the Makefile at the root directory and add `unit_test/` directory from this URL (???) to verify if my implementation works correctly or not.
+5.  You can uncomment the "debugging" part of the Makefile at the root directory and add `unit_test/` directory from this URL (https://github.com/Turingraph/GreenSwap/tree/main/unit_test) to verify if my implementation works correctly or not.
 6.  You can download `push_swap_test.sh` or `push_swap_tester_linux.sh` from this URL (https://github.com/gemartin99/Push-Swap-Tester) depending on what OS you are using, to verify if my implementation works correctly or not.
 
 # Resource
