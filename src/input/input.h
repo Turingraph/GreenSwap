@@ -52,5 +52,6 @@ t_2intlist			load_2intlist(const int *src, size_t length);
 // split.c
 size_t				f_split_len(const char *input, const char *space);
 char				**f_split(const char *input, const char *space);
+char				f_isspace(char s, const char *space);
 
 #endif
